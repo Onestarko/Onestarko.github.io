@@ -269,7 +269,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">496</span> / Reading time: <span class="post-count">2 min</span></span>
+                        <span>Word count: <span class="post-count">493</span> / Reading time: <span class="post-count">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -448,15 +448,14 @@ height:50vh;
 </li>
 </ol>
 <h3 id="五、项目可安装"><a href="#五、项目可安装" class="headerlink" title="五、项目可安装"></a>五、项目可安装</h3><ol>
-<li>描述文件<br>setup.py<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> setuptools <span class="keyword">import</span> find_packages, setup</span><br><span class="line"></span><br><span class="line">setup(</span><br><span class="line">    name=<span class="string">'flaskr'</span>,</span><br><span class="line">    version=<span class="string">'1.0.0'</span>,</span><br><span class="line">    packages=find_packages(),</span><br><span class="line">    include_package_data=<span class="literal">True</span>,</span><br><span class="line">    zip_safe=<span class="literal">False</span>,</span><br><span class="line">    install_requires=[</span><br><span class="line">        <span class="string">'flask'</span>,</span><br><span class="line">    ],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
+<li><p>setup.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> setuptools <span class="keyword">import</span> find_packages, setup</span><br><span class="line"></span><br><span class="line">setup(</span><br><span class="line">    name=<span class="string">'flaskr'</span>,</span><br><span class="line">    version=<span class="string">'1.0.0'</span>,</span><br><span class="line">    packages=find_packages(),</span><br><span class="line">    include_package_data=<span class="literal">True</span>,</span><br><span class="line">    zip_safe=<span class="literal">False</span>,</span><br><span class="line">    install_requires=[</span><br><span class="line">        <span class="string">'flask'</span>,</span><br><span class="line">    ],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>MANIIFEST.in</p>
+<li><p>MANIIFEST.in</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">include flaskr&#x2F;schema.sql</span><br><span class="line">graft flaskr&#x2F;static</span><br><span class="line">graft flaskr&#x2F;templates</span><br><span class="line">global-exclude *.pyc</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>可以使用<code>pip install -e .</code>安装项目</li>
+</li>
+<li><p>可以使用<code>pip install -e .</code>安装项目</p>
+</li>
 </ol>
 <h3 id="六、部署产品"><a href="#六、部署产品" class="headerlink" title="六、部署产品"></a>六、部署产品</h3><ol>
 <li><p>构建</p>
@@ -473,18 +472,6 @@ height:50vh;
 
 <p>启动应用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export FLASK_APP&#x3D;APP_NAME</span><br><span class="line">export FLASK_ENV&#x3D;development</span><br><span class="line">flask run</span><br><span class="line"></span><br><span class="line">flask init-db</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
     </article>
     <!-- license  -->
     
