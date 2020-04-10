@@ -339,37 +339,71 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/27/flask%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86/" >
+        <a class="abstract-title" href = "/2020/04/10/%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%9F%A5%E8%AF%A2/" >
             
-                <span>flask思路整理</span>
+                <span>配置数据管理查询</span>
         </a>
         <div class="abstract-content">
-            flask思路整理一. 创建虚拟环境python3 -m venv venv. venv/bin/activate
-二. init.py主要工作：
+            配置数据管理查询
+背景: 数据库以及服务器的配置信息比较多，临时使用频率也高,找起来不方便
 
-创建应用
-添加配置
-初始化应用
-注册蓝图
+pylsy configparser
 
-
-创建应用:
-123456import osfrom flask import Flaskdef create_app(test_config=None):    ## instance_relative_config 使用True的话就会从instance文件夹作为配置文件的路径    app = Flask(__name__, instance_relative_config=True)
-
-添...
+catconfig.py12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576import sysfrom pylsy import pylsytableimport configparsercp &#x3D; configpa...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/27</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/10</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "flask">flask</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "工具">工具</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/26/kafak%E7%A4%BA%E4%BE%8B-%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7%E7%BB%88%E7%AB%AF%E8%BE%93%E5%85%A5/" >
+            
+                <span>kafak示例-远程监控终端输入</span>
+        </a>
+        <div class="abstract-content">
+            kafak示例-远程监控终端输入
+使用pyinotify监听.bash_history文件，使用kafka生产消费
+
+一、kafka安装配置
+安装java环境
+
+官网下载kafka安装包
+1wget http:&#x2F;&#x2F;archive.apache.org&#x2F;dist&#x2F;kafka&#x2F;1.0.0&#x2F;kafka_2.12-1.0.0.tgz
+
+解压压缩包
+
+配置/config/server.properties
+1advertised.listeners&#x3D;PLAINTEXT:&#x2F;&#x2F;&#123;&#123;IP&#12...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "kafka">kafka</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "pyinotify">pyinotify</a>
     
 </div>
             
@@ -502,9 +536,29 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 6
+        Total : 8
         </div>
         <!-- search  -->
         
@@ -517,6 +571,16 @@
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2020/04/10/%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%9F%A5%E8%AF%A2/" >配置数据管理查询</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2020/04/10/uwsgi-nginx%E9%83%A8%E7%BD%B2flask/" >uwsgi+nginx部署flask</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -567,6 +631,10 @@
     
         <span class="sidebar-tag-name" data-tags="Elasticsearch"><span class="iconfont-archer">&#xe606;</span>Elasticsearch</span>
     
+        <span class="sidebar-tag-name" data-tags="uwsgi"><span class="iconfont-archer">&#xe606;</span>uwsgi</span>
+    
+        <span class="sidebar-tag-name" data-tags="nginx"><span class="iconfont-archer">&#xe606;</span>nginx</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -610,6 +678,10 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Elasticsearch"><span class="iconfont-archer">&#xe60a;</span>Elasticsearch</span>
     
+        <span class="sidebar-category-name" data-categories="nginx"><span class="iconfont-archer">&#xe60a;</span>nginx</span>
+    
+        <span class="sidebar-category-name" data-categories="nginx/uwsgi"><span class="iconfont-archer">&#xe60a;</span>nginx/uwsgi</span>
+    
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
     <div class="sidebar-categories-list"></div>
@@ -642,12 +714,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-     
-    </body>
-</html>
-
-
- <!-- async load share.js -->
      
     </body>
 </html>
