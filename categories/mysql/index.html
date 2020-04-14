@@ -339,37 +339,33 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/27/flask%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86/" >
+        <a class="abstract-title" href = "/2020/04/14/mysql%E5%88%86%E7%BB%84top%E4%BC%98%E5%8C%96/" >
             
-                <span>flask思路整理</span>
+                <span>mysql分组top优化</span>
         </a>
         <div class="abstract-content">
-            flask思路整理一. 创建虚拟环境python3 -m venv venv. venv/bin/activate
-二. init.py主要工作：
+            mysql分组top优化
 
-创建应用
-添加配置
-初始化应用
-注册蓝图
+mysql分组取top1 通常是用max() 然后内连
+可以使用变量的方式避免join操作
 
 
-创建应用:
-123456import osfrom flask import Flaskdef create_app(test_config=None):    ## instance_relative_config 使用True的话就会从instance文件夹作为配置文件的路径    app = Flask(__name__, instance_relative_config=True)
 
-添...
+问题场景同一组oss_id, osp_id, pro_sku_code, start_time 会有多种 price_val,先需要依据update_time字段取每一组的最后一条更新内容
+
+
+原始写法123456789101112select a.osp_id, a.oss_id, a.pro_sku_code, a.price_val, a.start_time from pricing.price_log a,(            select max(...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/27</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/14</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "flask">flask</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "mysql">mysql</a>
     
 </div>
             
@@ -665,49 +661,6 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="Elasticsearch"><span class="iconfont-archer">&#xe60a;</span>Elasticsearch</span>
     
         <span class="sidebar-category-name" data-categories="nginx"><span class="iconfont-archer">&#xe60a;</span>nginx</span>
-    
-        <span class="sidebar-category-name" data-categories="nginx/uwsgi"><span class="iconfont-archer">&#xe60a;</span>nginx/uwsgi</span>
-    
-        <span class="sidebar-category-name" data-categories="mysql"><span class="iconfont-archer">&#xe60a;</span>mysql</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "kowhoy"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-    <!-- busuanzi  -->
-    
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
-    </div>
-    <!-- async load share.js -->
-     
-    </body>
-</html>
-
-
-"iconfont-archer">&#xe60a;</span>nginx</span>
     
         <span class="sidebar-category-name" data-categories="nginx/uwsgi"><span class="iconfont-archer">&#xe60a;</span>nginx/uwsgi</span>
     

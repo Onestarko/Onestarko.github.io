@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Kowhoy&#39;s Studio</title>
+    <title>mysql分组top优化 · Kowhoy&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180709 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180709 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -194,12 +196,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >kowhoy&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">mysql分组top优化</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>kowhoy's Studio.</a>
 </header>
@@ -213,24 +226,74 @@
 
 
 
+height:50vh;
+
 >
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/pt.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            mysql分组top优化
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "mysql">mysql</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">452</span> / Reading time: <span class="post-count">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/04/14</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -331,53 +394,76 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/27/flask%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86/" >
-            
-                <span>flask思路整理</span>
-        </a>
-        <div class="abstract-content">
-            flask思路整理一. 创建虚拟环境python3 -m venv venv. venv/bin/activate
-二. init.py主要工作：
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="mysql分组top优化"><a href="#mysql分组top优化" class="headerlink" title="mysql分组top优化"></a>mysql分组top优化</h3><blockquote>
+<ul>
+<li>mysql分组取top1 通常是用max() 然后内连</li>
+<li>可以使用变量的方式避免join操作</li>
+</ul>
+</blockquote>
+<ol>
+<li>问题场景<br>同一组<code>oss_id</code>, <code>osp_id</code>, <code>pro_sku_code</code>, <code>start_time</code> 会有多种 <code>price_val</code>,先需要依据<code>update_time</code>字段取每一组的最后一条更新内容</li>
+</ol>
+<ol start="2">
+<li>原始写法<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.osp_id, a.oss_id, a.pro_sku_code, a.price_val, a.start_time <span class="keyword">from</span> pricing.price_log a,(</span><br><span class="line">            <span class="keyword">select</span> <span class="keyword">max</span>(update_time) <span class="keyword">as</span> max_up, </span><br><span class="line">                oss_id, osp_id, pro_sku_code, start_time <span class="keyword">from</span> pricing.price_log <span class="keyword">where</span> price_type = <span class="number">10</span> </span><br><span class="line">                <span class="keyword">AND</span> <span class="keyword">STATUS</span> = <span class="number">1</span> </span><br><span class="line">                <span class="keyword">AND</span> delete_flag = <span class="number">0</span></span><br><span class="line">                <span class="keyword">group</span> <span class="keyword">by</span> oss_id, osp_id, pro_sku_code, start_time ) b</span><br><span class="line">                <span class="keyword">where</span> a.oss_id = b.oss_id</span><br><span class="line">                <span class="keyword">and</span> a.osp_id = b.osp_id</span><br><span class="line">                <span class="keyword">and</span> a.pro_sku_code = b.pro_sku_code</span><br><span class="line">                <span class="keyword">and</span> a.start_time = b.start_time</span><br><span class="line">                <span class="keyword">and</span> a.update_time = b.max_up</span><br><span class="line">                <span class="keyword">and</span> a.price_type = <span class="number">10</span> <span class="keyword">and</span> a.status = <span class="number">1</span> <span class="keyword">and</span> a.delete_flag = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>150w数据10min执行时间 *</li>
+</ul>
+<ol start="3">
+<li>使用变量写法<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> @sameno := <span class="number">1</span>;</span><br><span class="line"><span class="keyword">set</span> @oss_id := <span class="number">-1</span>;</span><br><span class="line"><span class="keyword">set</span> @osp_id := <span class="number">-1</span>;</span><br><span class="line"><span class="keyword">set</span> @pro_sku_code := <span class="string">""</span>;</span><br><span class="line"><span class="keyword">set</span> @start_time := <span class="string">"1970-01-01"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> oss_id, osp_id, pro_sku_code, start_time, price_val <span class="keyword">from</span> (</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    @sameno := <span class="keyword">case</span> <span class="keyword">when</span> @oss_id = oss_id <span class="keyword">and</span> @osp_id = osp_id <span class="keyword">and</span> @pro_sku_code = pro_sku_code <span class="keyword">and</span> @start_time = start_time <span class="keyword">then</span> @sameno + <span class="number">1</span> <span class="keyword">else</span> <span class="number">1</span> <span class="keyword">end</span> <span class="keyword">as</span> sameno,</span><br><span class="line">        @oss_id := oss_id oss_id,</span><br><span class="line">        @osp_id := osp_id osp_id,</span><br><span class="line">        @pro_sku_code := pro_sku_code pro_sku_code,</span><br><span class="line">        @start_time := start_time start_time,</span><br><span class="line">				price_val</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">(<span class="keyword">select</span></span><br><span class="line">oss_id, osp_id, pro_sku_code, start_time, price_val</span><br><span class="line"><span class="keyword">from</span> price_log <span class="keyword">where</span> price_type = <span class="number">10</span> <span class="keyword">and</span> <span class="keyword">status</span> = <span class="number">1</span> <span class="keyword">and</span> delete_flag = <span class="number">0</span> <span class="keyword">order</span> <span class="keyword">by</span></span><br><span class="line">oss_id, osp_id, pro_sku_code, start_time, update_time <span class="keyword">desc</span> ) a) b <span class="keyword">where</span> sameno = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>30s左右 *</li>
+</ul>
+<p>⚠️  需要先设定头部初始变量，否则首次执行结果非预期，多次执行效果不一致，很奇怪</p>
+<ol start="4">
+<li>使用python操作</li>
+</ol>
+<ul>
+<li>不可使用pd.read_sql_query() 有异常</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">sql = <span class="string">'''</span></span><br><span class="line"><span class="string">         select oss_id, osp_id, pro_sku_code, start_time, price_val from (</span></span><br><span class="line"><span class="string">         select</span></span><br><span class="line"><span class="string">             @sameno := case when @oss_id = oss_id and @osp_id = osp_id and @pro_sku_code = pro_sku_code and @start_time = start_time then @sameno + 1 else 1 end as sameno,</span></span><br><span class="line"><span class="string">                 @oss_id := oss_id oss_id,</span></span><br><span class="line"><span class="string">                 @osp_id := osp_id osp_id,</span></span><br><span class="line"><span class="string">                 @pro_sku_code := pro_sku_code pro_sku_code,</span></span><br><span class="line"><span class="string">                 @start_time := start_time start_time,</span></span><br><span class="line"><span class="string">                         price_val</span></span><br><span class="line"><span class="string">         from</span></span><br><span class="line"><span class="string">         (select</span></span><br><span class="line"><span class="string">         oss_id, osp_id, pro_sku_code, start_time, price_val</span></span><br><span class="line"><span class="string">         from price_log where price_type = 10 and status = 1 and delete_flag = 0 order by </span></span><br><span class="line"><span class="string">         oss_id, osp_id, pro_sku_code, start_time, update_time desc ) a) b where sameno = 1</span></span><br><span class="line"><span class="string">     '''</span></span><br><span class="line">     db_conf = conf.db_conf</span><br><span class="line">     oms_conf = db_conf[<span class="string">'oms_db'</span>]</span><br><span class="line">     db = pymysql.connect(oms_conf[<span class="string">'host'</span>], oms_conf[<span class="string">'user'</span>], oms_conf[<span class="string">'passwd'</span>], <span class="string">'pricing'</span>)</span><br><span class="line"></span><br><span class="line">     heads = [<span class="string">"set @sameno := 1;"</span>, <span class="string">"set @oss_id := -1;"</span>, <span class="string">"set @osp_id := -1;"</span>, <span class="string">"set @pro_sku_code := '';"</span>, <span class="string">"set @start_time := '1970-01-01'"</span>]</span><br><span class="line"></span><br><span class="line">     cursor = db.cursor()</span><br><span class="line"></span><br><span class="line">     <span class="keyword">for</span> col <span class="keyword">in</span> heads:</span><br><span class="line">         cursor.execute(col)</span><br><span class="line"></span><br><span class="line">     cursor.execute(sql)</span><br><span class="line"></span><br><span class="line">     res = cursor.fetchall()</span><br></pre></td></tr></table></figure>
 
-创建应用
-添加配置
-初始化应用
-注册蓝图
+<ol start="5">
+<li>还可以使用程序内进行筛选，不过效率并不高，但是比max要好</li>
+</ol>
 
-
-创建应用:
-123456import osfrom flask import Flaskdef create_app(test_config=None):    ## instance_relative_config 使用True的话就会从instance文件夹作为配置文件的路径    app = Flask(__name__, instance_relative_config=True)
-
-添...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "flask">flask</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/04/10/%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%9F%A5%E8%AF%A2/" title= 配置数据管理查询 >
+                    <div class="prevTitle">配置数据管理查询</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -445,6 +531,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql分组top优化"><span class="toc-number">1.</span> <span class="toc-text">mysql分组top优化</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -702,49 +806,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-     
-    </body>
-</html>
-
-
-"iconfont-archer">&#xe60a;</span>nginx</span>
     
-        <span class="sidebar-category-name" data-categories="nginx/uwsgi"><span class="iconfont-archer">&#xe60a;</span>nginx/uwsgi</span>
-    
-        <span class="sidebar-category-name" data-categories="mysql"><span class="iconfont-archer">&#xe60a;</span>mysql</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "kowhoy"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-    <!-- busuanzi  -->
-    
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
-    </div>
-    <!-- async load share.js -->
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
