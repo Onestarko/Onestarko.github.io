@@ -339,24 +339,20 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/27/flask%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86/" >
+        <a class="abstract-title" href = "/2020/03/27/tmux%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/" >
             
-                <span>flask思路整理</span>
+                <span>tmux——基本使用示例</span>
         </a>
         <div class="abstract-content">
-            flask思路整理一. 创建虚拟环境python3 -m venv venv. venv/bin/activate
-二. init.py主要工作：
+            tmux——基本使用示例
+使用tmux后台运行bash_history_notify项目
 
-创建应用
-添加配置
-初始化应用
-注册蓝图
+一、安装tmux12345#mac:brew install tmux#centos:yum install tmux
 
+二、配置tmux
+使用了github上的配置，然后做了修改tmux的默认快捷键前缀为 ctrl + b, 现在改为ctrl+a，下文中使用Prefix代替ctrl+a⚠️ :使用快捷键是先摁下快捷键前缀，然后抬手，在进行具体的快捷按键
 
-创建应用:
-123456import osfrom flask import Flaskdef create_app(test_config=None):    ## instance_relative_config 使用True的话就会从instance文件夹作为配置文件的路径    app = Flask(__name__, instance_relative_config=True)
-
-添...
+1234cdgit clone https:&#x2F;&#x2F;github.com&#x2F;gpakosz&#x2F;.tmux.gi...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -365,11 +361,124 @@
             </div>
             <!-- tags  -->
             
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/26/kafak%E7%A4%BA%E4%BE%8B-%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7%E7%BB%88%E7%AB%AF%E8%BE%93%E5%85%A5/" >
+            
+                <span>kafak示例-远程监控终端输入</span>
+        </a>
+        <div class="abstract-content">
+            kafak示例-远程监控终端输入
+使用pyinotify监听.bash_history文件，使用kafka生产消费
+
+一、kafka安装配置
+安装java环境
+
+官网下载kafka安装包
+1wget http:&#x2F;&#x2F;archive.apache.org&#x2F;dist&#x2F;kafka&#x2F;1.0.0&#x2F;kafka_2.12-1.0.0.tgz
+
+解压压缩包
+
+配置/config/server.properties
+1advertised.listeners&#x3D;PLAINTEXT:&#x2F;&#x2F;&#123;&#123;IP&#12...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/26</span>
+            </div>
+            <!-- tags  -->
+            
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "flask">flask</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "kafka">kafka</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "pyinotify">pyinotify</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/13/mac%E4%B8%8Bchromedriver%E5%8D%87%E7%BA%A7/" >
+            
+                <span>mac下chromedriver升级</span>
+        </a>
+        <div class="abstract-content">
+            
+下载与本地chrome版本一致的chromedriver,下载地址[http://chromedriver.storage.googleapis.com/index.html]
+
+解压到本地的 /usr/local/bin
+
+检查版本 chromedirver -v
+
+
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "工具">工具</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/23/scala%E4%BC%B4%E7%94%9F%E7%B1%BB%E5%92%8C%E4%BC%B4%E7%94%9F%E5%AF%B9%E8%B1%A1/" >
+            
+                <span>scala伴生类和伴生对象</span>
+        </a>
+        <div class="abstract-content">
+            Scala伴生类和伴生对象
+定义： 在Scala中，类名和对象名一致时，互为伴生类和伴生对象。
+
+
+例子:123456789// 伴生类class ApplyTest &#123;&#125;// 伴生对象object ApplyTest &#123;&#125;
+
+
+
+
+使用: 通常在伴生对象中写apply()方法，然后在apply方法中实例伴生类，然后每次使用类名称()的时候，就已经实例化了类
+
+
+例子:12345678910111213141516object ApplyApp &#123;    def main(args:Array[String]):Unit = &#123;...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "伴生">伴生</a>
     
 </div>
             
@@ -377,6 +486,10 @@
     </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/2020/">&amp;#60; PREV</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -757,49 +870,6 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="nginx"><span class="iconfont-archer">&#xe60a;</span>nginx</span>
     
         <span class="sidebar-category-name" data-categories="nginx/uwsgi"><span class="iconfont-archer">&#xe60a;</span>nginx/uwsgi</span>
-    
-        <span class="sidebar-category-name" data-categories="mysql"><span class="iconfont-archer">&#xe60a;</span>mysql</span>
-    
-        <span class="sidebar-category-name" data-categories="scala"><span class="iconfont-archer">&#xe60a;</span>scala</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "kowhoy"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-    <!-- busuanzi  -->
-    
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
-    </div>
-    <!-- async load share.js -->
-     
-    </body>
-</html>
-
-
-class="iconfont-archer">&#xe60a;</span>nginx/uwsgi</span>
     
         <span class="sidebar-category-name" data-categories="mysql"><span class="iconfont-archer">&#xe60a;</span>mysql</span>
     
