@@ -339,6 +339,49 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/05/07/python%E6%93%8D%E4%BD%9Czookeeper/" >
+            
+                <span>python操作zookeeper</span>
+        </a>
+        <div class="abstract-content">
+            一、安装1pip install kazoo
+
+二、连接Zookeeper123from kazoo.client import KazooClientzk = KazooClient(hosts='39.99.221.106')
+
+
+默认端口为2181，注意防火墙/安全组
+
+三、创建节点
+
+path：          节点路径
+value：         节点对应的值，注意值的类型是 bytes
+ephemeral： 若为 True 则创建一个临时节点，session 中断后自动删除该节点。默认 False
+sequence:     若为 True 则在你创建节点名后面增加10位...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/05/07/ZOOKEEPER%E5%9F%BA%E7%A1%80/" >
             
                 <span>ZOOKEEPER基础</span>
@@ -741,9 +784,24 @@ ZOOKEEPER 监听器原理:（1）在Zookeeper的API操作中，创建main()主�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 22
+        Total : 23
         </div>
         <!-- search  -->
         
@@ -760,6 +818,11 @@ ZOOKEEPER 监听器原理:（1）在Zookeeper的API操作中，创建main()主�
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2020/05/07/ZOOKEEPER%E5%9F%BA%E7%A1%80/" >ZOOKEEPER基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2020/05/07/python%E6%93%8D%E4%BD%9Czookeeper/" >python操作zookeeper</a>
         </li>
     
     
