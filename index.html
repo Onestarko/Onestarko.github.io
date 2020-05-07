@@ -354,6 +354,41 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/05/07/ZOOKEEPER%E5%9F%BA%E7%A1%80/" >
+            
+                <span>ZOOKEEPER基础</span>
+        </a>
+        <div class="abstract-content">
+            
+ZOOKEEPER 监听器原理:（1）在Zookeeper的API操作中，创建main()主方法即主线程；
+（2）在main线程中创建Zookeeper客户端（zkClient），这时会创建两个线程：
+线程connet负责网络通信连接，连接服务器；
+
+线程Listener负责监听；（3）客户端通过connet线程连接服务器；
+图中getChildren(&quot;/&quot; , true) ，&quot; / &quot;表示监听的是根目录，true表示监听，不监听用false（4）在Zookeeper的注册监听列表中将注册的监听事件添加到列表中，表示这个服务器中的/path，即...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/05/07/zookeeper%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" >
             
                 <span>zookeeper安装部署</span>
@@ -630,41 +665,6 @@ MYSQL
 简写函数定义, 匿名函数不可以写成传名调用
 
 12345678910111213141516171819202122232425262728293031package com.kowhoy.scala//匿名函数object niming &#123;  def main(args: Array[String]): Unit = &#123;    var initNum = 0    var counter = () =&gt; &#123;      initNum += 1      initNum    &#125;    var sendValue = (x:  In...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "scala">scala</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/15/%E4%BC%A0%E5%80%BC%E4%BC%A0%E5%90%8D%E8%B0%83%E7%94%A8/" >
-            
-                <span>传值传名调用</span>
-        </a>
-        <div class="abstract-content">
-            传值传名调用
-传值 name:type 计算好值进行调用
-
-传名 name: =&gt; type在调用处再进行计算
-
-
-12345678910111213141516171819202122232425262728293031323334package com.kowhoy.scala// 传值调用和传名调用object sendWay &#123;  var initNum = 0  def main(args: Array[String]):Unit = &#123;    sendName(counter)    println("--" * 20)    initNum = 0...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1064,9 +1064,24 @@ MYSQL
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 21
+        Total : 22
         </div>
         <!-- search  -->
         
@@ -1079,6 +1094,11 @@ MYSQL
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2020/05/07/ZOOKEEPER%E5%9F%BA%E7%A1%80/" >ZOOKEEPER基础</a>
+        </li>
     
     
         <li class="archive-post-item">

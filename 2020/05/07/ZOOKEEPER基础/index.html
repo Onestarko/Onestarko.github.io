@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Kowhoy&#39;s Studio</title>
+    <title>ZOOKEEPER基础 · Kowhoy&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180709 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180709 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -194,12 +196,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >kowhoy&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">ZOOKEEPER基础</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>kowhoy's Studio.</a>
 </header>
@@ -213,24 +226,74 @@
 
 
 
+height:50vh;
+
 >
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/pt.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            ZOOKEEPER基础
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">695</span> / Reading time: <span class="post-count">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/05/07</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -331,46 +394,53 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/10/uwsgi-nginx%E9%83%A8%E7%BD%B2flask/" >
-            
-                <span>uwsgi+nginx部署flask</span>
-        </a>
-        <div class="abstract-content">
-            uwsgi + nginx部署flask一、安装uwsgi
-使用python版本对应的pip进行安装uwsgi
-1pip install uwsgi
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><img src="https://md-img.su.bcebos.com/ZOOKEEPER.png" alt=""></p>
+<h3 id="ZOOKEEPER-监听器原理"><a href="#ZOOKEEPER-监听器原理" class="headerlink" title="ZOOKEEPER 监听器原理:"></a>ZOOKEEPER 监听器原理:</h3><p><img src="https://md-img.su.bcebos.com/jiantingqi.png" alt=""><br>（1）在Zookeeper的API操作中，创建main()主方法即主线程；</p>
+<p>（2）在main线程中创建Zookeeper客户端（zkClient），这时会创建两个线程：</p>
+<pre><code>线程connet负责网络通信连接，连接服务器；
 
-在项目下创建uwsgi.ini文件
-12345678910111213[uwsgi]http &#x3D; 0.0.0.0:5000pythonpath &#x3D; &#x2F;home&#x2F;anaconda3&#x2F;bin&#x2F;pythonchdir &#x3D; &#x2F;home&#x2F;code&#x2F;apiwsgi-file &#x3D; app.pycallable &#x3D; appprocess...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "uwsgi">uwsgi</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "nginx">nginx</a>
-    
-</div>
-            
-        </div>
+线程Listener负责监听；</code></pre><p>（3）客户端通过connet线程连接服务器；</p>
+<pre><code>图中getChildren(&quot;/&quot; , true) ，&quot; / &quot;表示监听的是根目录，true表示监听，不监听用false</code></pre><p>（4）在Zookeeper的注册监听列表中将注册的监听事件添加到列表中，表示这个服务器中的/path，即根目录这个路径被客户端监听了；</p>
+<p>（5）一旦被监听的服务器根目录下，数据或路径发生改变，Zookeeper就会将这个消息发送给Listener线程；</p>
+<p>（6）Listener线程内部调用process方法，采取相应的措施，例如更新服务器列表等。</p>
+<h3 id="选举机制："><a href="#选举机制：" class="headerlink" title="选举机制："></a>选举机制：</h3><p>1)半数机制:集群中半数以上机器存活，集群可用。所以 Zookeeper 适合安装奇数台 服务器。<br>2)Zookeeper 虽然在配置文件中并没有指定 Master 和 Slave。但是，Zookeeper 工作时， 是有一个节点为 Leader，其他则为 Follower，Leader 是通过内部的选举机制临时产生的。</p>
+<p>(1)服务器 1 启动，发起一次选举。服务器 1 投自己一票。此时服务器 1 票数一票，<br>不够半数以上(3 票)，选举无法完成，服务器 1 状态保持为 LOOKING;<br>(2)服务器 2 启动，再发起一次选举。服务器 1 和 2 分别投自己一票并交换选票信息: 此时服务器 1 发现服务器 2 的 ID 比自己目前投票推举的(服务器 1)大，更改选票为推举 服务器 2。此时服务器 1 票数 0 票，服务器 2 票数 2 票，没有半数以上结果，选举无法完成，<br>服务器 1，2 状态保持 LOOKING<br>(3)服务器 3 启动，发起一次选举。此时服务器 1 和 2 都会更改选票为服务器 3。此<br>次投票结果:服务器 1 为 0 票，服务器 2 为 0 票，服务器 3 为 3 票。此时服务器 3 的票数已 经超过半数，服务器 3 当选 Leader。服务器 1，2 更改状态为 FOLLOWING，服务器 3 更改 状态为 LEADING;<br>(4)服务器 4 启动，发起一次选举。此时服务器 1，2，3 已经不是 LOOKING 状态， 不会更改选票信息。交换选票信息结果:服务器 3 为 3 票，服务器 4 为 1 票。此时服务器 4 服从多数，更改选票信息为服务器 3，并更改状态为 FOLLOWING;<br>(5)服务器 5 启动，同 4 一样当小弟。</p>
+<p>集群最少需要机器数:3</p>
+
     </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/05/07/zookeeper%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" title= zookeeper安装部署 >
+                    <div class="prevTitle">zookeeper安装部署</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -438,6 +508,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ZOOKEEPER-监听器原理"><span class="toc-number">1.</span> <span class="toc-text">ZOOKEEPER 监听器原理:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选举机制："><span class="toc-number">2.</span> <span class="toc-text">选举机制：</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -965,6 +1053,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
