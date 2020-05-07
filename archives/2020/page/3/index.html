@@ -339,33 +339,35 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/HIVE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >
+        <a class="abstract-title" href = "/2020/02/23/scala%E4%BC%B4%E7%94%9F%E7%B1%BB%E5%92%8C%E4%BC%B4%E7%94%9F%E5%AF%B9%E8%B1%A1/" >
             
-                <span>HIVE安装配置</span>
+                <span>scala伴生类和伴生对象</span>
         </a>
         <div class="abstract-content">
-            HIVE安装配置一、前置环境
-JAVA
-HADOOP
-MYSQL
+            Scala伴生类和伴生对象
+定义： 在Scala中，类名和对象名一致时，互为伴生类和伴生对象。
 
-二、安装
-下载解压
-123wget https://mirrors.huaweicloud.com/apache/hive/hive-2.3.6/apache-hive-2.3.6-bin.tar.gztar -zxvf apache-hive-2.3.6-bin.tar.gz -C ../
 
-配置环境变量 vim ~/.bash_profile
-12HIVE_HOME&#x3D;&#x2F;home&#x2F;kowhoy&#x2F;software&#x2F;apache-hive-2.3.6-binexport P...
+例子:123456789// 伴生类class ApplyTest &#123;&#125;// 伴生对象object ApplyTest &#123;&#125;
+
+
+
+
+使用: 通常在伴生对象中写apply()方法，然后在apply方法中实例伴生类，然后每次使用类名称()的时候，就已经实例化了类
+
+
+例子:12345678910111213141516object ApplyApp &#123;    def main(args:Array[String]):Unit = &#123;...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HIVE">HIVE</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "伴生">伴生</a>
     
 </div>
             
@@ -373,6 +375,10 @@ MYSQL
     </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/2020/page/2/">&amp;#60; PREV</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
     
 </main>
             <!-- profile -->

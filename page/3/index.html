@@ -194,8 +194,10 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="home-body">
     
-<header class="header">
+    
+<header class="header index-header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -213,21 +215,34 @@
 
 
 
+height:50vh;
+
 >
     
     <!-- 主页  -->
+    
+    
+    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/full_res-1.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            kowhoy's Studio.
+            <!-- 文章页  -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
+            
+            
+                continuego
+            
+            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -339,33 +354,35 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/HIVE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >
+        <a class="abstract-title" href = "/2020/02/23/scala%E4%BC%B4%E7%94%9F%E7%B1%BB%E5%92%8C%E4%BC%B4%E7%94%9F%E5%AF%B9%E8%B1%A1/" >
             
-                <span>HIVE安装配置</span>
+                <span>scala伴生类和伴生对象</span>
         </a>
         <div class="abstract-content">
-            HIVE安装配置一、前置环境
-JAVA
-HADOOP
-MYSQL
+            Scala伴生类和伴生对象
+定义： 在Scala中，类名和对象名一致时，互为伴生类和伴生对象。
 
-二、安装
-下载解压
-123wget https://mirrors.huaweicloud.com/apache/hive/hive-2.3.6/apache-hive-2.3.6-bin.tar.gztar -zxvf apache-hive-2.3.6-bin.tar.gz -C ../
 
-配置环境变量 vim ~/.bash_profile
-12HIVE_HOME&#x3D;&#x2F;home&#x2F;kowhoy&#x2F;software&#x2F;apache-hive-2.3.6-binexport P...
+例子:123456789// 伴生类class ApplyTest &#123;&#125;// 伴生对象object ApplyTest &#123;&#125;
+
+
+
+
+使用: 通常在伴生对象中写apply()方法，然后在apply方法中实例伴生类，然后每次使用类名称()的时候，就已经实例化了类
+
+
+例子:12345678910111213141516object ApplyApp &#123;    def main(args:Array[String]):Unit = &#123;...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/23</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HIVE">HIVE</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "伴生">伴生</a>
     
 </div>
             
@@ -374,8 +391,69 @@ MYSQL
     
     <!-- paginator  -->
     
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/page/2/">&amp;#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
+    
 </main>
             <!-- profile -->
+            
+            <div class="profile">
+    <img class="profile-avatar" src= /avatar/xb.jpeg >
+    <div class="profile-name">kowhoy</div>
+    
+    <div class="profile-signature">
+        continuego
+    </div>
+    
+    
+    <div class="profile-social">
+        
+    
+        
+            
+                <a href="mailto:onestarko@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/onestarko" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    
+    
+</div>
             
         </div>
         <footer class="footer footer-unloaded">

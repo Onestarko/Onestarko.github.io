@@ -339,22 +339,20 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/HIVE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >
+        <a class="abstract-title" href = "/2020/05/07/zookeeper%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" >
             
-                <span>HIVE安装配置</span>
+                <span>zookeeper安装部署</span>
         </a>
         <div class="abstract-content">
-            HIVE安装配置一、前置环境
-JAVA
-HADOOP
-MYSQL
+            zookeeper安装部署一、本地模式安装部署1. 下载安装1wget https://mirrors.huaweicloud.com/apache/zookeeper/zookeeper-3.4.13/zookeeper-3.4.13.tar.gz
 
-二、安装
-下载解压
-123wget https://mirrors.huaweicloud.com/apache/hive/hive-2.3.6/apache-hive-2.3.6-bin.tar.gztar -zxvf apache-hive-2.3.6-bin.tar.gz -C ../
+1tar -zxvf zookeeper-3.4.13.tar.gz -C ../
 
-配置环境变量 vim ~/.bash_profile
-12HIVE_HOME&#x3D;&#x2F;home&#x2F;kowhoy&#x2F;software&#x2F;apache-hive-2.3.6-binexport P...
+12cd zookeeper-3.4.13mkdir zkData
+
+12cd conf/cp zoo_sample.cfg zoo.cfg
+
+12vim zoo.cfgdataDir=/home/kowhoy/software/zookeeper-3....
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -365,7 +363,7 @@ MYSQL
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HIVE">HIVE</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
     
 </div>
             
