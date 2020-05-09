@@ -354,6 +354,41 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/04/15/%E6%9F%AF%E9%87%8C%E5%8C%96/" >
+            
+                <span>柯里化</span>
+        </a>
+        <div class="abstract-content">
+            柯里化定义
+将原来多个参数的函数，分成多个单个参数的函数
+
+好处
+复杂逻辑简单化
+
+示例12345678910111213141516171819package com.kowhoy.scala//柯里化object keli &#123;  def main(args: Array[String]): Unit = &#123;    var inc = (x:Int, y:Int) =&gt; x + y    println(inc(1, 2))    println(inc_kl(1)(2))    var firstNum = inc_kl((1))_    var res =...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/15</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "scala">scala</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/04/15/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/" >
             
                 <span>匿名函数</span>
@@ -663,37 +698,6 @@ catconfig.py12345678910111213141516171819202122232425262728293031323334353637383
         <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/27/tmux%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/" >
-            
-                <span>tmux——基本使用示例</span>
-        </a>
-        <div class="abstract-content">
-            tmux——基本使用示例
-使用tmux后台运行bash_history_notify项目
-
-一、安装tmux12345#mac:brew install tmux#centos:yum install tmux
-
-二、配置tmux
-使用了github上的配置，然后做了修改tmux的默认快捷键前缀为 ctrl + b, 现在改为ctrl+a，下文中使用Prefix代替ctrl+a⚠️ :使用快捷键是先摁下快捷键前缀，然后抬手，在进行具体的快捷按键
-
-1234cdgit clone https:&#x2F;&#x2F;github.com&#x2F;gpakosz&#x2F;.tmux.gi...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/27</span>
-            </div>
-            <!-- tags  -->
             
         </div>
     </article>
@@ -1110,9 +1114,24 @@ catconfig.py12345678910111213141516171819202122232425262728293031323334353637383
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 23
+        Total : 24
         </div>
         <!-- search  -->
         
@@ -1125,6 +1144,11 @@ catconfig.py12345678910111213141516171819202122232425262728293031323334353637383
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2020/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8/" >数据库的优化器</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1280,6 +1304,8 @@ catconfig.py12345678910111213141516171819202122232425262728293031323334353637383
     
         <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
     
+        <span class="sidebar-tag-name" data-tags="优化器"><span class="iconfont-archer">&#xe606;</span>优化器</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1342,6 +1368,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="Numpy/Python"><span class="iconfont-archer">&#xe60a;</span>Numpy/Python</span>
     
         <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
+    
+        <span class="sidebar-category-name" data-categories="数据库"><span class="iconfont-archer">&#xe60a;</span>数据库</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
