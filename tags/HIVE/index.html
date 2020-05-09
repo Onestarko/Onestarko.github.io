@@ -339,33 +339,28 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/HIVE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >
+        <a class="abstract-title" href = "/2020/05/09/hive%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B/" >
             
-                <span>HIVE安装配置</span>
+                <span>hive存储模型</span>
         </a>
         <div class="abstract-content">
-            HIVE安装配置一、前置环境
-JAVA
-HADOOP
-MYSQL
+            hive存储模型一、内部表与外部表
+内部表的一切都在hive上管理，删除了内部表，将丢失数据外部表hive上只是提供操作以及结构，数据分开存储，删除外部表，数据不会丢失，重新建表即可正常使用
 
-二、安装
-下载解压
-123wget https://mirrors.huaweicloud.com/apache/hive/hive-2.3.6/apache-hive-2.3.6-bin.tar.gztar -zxvf apache-hive-2.3.6-bin.tar.gz -C ../
+1. 建立内部表123456789create table atm (id int,name string,address string,money float)row format delimitedfileds terminated by ','stored as textfile;
 
-配置环境变量 vim ~/.bash_profile
-12HIVE_HOME&#x3D;&#x2F;home&#x2F;kowhoy&#x2F;software&#x2F;apache-hive-2.3.6-binexport P...
+1load data local inpath &#39;file_path&#39; into table...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HIVE">HIVE</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "hive">hive</a>
     
 </div>
             
@@ -738,9 +733,24 @@ MYSQL
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 24
+        Total : 25
         </div>
         <!-- search  -->
         
@@ -753,6 +763,11 @@ MYSQL
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2020/05/09/hive%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B/" >hive存储模型</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -914,6 +929,8 @@ MYSQL
         <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
     
         <span class="sidebar-tag-name" data-tags="优化器"><span class="iconfont-archer">&#xe606;</span>优化器</span>
+    
+        <span class="sidebar-tag-name" data-tags="hive"><span class="iconfont-archer">&#xe606;</span>hive</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

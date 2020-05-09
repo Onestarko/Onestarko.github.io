@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Kowhoy&#39;s Studio</title>
+    <title>hive存储模型 · Kowhoy&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180709 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180709 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -194,14 +196,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >kowhoy&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">hive存储模型</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>kowhoy's Studio.</a>
 </header>
@@ -222,17 +233,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/full_res-1.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/pt.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            kowhoy's Studio.
-            <!-- 文章页  -->
+            hive存储模型
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -240,12 +251,49 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                continuego
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "hive">hive</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">397</span> / Reading time: <span class="post-count">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/05/09</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -346,418 +394,71 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/09/hive%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B/" >
-            
-                <span>hive存储模型</span>
-        </a>
-        <div class="abstract-content">
-            hive存储模型一、内部表与外部表
-内部表的一切都在hive上管理，删除了内部表，将丢失数据外部表hive上只是提供操作以及结构，数据分开存储，删除外部表，数据不会丢失，重新建表即可正常使用
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="hive存储模型"><a href="#hive存储模型" class="headerlink" title="hive存储模型"></a>hive存储模型</h1><h3 id="一、内部表与外部表"><a href="#一、内部表与外部表" class="headerlink" title="一、内部表与外部表"></a>一、内部表与外部表</h3><blockquote>
+<p>内部表的一切都在hive上管理，删除了内部表，将丢失数据<br>外部表hive上只是提供操作以及结构，数据分开存储，删除外部表，数据不会丢失，重新建表即可正常使用</p>
+</blockquote>
+<h4 id="1-建立内部表"><a href="#1-建立内部表" class="headerlink" title="1. 建立内部表"></a>1. 建立内部表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> atm (</span><br><span class="line"><span class="keyword">id</span> <span class="built_in">int</span>,</span><br><span class="line"><span class="keyword">name</span> <span class="keyword">string</span>,</span><br><span class="line">address <span class="keyword">string</span>,</span><br><span class="line">money <span class="built_in">float</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span> <span class="keyword">delimited</span></span><br><span class="line">fileds <span class="keyword">terminated</span> <span class="keyword">by</span> <span class="string">','</span></span><br><span class="line"><span class="keyword">stored</span> <span class="keyword">as</span> textfile;</span><br></pre></td></tr></table></figure>
 
-1. 建立内部表123456789create table atm (id int,name string,address string,money float)row format delimitedfileds terminated by ','stored as textfile;
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data local inpath &#39;file_path&#39; into table atm;</span><br></pre></td></tr></table></figure>
 
-1load data local inpath &#39;file_path&#39; into table...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "hive">hive</a>
-    
-</div>
-            
-        </div>
+<h4 id="2-建立外部表"><a href="#2-建立外部表" class="headerlink" title="2. 建立外部表"></a>2. 建立外部表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">external</span> <span class="keyword">table</span> ex_atm(</span><br><span class="line"><span class="keyword">id</span> <span class="built_in">int</span>,</span><br><span class="line"><span class="keyword">name</span> <span class="keyword">string</span>,</span><br><span class="line">address <span class="keyword">string</span>,</span><br><span class="line">money <span class="built_in">float</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span> <span class="keyword">delimited</span></span><br><span class="line"><span class="keyword">fields</span> <span class="keyword">terminated</span> <span class="keyword">by</span> <span class="string">','</span></span><br><span class="line"><span class="keyword">stored</span> <span class="keyword">as</span> textfile</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data local inpath &#39;file_path&#39; into table ex_atm;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="二、分区与分桶"><a href="#二、分区与分桶" class="headerlink" title="二、分区与分桶"></a>二、分区与分桶</h3><blockquote>
+<p>分区表创建表时执行一个分区标识，传入数据的时候指定分区标识，没有高级到使用数据中的列作为分区标识，<br>分区就是将数据按标识放到hdfs上不同文件夹下，在查询的时候可以减少数据量，而不是全表扫描<br>分桶表可以方便抽样</p>
+</blockquote>
+<h4 id="1-分区表的创建"><a href="#1-分区表的创建" class="headerlink" title="1. 分区表的创建"></a>1. 分区表的创建</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table atm (</span><br><span class="line">id int,</span><br><span class="line">address string,</span><br><span class="line">money float</span><br><span class="line">)</span><br><span class="line">partitoned by (name string)</span><br><span class="line">row format delimited</span><br><span class="line">fields terminated by &#39;,&#39;</span><br><span class="line">stored as textfile;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data local inpath &#39;file_path&#39; into table atm partiton (name&#x3D;&quot;zh&quot;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from atm where name &#x3D; &#39;zh&#39;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show partitions atm;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-分桶表的创建"><a href="#2-分桶表的创建" class="headerlink" title="2. 分桶表的创建"></a>2. 分桶表的创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create table bucket_atm (</span><br><span class="line">id int, name string, address string, money float</span><br><span class="line">)</span><br><span class="line">clustered by (name) into 3 buckets</span><br><span class="line">row format delimited</span><br><span class="line">fields terminated by &#39;,&#39;</span><br><span class="line">stored as textfile;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert overwrite table bucket_atm select * from atm;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select id, name from table tablesample(bucket x out of y on column);</span><br><span class="line"></span><br><span class="line">--- x: 从第几个分桶开始抽取</span><br><span class="line">--- y: 每隔几个分桶抽取</span><br><span class="line"></span><br><span class="line">4分桶 x &#x3D; 1, y &#x3D; 2</span><br><span class="line">就抽取 1,3分桶</span><br></pre></td></tr></table></figure>
+
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8/" >
-            
-                <span>数据库的优化器</span>
-        </a>
-        <div class="abstract-content">
-            数据库主要由三部分组成，分别是解析器、优化器和执行引擎。
-RBORBO(Rule-Based Optimizer) 基于规则的优化器。是根据已经制定好的一些优化规则对关系表达式进行转换，最终生成一个最优的执行计划。它是一种经验式的优化方法，优化规则都是预先定义好的，只需要将SQL按照优化规则的顺序往上套就行，一旦满足某个规则则进行优化。这样的结果就是同样一条SQL，无论读取的表中的数据是怎样的，最后生成的执行计划都是一样的（优化规则都一样）。而且SQL的写法不同也很有可能影响最终的执行计划，从而影响SQL的性能（基于优化规则顺序执行）。所以说，虽然RBO是一个老司机，知道常见的套路，但是...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "优化器">优化器</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/python%E6%93%8D%E4%BD%9Czookeeper/" >
-            
-                <span>python操作zookeeper</span>
-        </a>
-        <div class="abstract-content">
-            一、安装1pip install kazoo
-
-二、连接Zookeeper123from kazoo.client import KazooClientzk = KazooClient(hosts='39.99.221.106')
-
-
-默认端口为2181，注意防火墙/安全组
-
-三、创建节点
-
-path：          节点路径
-value：         节点对应的值，注意值的类型是 bytes
-ephemeral： 若为 True 则创建一个临时节点，session 中断后自动删除该节点。默认 False
-sequence:     若为 True 则在你创建节点名后面增加10位...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/ZOOKEEPER%E5%9F%BA%E7%A1%80/" >
-            
-                <span>ZOOKEEPER基础</span>
-        </a>
-        <div class="abstract-content">
-            
-ZOOKEEPER 监听器原理:（1）在Zookeeper的API操作中，创建main()主方法即主线程；
-（2）在main线程中创建Zookeeper客户端（zkClient），这时会创建两个线程：
-线程connet负责网络通信连接，连接服务器；
-
-线程Listener负责监听；（3）客户端通过connet线程连接服务器；
-图中getChildren(&quot;/&quot; , true) ，&quot; / &quot;表示监听的是根目录，true表示监听，不监听用false（4）在Zookeeper的注册监听列表中将注册的监听事件添加到列表中，表示这个服务器中的/path，即...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/zookeeper%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" >
-            
-                <span>zookeeper安装部署</span>
-        </a>
-        <div class="abstract-content">
-            zookeeper安装部署一、本地模式安装部署1. 下载安装1wget https://mirrors.huaweicloud.com/apache/zookeeper/zookeeper-3.4.13/zookeeper-3.4.13.tar.gz
-
-1tar -zxvf zookeeper-3.4.13.tar.gz -C ../
-
-12cd zookeeper-3.4.13mkdir zkData
-
-12cd conf/cp zoo_sample.cfg zoo.cfg
-
-12vim zoo.cfgdataDir=/home/kowhoy/software/zookeeper-3....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/HIVE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >
-            
-                <span>HIVE安装配置</span>
-        </a>
-        <div class="abstract-content">
-            HIVE安装配置一、前置环境
-JAVA
-HADOOP
-MYSQL
-
-二、安装
-下载解压
-123wget https://mirrors.huaweicloud.com/apache/hive/hive-2.3.6/apache-hive-2.3.6-bin.tar.gztar -zxvf apache-hive-2.3.6-bin.tar.gz -C ../
-
-配置环境变量 vim ~/.bash_profile
-12HIVE_HOME&#x3D;&#x2F;home&#x2F;kowhoy&#x2F;software&#x2F;apache-hive-2.3.6-binexport P...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HIVE">HIVE</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/26/Pandas%E8%84%91%E5%9B%BE/" >
-            
-                <span>Pandas脑图</span>
-        </a>
-        <div class="abstract-content">
-            
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Pandas">Pandas</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/26/Numpy%E8%84%91%E5%9B%BE/" >
-            
-                <span>Numpy脑图</span>
-        </a>
-        <div class="abstract-content">
-            
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Numpy">Numpy</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/26/matplotlib%E5%9F%BA%E7%A1%80%E5%9B%BE%E8%A1%A8/" >
-            
-                <span>matplotlib基础图表</span>
-        </a>
-        <div class="abstract-content">
-            matplotlib基础图表一、根据x,y绘制12345678910111213import numpy as npfrom matplotlib import pyplot as pltx = np.arange(1, 11)y = x * 2 + 1plt.title("demo1")plt.xlabel("x")plt.ylabel("y")plt.plot(x, y)plt.show()
-
-
-12345678910111213import numpy as npfrom matplotlib import pyplot as pltx = np.arange(0, 3 * np....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "matplotlib">matplotlib</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/22/hadoop%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >
-            
-                <span>hadoop云服务器分布式安装配置</span>
-        </a>
-        <div class="abstract-content">
-            hadoop云服务器分布式安装配置
-在三台云服务器上搭建hadoop集群, 1master + 2slave使用版本: hadoop-3.2.1、jdk1.8.0_191、 scala-2.13.1⚠️ jdk11版本会出现Caused by: java.lang.NoClassDefFoundError: javax/activation/DataSource错误，还是选择了低版本
-
-一、服务器创建用户设置密码、配置互相之间免密登录** ⚠️ 服务器的hostname 以及 /etc/hosts中配置的hostname 均不可带_下划线 ** 
-一、下载安装包(使用国内镜像)scrip...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "hadoop">hadoop</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">NEXT &amp;#62;</a>
-    </nav>
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" src= /avatar/xb.jpeg >
-    <div class="profile-name">kowhoy</div>
-    
-    <div class="profile-signature">
-        continuego
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
+        </li>
+        <li class="previous">
             
-                <a href="mailto:onestarko@qq.com" class="iconfont-archer email" title=email ></a>
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8/" title= 数据库的优化器 >
+                    <div class="prevTitle">数据库的优化器</div>
+                </a>
             
-        
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        
-            
-                <a href="//github.com/onestarko" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
     
-        
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
     
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
-    </div>
-    
-    
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -823,6 +524,24 @@ MYSQL
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hive存储模型"><span class="toc-number">1.</span> <span class="toc-text">hive存储模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、内部表与外部表"><span class="toc-number">1.0.1.</span> <span class="toc-text">一、内部表与外部表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-建立内部表"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">1. 建立内部表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-建立外部表"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">2. 建立外部表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、分区与分桶"><span class="toc-number">1.0.2.</span> <span class="toc-text">二、分区与分桶</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-分区表的创建"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">1. 分区表的创建</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-分桶表的创建"><span class="toc-number">1.0.3.</span> <span class="toc-text">2. 分桶表的创建</span></a></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1416,6 +1135,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
