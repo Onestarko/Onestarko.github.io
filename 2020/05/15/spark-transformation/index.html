@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html>
+    <!-- title -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="kowhoy">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="kowhoy">
+    <meta name="keywords" content="onestarko | kowhoy">
+    <meta name="description" content="">
+    <meta name="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>spark_transformation · Kowhoy&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s 1;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= /css/style.css?v=20180709 as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= /css/mobile.css?v=20180709 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/xb.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >kowhoy&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">spark_transformation</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>kowhoy's Studio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style=
+
+
+
+
+
+
+
+
+height:50vh;
+
+>
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/pt.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            spark_transformation
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "spark">spark</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "transformation">transformation</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">2k</span> / Reading time: <span class="post-count">11 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/05/15</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> sk_demo</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.&#123;<span class="type">SparkConf</span>, <span class="type">SparkContext</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">transformations</span> </span>&#123;</span><br><span class="line">  <span class="keyword">val</span> _sc_conf = <span class="keyword">new</span> <span class="type">SparkConf</span>()</span><br><span class="line">    .setAppName(<span class="string">"spark_transformation"</span>)</span><br><span class="line">    .setMaster(<span class="string">"local"</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(_sc_conf)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">      * Return a new distributed dataset formed by passing each element of the source through a function func.</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    map()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Similar to map, but runs separately on each partition (block) of the RDD,</span></span><br><span class="line"><span class="comment">     * so func must be of type Iterator&lt;T&gt; =&gt; Iterator&lt;U&gt; when running on an RDD of type T.</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    mapPartitions()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Similar to mapPartitions,</span></span><br><span class="line"><span class="comment">     * but also provides func with an integer value representing the index of the partition,</span></span><br><span class="line"><span class="comment">     * so func must be of type (Int, Iterator&lt;T&gt;) =&gt; Iterator&lt;U&gt; when running on an RDD of type T.</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    mapPartitionsWithIndex()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Similar to map, but each input item can be mapped to 0 or more output items (so func should return a Seq rather than a single item).</span></span><br><span class="line"><span class="comment">     *  */</span></span><br><span class="line">    flatMap()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return an RDD created by coalescing all elements within each partition into an array</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    glom()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return an RDD of grouped items. Each group consists of a key and a sequence of elements</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    groupBy()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return a new dataset formed by selecting those elements of the source on which func returns true.</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    filter()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Sample a fraction fraction of the data, with or without replacement, using a given random number generator seed.</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    sample()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return a new dataset that contains the distinct elements of the source dataset.</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    distinct()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Decrease the number of partitions in the RDD to numPartitions. Useful for running operations more efficiently after filtering down a large dataset.</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    coalesce()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Reshuffle the data in the RDD randomly to create either more or fewer partitions and balance it across them. This always shuffles all data over the network.</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    repartition()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return this RDD sorted by the given key function.</span></span><br><span class="line"><span class="comment">     *  */</span></span><br><span class="line">    sortBy()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return an RDD created by piping elements to a forked external process</span></span><br><span class="line"><span class="comment">     *  */</span></span><br><span class="line">    pipe()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return the union of this RDD and another one. Any identical elements will appear multiple</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    union()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return an RDD with the elements from `this` that are not in `other`.</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    subtract()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return the intersection of this RDD and another one. The output will not contain any duplicate</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    intersection()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return the Cartesian product of this RDD and another one</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    cartesian()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Zips this RDD with another one, returning key-value pairs with the first element in each RDD</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    zip()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return a copy of the RDD partitioned using the specified partitioner.</span></span><br><span class="line"><span class="comment">     *  */</span></span><br><span class="line">    partitionBy()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Merge the values for each key using an associative and commutative reduce function.</span></span><br><span class="line"><span class="comment">     *  */</span></span><br><span class="line">    reduceByKey()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Group the values for each key in the RDD into a single sequence.</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    groupByKey()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Aggregate the values of each key, using given combine functions and a neutral "zero value".</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    aggregateByKey()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Merge the values for each key using an associative function and a neutral "zero value"</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    foldByKey()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Sort the RDD by key, so that each partition contains a sorted range of the elements.</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    sortByKey()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Pass each value in the key-value pair RDD through a map function without changing the keys</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    mapValues()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return an RDD containing all pairs of elements with matching keys in `this` and `other`.</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    join()</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * For each key k in `this` or `other`, return a resulting RDD that contains a tuple with the</span></span><br><span class="line"><span class="comment">     * list of values for that key in `this` as well as `other`.</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    cogroup()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc RDD中的每个元素进行 func 操作, 返回一个新的RDD</span></span><br><span class="line"><span class="comment">    * @Date 10:57 上午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">map</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="number">1</span> to <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">val</span> res = rdd.map(_+<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 将一个分区上的所有元素，使用一次函数，而不是map的每个元素都使用一次元素</span></span><br><span class="line"><span class="comment">    * @append 效率要比map好，但是要注意数据量大而导致的oom</span></span><br><span class="line"><span class="comment">    * @Date 11:25 上午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mapPartitions</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="number">1</span> to <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> rdd2 = rdd.mapPartitions(mapPartitionsFunc)</span><br><span class="line"></span><br><span class="line">    rdd2.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/***</span></span><br><span class="line"><span class="comment">    * @Desc</span></span><br><span class="line"><span class="comment">    * @Date 11:31 上午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param [iter]</span></span><br><span class="line"><span class="comment">    * @Return scala.collection.Iterator&lt;java.lang.Object&gt;</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mapPartitionsFunc</span></span>(iter:<span class="type">Iterator</span>[<span class="type">Int</span>]) :<span class="type">Iterator</span>[<span class="type">Int</span>]= &#123;</span><br><span class="line">    <span class="keyword">var</span> res = <span class="type">List</span>[<span class="type">Int</span>]()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (iter.hasNext) &#123;</span><br><span class="line">      <span class="keyword">val</span> iterVal = iter.next()</span><br><span class="line">      res :+= (iterVal + <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    res.iterator</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/***</span></span><br><span class="line"><span class="comment">    * @Desc 类似mapPartitions, 多了分区的index</span></span><br><span class="line"><span class="comment">    * @Date 11:39 上午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mapPartitionsWithIndex</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="number">1</span> to <span class="number">10</span>, <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">val</span> res = rdd.mapPartitionsWithIndex(mapPartitionsWithIndexFunc)</span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/***</span></span><br><span class="line"><span class="comment">    * @Desc</span></span><br><span class="line"><span class="comment">    * @Date 11:39 上午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param [idx, iter]</span></span><br><span class="line"><span class="comment">    * @Return scala.collection.Iterator&lt;scala.Tuple2&lt;java.lang.Object,java.lang.Object&gt;&gt;</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mapPartitionsWithIndexFunc</span></span>(idx:<span class="type">Int</span>, iter:<span class="type">Iterator</span>[<span class="type">Int</span>]): <span class="type">Iterator</span>[(<span class="type">Int</span>, <span class="type">Int</span>)] = &#123;</span><br><span class="line">    <span class="keyword">var</span> res = <span class="type">List</span>[(<span class="type">Int</span>, <span class="type">Int</span>)]()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (iter.hasNext) &#123;</span><br><span class="line">      <span class="keyword">val</span> iterVal = iter.next()</span><br><span class="line">      res :+= (idx, iterVal+<span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    res.iterator</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/***</span></span><br><span class="line"><span class="comment">    * @Desc 扁平化的操作，所以输出的是一个序列，不是单个的值</span></span><br><span class="line"><span class="comment">    * @Date 11:46 上午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">flatMap</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Array</span>((<span class="string">"A"</span>, <span class="number">1</span>), (<span class="string">"B"</span>, <span class="number">2</span>), (<span class="string">"C"</span>, <span class="number">2</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> mapRes = rdd.map(x =&gt; x._1 + <span class="string">"-&gt;"</span> + x._2)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> flatMapRes = rdd.flatMap(x =&gt; x._1 + <span class="string">"-&gt;"</span> + x._2)</span><br><span class="line"></span><br><span class="line">    mapRes.foreach(println)</span><br><span class="line">    flatMapRes.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 按分区转化为数组类型的RDD</span></span><br><span class="line"><span class="comment">    * @Date 1:36 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">glom</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>), <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">val</span> res = rdd.glom().map(_.max)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 根据每个元素的计算进行分组</span></span><br><span class="line"><span class="comment">    * @Date 1:45 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">groupBy</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="number">1</span> to <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">val</span> res = rdd.groupBy(_%<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 返回条件为true的</span></span><br><span class="line"><span class="comment">    * @Date 1:49 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">filter</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="number">1</span> to <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">val</span> res = rdd.filter(_%<span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 取样 (是否重复取样)</span></span><br><span class="line"><span class="comment">    * @param fraction expected size of the sample as a fraction of this RDD's size</span></span><br><span class="line"><span class="comment">    *  without replacement: probability that each element is chosen; fraction must be [0, 1]</span></span><br><span class="line"><span class="comment">    *  with replacement: expected number of times each element is chosen; fraction must be greater</span></span><br><span class="line"><span class="comment">    *  than or equal to 0</span></span><br><span class="line"><span class="comment">    * @Date 1:51 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sample</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="number">1</span> to <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd.sample(<span class="literal">false</span>, <span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 去重后的RDD 参数 numPartitions</span></span><br><span class="line"><span class="comment">    * @Date 2:02 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">distinct</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>))</span><br><span class="line">    <span class="keyword">val</span> res = rdd.distinct(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 降低分区数</span></span><br><span class="line"><span class="comment">    * @Date 2:06 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">coalesce</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="number">1</span> to <span class="number">16</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd.coalesce(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    println(res.partitions.size)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 重新分区,随机排列，分区之间保持平衡</span></span><br><span class="line"><span class="comment">    * @Date 2:09 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">repartition</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="number">1</span> to <span class="number">16</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd.repartition(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    println(res.partitions.size)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 根据给定key排序</span></span><br><span class="line"><span class="comment">    * @Date 2:12 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sortBy</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Array</span>((<span class="string">"A"</span>, <span class="number">1</span>), (<span class="string">"C"</span>, <span class="number">3</span>), (<span class="string">"B"</span>, <span class="number">4</span>), (<span class="string">"D"</span>, <span class="number">2</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd.sortBy(_._1)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 在管道中执行shell/perl脚本</span></span><br><span class="line"><span class="comment">    * @Date 2:15 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">pipe</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Array</span>(<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd.pipe(<span class="string">"shell_path.sh"</span>)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 连接RDD</span></span><br><span class="line"><span class="comment">    * @Date 2:18 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">union</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd1 = sc.parallelize(<span class="number">1</span> to <span class="number">6</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> rdd2 = sc.parallelize(<span class="number">5</span> to <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd1.union(rdd2)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 将rdd1中也在rdd2中的元素去掉</span></span><br><span class="line"><span class="comment">    * @Date 2:22 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">subtract</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd1 = sc.parallelize(<span class="number">1</span> to <span class="number">6</span>)</span><br><span class="line">    <span class="keyword">val</span> rdd2 = sc.parallelize(<span class="number">5</span> to <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd1.subtract(rdd2)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 交集</span></span><br><span class="line"><span class="comment">    * @Date 2:25 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">intersection</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd1 = sc.parallelize(<span class="number">1</span> to <span class="number">6</span>)</span><br><span class="line">    <span class="keyword">val</span> rdd2 = sc.parallelize(<span class="number">5</span> to <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd1.intersection(rdd2)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 笛卡尔积</span></span><br><span class="line"><span class="comment">    * @Date 2:27 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">cartesian</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd1 = sc.parallelize(<span class="number">1</span> to <span class="number">6</span>)</span><br><span class="line">    <span class="keyword">val</span> rdd2 = sc.parallelize(<span class="number">5</span> to <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd1.cartesian(rdd2)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc k v组合</span></span><br><span class="line"><span class="comment">    * @Date 2:32 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">zip</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd1 = sc.parallelize(<span class="type">Array</span>(<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> rdd2 = sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd1.zip(rdd2)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 根据partitioner 进行分区</span></span><br><span class="line"><span class="comment">    * @Date 2:38 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">partitionBy</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Array</span>((<span class="string">"A"</span>, <span class="number">1</span>), (<span class="string">"B"</span>, <span class="number">1</span>), (<span class="string">"C"</span>, <span class="number">2</span>), (<span class="string">"D"</span>,<span class="number">3</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd.partitionBy(<span class="keyword">new</span> org.apache.spark.<span class="type">HashPartitioner</span>(<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc</span></span><br><span class="line"><span class="comment">    * @Date 2:41 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">reduceByKey</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Array</span>((<span class="string">"A"</span>, <span class="number">1</span>), (<span class="string">"B"</span>, <span class="number">1</span>), (<span class="string">"A"</span>, <span class="number">2</span>), (<span class="string">"D"</span>, <span class="number">3</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd.reduceByKey((x, y) =&gt; x + y)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc</span></span><br><span class="line"><span class="comment">    * @Date 2:45 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">groupByKey</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Array</span>((<span class="string">"A"</span>, <span class="number">1</span>), (<span class="string">"B"</span>, <span class="number">1</span>), (<span class="string">"A"</span>, <span class="number">2</span>), (<span class="string">"D"</span>, <span class="number">3</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd.groupByKey()</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc</span></span><br><span class="line"><span class="comment">    * @Date 2:56 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">aggregateByKey</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>), <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res1 = rdd.aggregate(<span class="number">0</span>)(math.max(_, _), _+_)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res2 = rdd.aggregate(<span class="number">5</span>)(math.max(_, _), _+_)</span><br><span class="line"></span><br><span class="line">    println(res1, res2)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc</span></span><br><span class="line"><span class="comment">    * @Date 3:01 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">foldByKey</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">List</span>((<span class="number">1</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">3</span>), (<span class="number">1</span>, <span class="number">3</span>), (<span class="number">2</span>, <span class="number">5</span>)), <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd.foldByKey(<span class="number">0</span>)(_+_)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">combineByKey</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc</span></span><br><span class="line"><span class="comment">    * @Date 3:09 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sortByKey</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Array</span>((<span class="string">"A"</span>, <span class="number">1</span>), (<span class="string">"C"</span>, <span class="number">2</span>), (<span class="string">"B"</span>, <span class="number">3</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd.sortByKey(<span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc v map</span></span><br><span class="line"><span class="comment">    * @Date 3:11 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mapValues</span></span>():<span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Array</span>((<span class="string">"A"</span>, <span class="number">1</span>), (<span class="string">"C"</span>, <span class="number">2</span>), (<span class="string">"B"</span>, <span class="number">3</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd.mapValues(_+<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc join</span></span><br><span class="line"><span class="comment">    * @Date 3:13 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">join</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd1 = sc.parallelize(<span class="type">Array</span>((<span class="number">1</span>,<span class="string">"a"</span>),(<span class="number">2</span>,<span class="string">"b"</span>),(<span class="number">3</span>,<span class="string">"c"</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> rdd2 = sc.parallelize(<span class="type">Array</span>((<span class="number">1</span>,<span class="number">4</span>),(<span class="number">2</span>,<span class="number">5</span>),(<span class="number">3</span>,<span class="number">6</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd1.join(rdd2)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc</span></span><br><span class="line"><span class="comment">    * @Date 3:16 下午 2020/5/15</span></span><br><span class="line"><span class="comment">    * @Param []</span></span><br><span class="line"><span class="comment">    * @Return void</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">cogroup</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Array</span>((<span class="number">1</span>,<span class="string">"a"</span>),(<span class="number">2</span>,<span class="string">"b"</span>),(<span class="number">3</span>,<span class="string">"c"</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> rdd1 = sc.parallelize(<span class="type">Array</span>((<span class="number">1</span>,<span class="number">4</span>),(<span class="number">2</span>,<span class="number">5</span>),(<span class="number">3</span>,<span class="number">6</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> res = rdd.cogroup(rdd1)</span><br><span class="line"></span><br><span class="line">    res.foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/05/12/datax%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title= datax的基本使用 >
+                    <div class="prevTitle">datax的基本使用</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:onestarko@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/onestarko" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 29
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href= "/2020/05/15/spark-transformation/" >spark_transformation</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "/2020/05/12/datax%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" >datax的基本使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2020/05/09/mysql-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B-%E8%A7%A6%E5%8F%91%E5%99%A8%E7%A4%BA%E4%BE%8B/" >mysql_存储过程/触发器示例</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2020/05/09/hive%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B/" >hive存储模型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2020/05/09/HQL%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/" >HQL执行流程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2020/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8/" >数据库的优化器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2020/05/07/ZOOKEEPER%E5%9F%BA%E7%A1%80/" >ZOOKEEPER基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2020/05/07/python%E6%93%8D%E4%BD%9Czookeeper/" >python操作zookeeper</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2020/05/07/zookeeper%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" >zookeeper安装部署</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2020/05/07/HIVE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >HIVE安装配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2020/04/26/Pandas%E8%84%91%E5%9B%BE/" >Pandas脑图</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2020/04/26/Numpy%E8%84%91%E5%9B%BE/" >Numpy脑图</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2020/04/26/matplotlib%E5%9F%BA%E7%A1%80%E5%9B%BE%E8%A1%A8/" >matplotlib基础图表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href= "/2020/04/22/hadoop%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >hadoop云服务器分布式安装配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href= "/2020/04/21/Scala%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/" >Scala模式匹配</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2020/04/15/Scala%E4%B8%AD%E7%9A%84lazy%E4%BD%BF%E7%94%A8/" >Scala中的lazy使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2020/04/15/%E4%BC%A0%E5%80%BC%E4%BC%A0%E5%90%8D%E8%B0%83%E7%94%A8/" >传值传名调用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2020/04/15/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/" >匿名函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2020/04/15/scala%E5%8F%98%E9%95%BF%E5%8F%82%E6%95%B0/" >scala变长参数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2020/04/15/%E6%9F%AF%E9%87%8C%E5%8C%96/" >柯里化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/14</span><a class="archive-post-title" href= "/2020/04/14/mysql%E5%88%86%E7%BB%84top%E4%BC%98%E5%8C%96/" >mysql分组top优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2020/04/10/%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%9F%A5%E8%AF%A2/" >配置数据管理查询</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2020/04/10/uwsgi-nginx%E9%83%A8%E7%BD%B2flask/" >uwsgi+nginx部署flask</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/02</span><a class="archive-post-title" href= "/2020/04/02/Elasticsearch%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" >Elasticsearch基础使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href= "/2020/03/27/flask%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86/" >flask思路整理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href= "/2020/03/27/tmux%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/" >tmux——基本使用示例</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/26</span><a class="archive-post-title" href= "/2020/03/26/kafak%E7%A4%BA%E4%BE%8B-%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7%E7%BB%88%E7%AB%AF%E8%BE%93%E5%85%A5/" >kafak示例-远程监控终端输入</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href= "/2020/03/13/mac%E4%B8%8Bchromedriver%E5%8D%87%E7%BA%A7/" >mac下chromedriver升级</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "/2020/02/23/scala%E4%BC%B4%E7%94%9F%E7%B1%BB%E5%92%8C%E4%BC%B4%E7%94%9F%E5%AF%B9%E8%B1%A1/" >scala伴生类和伴生对象</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="伴生"><span class="iconfont-archer">&#xe606;</span>伴生</span>
+    
+        <span class="sidebar-tag-name" data-tags="工具"><span class="iconfont-archer">&#xe606;</span>工具</span>
+    
+        <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
+    
+        <span class="sidebar-tag-name" data-tags="pyinotify"><span class="iconfont-archer">&#xe606;</span>pyinotify</span>
+    
+        <span class="sidebar-tag-name" data-tags="flask"><span class="iconfont-archer">&#xe606;</span>flask</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="Elasticsearch"><span class="iconfont-archer">&#xe606;</span>Elasticsearch</span>
+    
+        <span class="sidebar-tag-name" data-tags="uwsgi"><span class="iconfont-archer">&#xe606;</span>uwsgi</span>
+    
+        <span class="sidebar-tag-name" data-tags="nginx"><span class="iconfont-archer">&#xe606;</span>nginx</span>
+    
+        <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
+    
+        <span class="sidebar-tag-name" data-tags="scala"><span class="iconfont-archer">&#xe606;</span>scala</span>
+    
+        <span class="sidebar-tag-name" data-tags="hadoop"><span class="iconfont-archer">&#xe606;</span>hadoop</span>
+    
+        <span class="sidebar-tag-name" data-tags="Pandas"><span class="iconfont-archer">&#xe606;</span>Pandas</span>
+    
+        <span class="sidebar-tag-name" data-tags="Numpy"><span class="iconfont-archer">&#xe606;</span>Numpy</span>
+    
+        <span class="sidebar-tag-name" data-tags="matplotlib"><span class="iconfont-archer">&#xe606;</span>matplotlib</span>
+    
+        <span class="sidebar-tag-name" data-tags="HIVE"><span class="iconfont-archer">&#xe606;</span>HIVE</span>
+    
+        <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
+    
+        <span class="sidebar-tag-name" data-tags="优化器"><span class="iconfont-archer">&#xe606;</span>优化器</span>
+    
+        <span class="sidebar-tag-name" data-tags="hive"><span class="iconfont-archer">&#xe606;</span>hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="datax"><span class="iconfont-archer">&#xe606;</span>datax</span>
+    
+        <span class="sidebar-tag-name" data-tags="spark"><span class="iconfont-archer">&#xe606;</span>spark</span>
+    
+        <span class="sidebar-tag-name" data-tags="transformation"><span class="iconfont-archer">&#xe606;</span>transformation</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Scala"><span class="iconfont-archer">&#xe60a;</span>Scala</span>
+    
+        <span class="sidebar-category-name" data-categories="工具"><span class="iconfont-archer">&#xe60a;</span>工具</span>
+    
+        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
+    
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch"><span class="iconfont-archer">&#xe60a;</span>Elasticsearch</span>
+    
+        <span class="sidebar-category-name" data-categories="nginx"><span class="iconfont-archer">&#xe60a;</span>nginx</span>
+    
+        <span class="sidebar-category-name" data-categories="nginx/uwsgi"><span class="iconfont-archer">&#xe60a;</span>nginx/uwsgi</span>
+    
+        <span class="sidebar-category-name" data-categories="mysql"><span class="iconfont-archer">&#xe60a;</span>mysql</span>
+    
+        <span class="sidebar-category-name" data-categories="scala"><span class="iconfont-archer">&#xe60a;</span>scala</span>
+    
+        <span class="sidebar-category-name" data-categories="hadoop"><span class="iconfont-archer">&#xe60a;</span>hadoop</span>
+    
+        <span class="sidebar-category-name" data-categories="Pandas"><span class="iconfont-archer">&#xe60a;</span>Pandas</span>
+    
+        <span class="sidebar-category-name" data-categories="Numpy"><span class="iconfont-archer">&#xe60a;</span>Numpy</span>
+    
+        <span class="sidebar-category-name" data-categories="Pandas/Python"><span class="iconfont-archer">&#xe60a;</span>Pandas/Python</span>
+    
+        <span class="sidebar-category-name" data-categories="Numpy/Python"><span class="iconfont-archer">&#xe60a;</span>Numpy/Python</span>
+    
+        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
+    
+        <span class="sidebar-category-name" data-categories="数据库"><span class="iconfont-archer">&#xe60a;</span>数据库</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "kowhoy"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+

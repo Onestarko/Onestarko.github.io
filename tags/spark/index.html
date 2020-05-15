@@ -339,139 +339,25 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/14/mysql%E5%88%86%E7%BB%84top%E4%BC%98%E5%8C%96/" >
+        <a class="abstract-title" href = "/2020/05/15/spark-transformation/" >
             
-                <span>mysql分组top优化</span>
+                <span>spark_transformation</span>
         </a>
         <div class="abstract-content">
-            mysql分组top优化
-
-mysql分组取top1 通常是用max() 然后内连
-可以使用变量的方式避免join操作
-
-
-
-问题场景同一组oss_id, osp_id, pro_sku_code, start_time 会有多种 price_val,先需要依据update_time字段取每一组的最后一条更新内容
-
-
-原始写法123456789101112select a.osp_id, a.oss_id, a.pro_sku_code, a.price_val, a.start_time from pricing.price_log a,(            select max(...
+            123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/14</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/15</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "mysql">mysql</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "spark">spark</a>
     
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/10/%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%9F%A5%E8%AF%A2/" >
-            
-                <span>配置数据管理查询</span>
-        </a>
-        <div class="abstract-content">
-            配置数据管理查询
-背景: 数据库以及服务器的配置信息比较多，临时使用频率也高,找起来不方便
-
-pylsy configparser
-
-catconfig.py12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576import sysfrom pylsy import pylsytableimport configparsercp &#x3D; configpa...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "工具">工具</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/10/uwsgi-nginx%E9%83%A8%E7%BD%B2flask/" >
-            
-                <span>uwsgi+nginx部署flask</span>
-        </a>
-        <div class="abstract-content">
-            uwsgi + nginx部署flask一、安装uwsgi
-使用python版本对应的pip进行安装uwsgi
-1pip install uwsgi
-
-在项目下创建uwsgi.ini文件
-12345678910111213[uwsgi]http &#x3D; 0.0.0.0:5000pythonpath &#x3D; &#x2F;home&#x2F;anaconda3&#x2F;bin&#x2F;pythonchdir &#x3D; &#x2F;home&#x2F;code&#x2F;apiwsgi-file &#x3D; app.pycallable &#x3D; appprocess...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "uwsgi">uwsgi</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "nginx">nginx</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/02/Elasticsearch%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" >
-            
-                <span>Elasticsearch基础使用</span>
-        </a>
-        <div class="abstract-content">
-            Elasticsearch基础使用一、安装
-需要java环境
-
-下载安装包
-1wget https:&#x2F;&#x2F;mirrors.huaweicloud.com&#x2F;elasticsearch&#x2F;7.6.1&#x2F;elasticsearch-7.6.1-linux-x86_64.tar.gz
-
-解压，配置环境变量
-12345tar -zxvf elasticsearch-7.6.1-linux-x86_64.tar.gz#~&#x2F;.bash_profileexport ELASTICSEARCH_PATH&#x3D;&#x2F;home&#x2F;kow...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Elasticsearch">Elasticsearch</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "transformation">transformation</a>
     
 </div>
             
@@ -479,10 +365,6 @@ catconfig.py12345678910111213141516171819202122232425262728293031323334353637383
     </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/2020/04/">&amp;#60; PREV</a><a class="page-number" href="/archives/2020/04/">1</a><span class="page-number current">2</span>
-    </nav>
     
 </main>
             <!-- profile -->
