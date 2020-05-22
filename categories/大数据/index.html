@@ -339,6 +339,44 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/05/22/flume%E8%B7%A8%E6%9C%BA%E5%99%A8%E4%BC%A0%E8%BE%93/" >
+            
+                <span>flume跨机器传输</span>
+        </a>
+        <div class="abstract-content">
+            Flume跨机器传输
+ecs00:公网ip: 102.102.102.102内网ip: 172.100.100.100
+
+
+ecs01:公网ip: 103.103.103.103内网ip: 172.100.100.101
+
+
+目标ecs00的44444端口的netcat ==&gt; ecs01的logger
+
+ecs00-netcat-memory-avro.conf12345678910111213141516netcat-avro-agent.sources &#x3D; netcat-avro-sourcenetcat-avro-agent.sinks &#x3D; netcat...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Flume">Flume</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/05/20/socket-file-queue-streaming/" >
             
                 <span>socket/file/queue_streaming</span>
@@ -634,46 +672,11 @@ ZOOKEEPER 监听器原理:（1）在Zookeeper的API操作中，创建main()主�
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/HIVE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >
-            
-                <span>HIVE安装配置</span>
-        </a>
-        <div class="abstract-content">
-            HIVE安装配置一、前置环境
-JAVA
-HADOOP
-MYSQL
-
-二、安装
-下载解压
-123wget https://mirrors.huaweicloud.com/apache/hive/hive-2.3.6/apache-hive-2.3.6-bin.tar.gztar -zxvf apache-hive-2.3.6-bin.tar.gz -C ../
-
-配置环境变量 vim ~/.bash_profile
-12HIVE_HOME&#x3D;&#x2F;home&#x2F;kowhoy&#x2F;software&#x2F;apache-hive-2.3.6-binexport P...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HIVE">HIVE</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/2/">2</a><a class="extend next" rel="next" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/page/2/">NEXT &amp;#62;</a>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -1144,9 +1147,24 @@ MYSQL
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 31
+        Total : 32
         </div>
         <!-- search  -->
         
@@ -1159,6 +1177,11 @@ MYSQL
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href= "/2020/05/22/flume%E8%B7%A8%E6%9C%BA%E5%99%A8%E4%BC%A0%E8%BE%93/" >flume跨机器传输</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1365,6 +1388,8 @@ MYSQL
         <span class="sidebar-tag-name" data-tags="transformation"><span class="iconfont-archer">&#xe606;</span>transformation</span>
     
         <span class="sidebar-tag-name" data-tags="sparkStreaming"><span class="iconfont-archer">&#xe606;</span>sparkStreaming</span>
+    
+        <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
