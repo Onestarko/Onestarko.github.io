@@ -354,6 +354,113 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/05/09/hive%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B/" >
+            
+                <span>hive存储模型</span>
+        </a>
+        <div class="abstract-content">
+            hive存储模型一、内部表与外部表
+内部表的一切都在hive上管理，删除了内部表，将丢失数据外部表hive上只是提供操作以及结构，数据分开存储，删除外部表，数据不会丢失，重新建表即可正常使用
+
+1. 建立内部表123456789create table atm (id int,name string,address string,money float)row format delimitedfileds terminated by ','stored as textfile;
+
+1load data local inpath &#39;file_path&#39; into table...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "hive">hive</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8/" >
+            
+                <span>数据库的优化器</span>
+        </a>
+        <div class="abstract-content">
+            数据库主要由三部分组成，分别是解析器、优化器和执行引擎。
+RBORBO(Rule-Based Optimizer) 基于规则的优化器。是根据已经制定好的一些优化规则对关系表达式进行转换，最终生成一个最优的执行计划。它是一种经验式的优化方法，优化规则都是预先定义好的，只需要将SQL按照优化规则的顺序往上套就行，一旦满足某个规则则进行优化。这样的结果就是同样一条SQL，无论读取的表中的数据是怎样的，最后生成的执行计划都是一样的（优化规则都一样）。而且SQL的写法不同也很有可能影响最终的执行计划，从而影响SQL的性能（基于优化规则顺序执行）。所以说，虽然RBO是一个老司机，知道常见的套路，但是...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "优化器">优化器</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/05/07/python%E6%93%8D%E4%BD%9Czookeeper/" >
+            
+                <span>python操作zookeeper</span>
+        </a>
+        <div class="abstract-content">
+            一、安装1pip install kazoo
+
+二、连接Zookeeper123from kazoo.client import KazooClientzk = KazooClient(hosts='39.99.221.106')
+
+
+默认端口为2181，注意防火墙/安全组
+
+三、创建节点
+
+path：          节点路径
+value：         节点对应的值，注意值的类型是 bytes
+ephemeral： 若为 True 则创建一个临时节点，session 中断后自动删除该节点。默认 False
+sequence:     若为 True 则在你创建节点名后面增加10位...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/05/07/ZOOKEEPER%E5%9F%BA%E7%A1%80/" >
             
                 <span>ZOOKEEPER基础</span>
@@ -580,102 +687,6 @@ MYSQL
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "hadoop">hadoop</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/21/Scala%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/" >
-            
-                <span>Scala模式匹配</span>
-        </a>
-        <div class="abstract-content">
-            模式匹配12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879package com.kowhoy.scalaimport scala.util.Random// 模式匹配object MatchDemo &#123;  def main(args: Array[String]): Unit = &#123;    // 基础匹配     basi...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "scala">scala</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/15/%E6%9F%AF%E9%87%8C%E5%8C%96/" >
-            
-                <span>柯里化</span>
-        </a>
-        <div class="abstract-content">
-            柯里化定义
-将原来多个参数的函数，分成多个单个参数的函数
-
-好处
-复杂逻辑简单化
-
-示例12345678910111213141516171819package com.kowhoy.scala//柯里化object keli &#123;  def main(args: Array[String]): Unit = &#123;    var inc = (x:Int, y:Int) =&gt; x + y    println(inc(1, 2))    println(inc_kl(1)(2))    var firstNum = inc_kl((1))_    var res =...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "scala">scala</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/15/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/" >
-            
-                <span>匿名函数</span>
-        </a>
-        <div class="abstract-content">
-            匿名函数
-简写函数定义, 匿名函数不可以写成传名调用
-
-12345678910111213141516171819202122232425262728293031package com.kowhoy.scala//匿名函数object niming &#123;  def main(args: Array[String]): Unit = &#123;    var initNum = 0    var counter = () =&gt; &#123;      initNum += 1      initNum    &#125;    var sendValue = (x:  In...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "scala">scala</a>
     
 </div>
             
@@ -1229,9 +1240,60 @@ MYSQL
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 32
+        Total : 35
         </div>
         <!-- search  -->
         
@@ -1244,6 +1306,21 @@ MYSQL
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/27</span><a class="archive-post-title" href= "/2020/05/27/mapWithState/" >mapWithState</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/27</span><a class="archive-post-title" href= "/2020/05/27/updateStateByKey/" >updateStateByKey</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href= "/2020/05/22/SparkCore-%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%BE%8B/" >SparkCore 生产实例</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1457,6 +1534,12 @@ MYSQL
         <span class="sidebar-tag-name" data-tags="sparkStreaming"><span class="iconfont-archer">&#xe606;</span>sparkStreaming</span>
     
         <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="mapWithState"><span class="iconfont-archer">&#xe606;</span>mapWithState</span>
+    
+        <span class="sidebar-tag-name" data-tags="SparkCore"><span class="iconfont-archer">&#xe606;</span>SparkCore</span>
+    
+        <span class="sidebar-tag-name" data-tags="updateStateByKey"><span class="iconfont-archer">&#xe606;</span>updateStateByKey</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
