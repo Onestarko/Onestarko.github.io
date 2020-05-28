@@ -339,6 +339,40 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/05/09/hive%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B/" >
+            
+                <span>hive存储模型</span>
+        </a>
+        <div class="abstract-content">
+            hive存储模型一、内部表与外部表
+内部表的一切都在hive上管理，删除了内部表，将丢失数据外部表hive上只是提供操作以及结构，数据分开存储，删除外部表，数据不会丢失，重新建表即可正常使用
+
+1. 建立内部表123456789create table atm (id int,name string,address string,money float)row format delimitedfileds terminated by ','stored as textfile;
+
+1load data local inpath &#39;file_path&#39; into table...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "hive">hive</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/05/07/python%E6%93%8D%E4%BD%9Czookeeper/" >
             
                 <span>python操作zookeeper</span>
@@ -1028,9 +1062,26 @@ MYSQL
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 35
+        Total : 36
         </div>
         <!-- search  -->
         
@@ -1043,6 +1094,11 @@ MYSQL
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href= "/2020/05/28/SparkStreaming-Transform/" >SparkStreaming Transform</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1277,6 +1333,8 @@ MYSQL
         <span class="sidebar-tag-name" data-tags="SparkCore"><span class="iconfont-archer">&#xe606;</span>SparkCore</span>
     
         <span class="sidebar-tag-name" data-tags="updateStateByKey"><span class="iconfont-archer">&#xe606;</span>updateStateByKey</span>
+    
+        <span class="sidebar-tag-name" data-tags="transform"><span class="iconfont-archer">&#xe606;</span>transform</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
