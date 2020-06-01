@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>flume跨机器传输 · Kowhoy&#39;s Studio</title>
+    <title>Kowhoy&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,8 +70,6 @@
 
     <link rel="preload" href= /css/style.css?v=20180709 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180709 media="(max-width: 980px)">
-    
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -196,23 +194,12 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >kowhoy&#39;s Studio.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">flume跨机器传输</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>kowhoy's Studio.</a>
 </header>
@@ -226,74 +213,24 @@
 
 
 
-height:50vh;
-
 >
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/pt.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            flume跨机器传输
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Flume">Flume</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">311</span> / Reading time: <span class="post-count">1 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/05/22</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -394,70 +331,46 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <h1 id="Flume跨机器传输"><a href="#Flume跨机器传输" class="headerlink" title="Flume跨机器传输"></a>Flume跨机器传输</h1><blockquote>
-<p>ecs00:<br>公网ip: 102.102.102.102<br>内网ip: 172.100.100.100</p>
-</blockquote>
-<blockquote>
-<p>ecs01:<br>公网ip: 103.103.103.103<br>内网ip: 172.100.100.101</p>
-</blockquote>
-<blockquote>
-<p>目标<br>ecs00的44444端口的netcat ==&gt; ecs01的logger</p>
-</blockquote>
-<h1 id="ecs00-netcat-memory-avro-conf"><a href="#ecs00-netcat-memory-avro-conf" class="headerlink" title="ecs00-netcat-memory-avro.conf"></a>ecs00-netcat-memory-avro.conf</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">netcat-avro-agent.sources &#x3D; netcat-avro-source</span><br><span class="line">netcat-avro-agent.sinks &#x3D; netcat-avro-sink</span><br><span class="line">netcat-avro-agent.channels &#x3D; netcat-avro-channel</span><br><span class="line"></span><br><span class="line">netcat-avro-agent.sources.netcat-avro-source.type &#x3D; netcat</span><br><span class="line">netcat-avro-agent.sources.netcat-avro-source.bind &#x3D; localhost</span><br><span class="line">netcat-avro-agent.sources.netcat-avro-source.port &#x3D; 44444</span><br><span class="line"></span><br><span class="line">netcat-avro-agent.sinks.netcat-avro-sink.type &#x3D; avro</span><br><span class="line">netcat-avro-agent.sinks.netcat-avro-sink.hostname &#x3D; 103.103.103.103</span><br><span class="line">netcat-avro-agent.sinks.netcat-avro-sink.port &#x3D; 44444</span><br><span class="line"></span><br><span class="line">netcat-avro-agent.channels.netcat-avro-channel.type &#x3D; memory</span><br><span class="line"></span><br><span class="line">netcat-avro-agent.sources.netcat-avro-source.channels &#x3D; netcat-avro-channel</span><br><span class="line">netcat-avro-agent.sinks.netcat-avro-sink.channel &#x3D; netcat-avro-channel</span><br></pre></td></tr></table></figure>
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/06/01/SparkStreaming%E6%95%B4%E5%90%88Flume/" >
+            
+                <span>SparkStreaming整合Flume </span>
+        </a>
+        <div class="abstract-content">
+            SparkStreaming整合Flume
+可以通过Push 和 Pull两种方式整合Push: 是Flume Push到Spark, 缺点是只能一个executor进行处理，造成压力Pull: 是Spark主动去Pull推荐使用Pull方式
 
 
-<h1 id="ecs01-avro-memory-logger-conf"><a href="#ecs01-avro-memory-logger-conf" class="headerlink" title="ecs01-avro-memory-logger.conf"></a>ecs01-avro-memory-logger.conf</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">avro-logger-agent.sources &#x3D; avro-logger-source</span><br><span class="line">avro-logger-agent.sinks &#x3D; avro-logger-sink</span><br><span class="line">avro-logger-agent.channels &#x3D; avro-logger-channel</span><br><span class="line"></span><br><span class="line">avro-logger-agent.sources.avro-logger-source.type &#x3D; avro</span><br><span class="line">avro-logger-agent.sources.avro-logger-source.bind &#x3D; 172.100.100.101</span><br><span class="line">avro-logger-agent.sources.avro-logger-source.port &#x3D; 44444</span><br><span class="line"></span><br><span class="line">avro-logger-agent.sinks.avro-logger-sink.type &#x3D; logger</span><br><span class="line"></span><br><span class="line">avro-logger-agent.channels.avro-logger-channel.type &#x3D; memory</span><br><span class="line"></span><br><span class="line">avro-logger-agent.sources.avro-logger-source.channels &#x3D; avro-logger-channel</span><br><span class="line">avro-logger-agent.sinks.avro-logger-sink.channel &#x3D; avro-logger-channel</span><br></pre></td></tr></table></figure>
+Push方式，先执行Spark,再执行Flume  Pull方式，先执行Flume,再执行Spark
 
-<h1 id="启动"><a href="#启动" class="headerlink" title="启动:"></a>启动:</h1><ol>
-<li><p>ecs01 上</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent --conf $&#123;FLUME_HOME&#125;/conf --name avro-logger-agent --conf-file ./avro-memory-logger.conf -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ecs00上</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent --conf $&#123;FLUME_HOME&#125;/conf --name netcat-avro-agent --conf-file ./netcat-memory-avro.conf -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ecs00上</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet localhost 44444</span><br></pre></td></tr></table></figure></li>
-</ol>
-
+Push方式Flume.confnetcat-memory-avro.conf
+12345678910111213141516netcat-avro-agent.sources &#x3D; netcat-avro-sourcenetcat-...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
+    
+</div>
+            
+        </div>
     </article>
-    <!-- license  -->
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/05/22/SparkCore-%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%BE%8B/" title= SparkCore 生产实例 >
-                    <div class="nextTitle">SparkCore 生产实例</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/05/20/socket-file-queue-streaming/" title= socket/file/queue_streaming >
-                    <div class="prevTitle">socket/file/queue_streaming</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
-    
-    <!--PC和WAP自适应版-->
-
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -525,24 +438,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Flume跨机器传输"><span class="toc-number">1.</span> <span class="toc-text">Flume跨机器传输</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ecs00-netcat-memory-avro-conf"><span class="toc-number">2.</span> <span class="toc-text">ecs00-netcat-memory-avro.conf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ecs01-avro-memory-logger-conf"><span class="toc-number">3.</span> <span class="toc-text">ecs01-avro-memory-logger.conf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#启动"><span class="toc-number">4.</span> <span class="toc-text">启动:</span></a></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1476,8 +1371,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

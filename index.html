@@ -354,6 +354,42 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/06/01/SparkStreaming%E6%95%B4%E5%90%88Flume/" >
+            
+                <span>SparkStreaming整合Flume </span>
+        </a>
+        <div class="abstract-content">
+            SparkStreaming整合Flume
+可以通过Push 和 Pull两种方式整合Push: 是Flume Push到Spark, 缺点是只能一个executor进行处理，造成压力Pull: 是Spark主动去Pull推荐使用Pull方式
+
+
+Push方式，先执行Spark,再执行Flume  Pull方式，先执行Flume,再执行Spark
+
+Push方式Flume.confnetcat-memory-avro.conf
+12345678910111213141516netcat-avro-agent.sources &#x3D; netcat-avro-sourcenetcat-...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/05/29/WEB%E6%97%A5%E5%BF%97%E9%87%87%E9%9B%86/" >
             
                 <span>WEB日志采集</span>
@@ -630,36 +666,6 @@ ecs00-netcat-memory-avro.conf12345678910111213141516netcat-avro-agent.sources &#
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/18/spark-core%E5%9B%BE%E8%B0%B1/" >
-            
-                <span>spark_core图谱</span>
-        </a>
-        <div class="abstract-content">
-            
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "spark">spark</a>
     
 </div>
             
@@ -1332,9 +1338,26 @@ ecs00-netcat-memory-avro.conf12345678910111213141516netcat-avro-agent.sources &#
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 39
+        Total : 40
         </div>
         <!-- search  -->
         
@@ -1347,6 +1370,11 @@ ecs00-netcat-memory-avro.conf12345678910111213141516netcat-avro-agent.sources &#
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href= "/2020/06/01/SparkStreaming%E6%95%B4%E5%90%88Flume/" >SparkStreaming整合Flume </a>
+        </li>
     
     
         <li class="archive-post-item">

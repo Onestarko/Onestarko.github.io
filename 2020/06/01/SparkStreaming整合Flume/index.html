@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>flume跨机器传输 · Kowhoy&#39;s Studio</title>
+    <title>SparkStreaming整合Flume  · Kowhoy&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -210,7 +210,7 @@
                 <a href="/" >kowhoy&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">flume跨机器传输</a>
+                <a href="#" class="post-name">SparkStreaming整合Flume </a>
             </div>
     </div>
     
@@ -242,7 +242,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            flume跨机器传输
+            SparkStreaming整合Flume 
             <!-- 404 -->
             
         </h1>
@@ -261,18 +261,18 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Flume">Flume</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">311</span> / Reading time: <span class="post-count">1 min</span></span>
+                        <span>Word count: <span class="post-count">547</span> / Reading time: <span class="post-count">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/05/22</span>
+                    <span class="post-intro-time">2020/06/01</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -396,30 +396,25 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="Flume跨机器传输"><a href="#Flume跨机器传输" class="headerlink" title="Flume跨机器传输"></a>Flume跨机器传输</h1><blockquote>
-<p>ecs00:<br>公网ip: 102.102.102.102<br>内网ip: 172.100.100.100</p>
+        <h1 id="SparkStreaming整合Flume"><a href="#SparkStreaming整合Flume" class="headerlink" title="SparkStreaming整合Flume"></a>SparkStreaming整合Flume</h1><blockquote>
+<p>可以通过<code>Push</code> 和 <code>Pull</code>两种方式整合<br>Push: 是Flume Push到Spark, 缺点是只能一个executor进行处理，造成压力<br>Pull: 是Spark主动去Pull<br>推荐使用Pull方式</p>
 </blockquote>
 <blockquote>
-<p>ecs01:<br>公网ip: 103.103.103.103<br>内网ip: 172.100.100.101</p>
+<p>Push方式，先执行Spark,再执行Flume<br>  Pull方式，先执行Flume,再执行Spark</p>
 </blockquote>
-<blockquote>
-<p>目标<br>ecs00的44444端口的netcat ==&gt; ecs01的logger</p>
-</blockquote>
-<h1 id="ecs00-netcat-memory-avro-conf"><a href="#ecs00-netcat-memory-avro-conf" class="headerlink" title="ecs00-netcat-memory-avro.conf"></a>ecs00-netcat-memory-avro.conf</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">netcat-avro-agent.sources &#x3D; netcat-avro-source</span><br><span class="line">netcat-avro-agent.sinks &#x3D; netcat-avro-sink</span><br><span class="line">netcat-avro-agent.channels &#x3D; netcat-avro-channel</span><br><span class="line"></span><br><span class="line">netcat-avro-agent.sources.netcat-avro-source.type &#x3D; netcat</span><br><span class="line">netcat-avro-agent.sources.netcat-avro-source.bind &#x3D; localhost</span><br><span class="line">netcat-avro-agent.sources.netcat-avro-source.port &#x3D; 44444</span><br><span class="line"></span><br><span class="line">netcat-avro-agent.sinks.netcat-avro-sink.type &#x3D; avro</span><br><span class="line">netcat-avro-agent.sinks.netcat-avro-sink.hostname &#x3D; 103.103.103.103</span><br><span class="line">netcat-avro-agent.sinks.netcat-avro-sink.port &#x3D; 44444</span><br><span class="line"></span><br><span class="line">netcat-avro-agent.channels.netcat-avro-channel.type &#x3D; memory</span><br><span class="line"></span><br><span class="line">netcat-avro-agent.sources.netcat-avro-source.channels &#x3D; netcat-avro-channel</span><br><span class="line">netcat-avro-agent.sinks.netcat-avro-sink.channel &#x3D; netcat-avro-channel</span><br></pre></td></tr></table></figure>
+<h2 id="Push方式"><a href="#Push方式" class="headerlink" title="Push方式"></a>Push方式</h2><h3 id="Flume-conf"><a href="#Flume-conf" class="headerlink" title="Flume.conf"></a>Flume.conf</h3><p>netcat-memory-avro.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">netcat-avro-agent.sources &#x3D; netcat-avro-source</span><br><span class="line">netcat-avro-agent.sinks &#x3D; netcat-avro-sink</span><br><span class="line">netcat-avro-agent.channels &#x3D; netcat-avro-channel</span><br><span class="line"></span><br><span class="line">netcat-avro-agent.sources.netcat-avro-source.type &#x3D; netcat</span><br><span class="line">netcat-avro-agent.sources.netcat-avro-source.bind &#x3D; localhost</span><br><span class="line">netcat-avro-agent.sources.netcat-avro-source.port &#x3D; 44444</span><br><span class="line"></span><br><span class="line">netcat-avro-agent.sinks.netcat-avro-sink.type &#x3D; avro</span><br><span class="line">netcat-avro-agent.sinks.netcat-avro-sink.hostname &#x3D; localhost</span><br><span class="line">netcat-avro-agent.sinks.netcat-avro-sink.port &#x3D; 55555</span><br><span class="line"></span><br><span class="line">netcat-avro-agent.channels.netcat-avro-channel.type &#x3D; memory</span><br><span class="line"></span><br><span class="line">netcat-avro-agent.sources.netcat-avro-source.channels &#x3D; netcat-avro-channel</span><br><span class="line">netcat-avro-agent.sinks.netcat-avro-sink.channel &#x3D; netcat-avro-channel</span><br></pre></td></tr></table></figure>
 
+<h3 id="GAV"><a href="#GAV" class="headerlink" title="GAV"></a>GAV</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupId &#x3D; org.apache.spark</span><br><span class="line">artifactId &#x3D; spark-streaming-flume_2.12</span><br><span class="line">version &#x3D; 2.4.5</span><br></pre></td></tr></table></figure>
 
-<h1 id="ecs01-avro-memory-logger-conf"><a href="#ecs01-avro-memory-logger-conf" class="headerlink" title="ecs01-avro-memory-logger.conf"></a>ecs01-avro-memory-logger.conf</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">avro-logger-agent.sources &#x3D; avro-logger-source</span><br><span class="line">avro-logger-agent.sinks &#x3D; avro-logger-sink</span><br><span class="line">avro-logger-agent.channels &#x3D; avro-logger-channel</span><br><span class="line"></span><br><span class="line">avro-logger-agent.sources.avro-logger-source.type &#x3D; avro</span><br><span class="line">avro-logger-agent.sources.avro-logger-source.bind &#x3D; 172.100.100.101</span><br><span class="line">avro-logger-agent.sources.avro-logger-source.port &#x3D; 44444</span><br><span class="line"></span><br><span class="line">avro-logger-agent.sinks.avro-logger-sink.type &#x3D; logger</span><br><span class="line"></span><br><span class="line">avro-logger-agent.channels.avro-logger-channel.type &#x3D; memory</span><br><span class="line"></span><br><span class="line">avro-logger-agent.sources.avro-logger-source.channels &#x3D; avro-logger-channel</span><br><span class="line">avro-logger-agent.sinks.avro-logger-sink.channel &#x3D; avro-logger-channel</span><br></pre></td></tr></table></figure>
+<h3 id="FlumePushStreaming-scala"><a href="#FlumePushStreaming-scala" class="headerlink" title="FlumePushStreaming.scala"></a>FlumePushStreaming.scala</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package sk_demo</span><br><span class="line"></span><br><span class="line">import org.apache.spark.SparkConf</span><br><span class="line">import org.apache.spark.streaming.flume.FlumeUtils</span><br><span class="line">import org.apache.spark.streaming.&#123;Seconds, StreamingContext&#125;</span><br><span class="line"></span><br><span class="line">object FlumePushStreaming &#123;</span><br><span class="line">  def main(args: Array[String]): Unit &#x3D; &#123;</span><br><span class="line">    val sparkConf &#x3D; new SparkConf().setAppName(&quot;FlumePushStreaming&quot;).setMaster(&quot;local[2]&quot;)</span><br><span class="line"></span><br><span class="line">    val ssc &#x3D; new StreamingContext(sparkConf, Seconds(5))</span><br><span class="line"></span><br><span class="line">    ssc.sparkContext.setLogLevel(&quot;WARN&quot;)</span><br><span class="line"></span><br><span class="line">    val streamData &#x3D; FlumeUtils.createStream(ssc, &quot;localhost&quot;, 55555)</span><br><span class="line"></span><br><span class="line">    val res &#x3D; streamData.flatMap(x &#x3D;&gt; new String(x.event.getBody.array()).toString.split(&quot; &quot;)).map((_, 1)).reduceByKey(_+_)</span><br><span class="line">    res.print()</span><br><span class="line"></span><br><span class="line">    ssc.start()</span><br><span class="line">    ssc.awaitTermination()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="启动"><a href="#启动" class="headerlink" title="启动:"></a>启动:</h1><ol>
-<li><p>ecs01 上</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent --conf $&#123;FLUME_HOME&#125;/conf --name avro-logger-agent --conf-file ./avro-memory-logger.conf -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ecs00上</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent --conf $&#123;FLUME_HOME&#125;/conf --name netcat-avro-agent --conf-file ./netcat-memory-avro.conf -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ecs00上</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet localhost 44444</span><br></pre></td></tr></table></figure></li>
-</ol>
+<h2 id="Pull方式"><a href="#Pull方式" class="headerlink" title="Pull方式"></a>Pull方式</h2><h3 id="Flume-conf-1"><a href="#Flume-conf-1" class="headerlink" title="Flume.conf"></a>Flume.conf</h3><p>netcat-memory-spark.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">netcat-spark-agent.sources &#x3D; netcat-spark-source</span><br><span class="line">netcat-spark-agent.sinks &#x3D; netcat-spark-sink</span><br><span class="line">netcat-spark-agent.channels &#x3D; netcat-spark-channel</span><br><span class="line"></span><br><span class="line">netcat-spark-agent.sources.netcat-spark-source.type &#x3D; netcat</span><br><span class="line">netcat-spark-agent.sources.netcat-spark-source.bind &#x3D; localhost</span><br><span class="line">netcat-spark-agent.sources.netcat-spark-source.port &#x3D; 44444</span><br><span class="line"></span><br><span class="line">netcat-spark-agent.sinks.netcat-spark-sink.type &#x3D; org.apache.spark.streaming.flume.sink.SparkSink</span><br><span class="line">netcat-spark-agent.sinks.netcat-spark-sink.hostname &#x3D; localhost</span><br><span class="line">netcat-spark-agent.sinks.netcat-spark-sink.port &#x3D; 55555</span><br><span class="line"></span><br><span class="line">netcat-spark-agent.channels.netcat-spark-channel.type &#x3D; memory</span><br><span class="line"></span><br><span class="line">netcat-spark-agent.sources.netcat-spark-source.channels &#x3D; netcat-spark-channel</span><br><span class="line">netcat-spark-agent.sinks.netcat-spark-sink.channel &#x3D; netcat-spark-channel</span><br></pre></td></tr></table></figure>
+
+<h3 id="GAV-1"><a href="#GAV-1" class="headerlink" title="GAV"></a>GAV</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">groupId &#x3D; org.apache.spark</span><br><span class="line">artifactId &#x3D; spark-streaming-flume-sink_2.12</span><br><span class="line">version &#x3D; 2.4.5</span><br><span class="line"></span><br><span class="line">groupId &#x3D; org.apache.commons</span><br><span class="line">artifactId &#x3D; commons-lang3</span><br><span class="line">version &#x3D; 3.5</span><br></pre></td></tr></table></figure>
+
+<h3 id="FlumePullStreaming-scala"><a href="#FlumePullStreaming-scala" class="headerlink" title="FlumePullStreaming.scala"></a>FlumePullStreaming.scala</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package sk_demo</span><br><span class="line"></span><br><span class="line">import org.apache.spark.SparkConf</span><br><span class="line">import org.apache.spark.streaming.flume.FlumeUtils</span><br><span class="line">import org.apache.spark.streaming.&#123;Seconds, StreamingContext&#125;</span><br><span class="line"></span><br><span class="line">object FlumePullStreaming &#123;</span><br><span class="line">  def main(args: Array[String]): Unit &#x3D; &#123;</span><br><span class="line">    val sparkConf &#x3D; new SparkConf().setAppName(&quot;FlumePullStreaming&quot;).setMaster(&quot;local[2]&quot;)</span><br><span class="line"></span><br><span class="line">    val ssc &#x3D; new StreamingContext(sparkConf, Seconds(5))</span><br><span class="line"></span><br><span class="line">    ssc.sparkContext.setLogLevel(&quot;WARN&quot;)</span><br><span class="line"></span><br><span class="line">    val streamData &#x3D; FlumeUtils.createPollingStream(ssc, &quot;localhost&quot;, 55555)</span><br><span class="line"></span><br><span class="line">    val res &#x3D; streamData.flatMap(x &#x3D;&gt; new String(x.event.getBody.array()).toString.split(&quot; &quot;)).map((_, 1)).reduceByKey(_+_)</span><br><span class="line"></span><br><span class="line">    res.print()</span><br><span class="line"></span><br><span class="line">    ssc.start()</span><br><span class="line">    ssc.awaitTermination()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license  -->
@@ -428,17 +423,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/05/22/SparkCore-%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%BE%8B/" title= SparkCore 生产实例 >
-                    <div class="nextTitle">SparkCore 生产实例</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/05/20/socket-file-queue-streaming/" title= socket/file/queue_streaming >
-                    <div class="prevTitle">socket/file/queue_streaming</div>
+                <a href= "/2020/05/29/WEB%E6%97%A5%E5%BF%97%E9%87%87%E9%9B%86/" title= WEB日志采集 >
+                    <div class="prevTitle">WEB日志采集</div>
                 </a>
             
         </li>
@@ -541,7 +531,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Flume跨机器传输"><span class="toc-number">1.</span> <span class="toc-text">Flume跨机器传输</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ecs00-netcat-memory-avro-conf"><span class="toc-number">2.</span> <span class="toc-text">ecs00-netcat-memory-avro.conf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ecs01-avro-memory-logger-conf"><span class="toc-number">3.</span> <span class="toc-text">ecs01-avro-memory-logger.conf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#启动"><span class="toc-number">4.</span> <span class="toc-text">启动:</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SparkStreaming整合Flume"><span class="toc-number">1.</span> <span class="toc-text">SparkStreaming整合Flume</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Push方式"><span class="toc-number">1.1.</span> <span class="toc-text">Push方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Flume-conf"><span class="toc-number">1.1.1.</span> <span class="toc-text">Flume.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GAV"><span class="toc-number">1.1.2.</span> <span class="toc-text">GAV</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FlumePushStreaming-scala"><span class="toc-number">1.1.3.</span> <span class="toc-text">FlumePushStreaming.scala</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pull方式"><span class="toc-number">1.2.</span> <span class="toc-text">Pull方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Flume-conf-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Flume.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GAV-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">GAV</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FlumePullStreaming-scala"><span class="toc-number">1.2.3.</span> <span class="toc-text">FlumePullStreaming.scala</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
