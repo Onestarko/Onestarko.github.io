@@ -339,6 +339,73 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/05/22/flume%E8%B7%A8%E6%9C%BA%E5%99%A8%E4%BC%A0%E8%BE%93/" >
+            
+                <span>flume跨机器传输</span>
+        </a>
+        <div class="abstract-content">
+            Flume跨机器传输
+ecs00:公网ip: 102.102.102.102内网ip: 172.100.100.100
+
+
+ecs01:公网ip: 103.103.103.103内网ip: 172.100.100.101
+
+
+目标ecs00的44444端口的netcat ==&gt; ecs01的logger
+
+ecs00-netcat-memory-avro.conf12345678910111213141516netcat-avro-agent.sources &#x3D; netcat-avro-sourcenetcat-avro-agent.sinks &#x3D; netcat...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Flume">Flume</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/05/20/socket-file-queue-streaming/" >
+            
+                <span>socket/file/queue_streaming</span>
+        </a>
+        <div class="abstract-content">
+            socket_streaming1234567891011121314151617181920212223242526package workuseimport org.apache.spark.streaming.&#123;Seconds, StreamingContext&#125;import org.apache.spark.SparkConfobject socket_streaming &#123;  def main(args: Array[String]): Unit = &#123;    val sparkConf = new SparkConf().setAppN...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/05/18/spark-core%E5%9B%BE%E8%B0%B1/" >
             
                 <span>spark_core图谱</span>
@@ -592,82 +659,10 @@ sequence:     若为 True 则在你创建节点名后面增加10位...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/ZOOKEEPER%E5%9F%BA%E7%A1%80/" >
-            
-                <span>ZOOKEEPER基础</span>
-        </a>
-        <div class="abstract-content">
-            
-ZOOKEEPER 监听器原理:（1）在Zookeeper的API操作中，创建main()主方法即主线程；
-（2）在main线程中创建Zookeeper客户端（zkClient），这时会创建两个线程：
-线程connet负责网络通信连接，连接服务器；
-
-线程Listener负责监听；（3）客户端通过connet线程连接服务器；
-图中getChildren(&quot;/&quot; , true) ，&quot; / &quot;表示监听的是根目录，true表示监听，不监听用false（4）在Zookeeper的注册监听列表中将注册的监听事件添加到列表中，表示这个服务器中的/path，即...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/zookeeper%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" >
-            
-                <span>zookeeper安装部署</span>
-        </a>
-        <div class="abstract-content">
-            zookeeper安装部署一、本地模式安装部署1. 下载安装1wget https://mirrors.huaweicloud.com/apache/zookeeper/zookeeper-3.4.13/zookeeper-3.4.13.tar.gz
-
-1tar -zxvf zookeeper-3.4.13.tar.gz -C ../
-
-12cd zookeeper-3.4.13mkdir zkData
-
-12cd conf/cp zoo_sample.cfg zoo.cfg
-
-12vim zoo.cfgdataDir=/home/kowhoy/software/zookeeper-3....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/2020/">&amp;#60; PREV</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2020/page/3/">3</a><a class="page-number" href="/archives/2020/page/4/">4</a><a class="extend next" rel="next" href="/archives/2020/page/3/">NEXT &amp;#62;</a>
+        <a class="extend prev" rel="prev" href="/archives/2020/">&amp;#60; PREV</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2020/page/3/">3</a><a class="page-number" href="/archives/2020/page/4/">4</a><a class="page-number" href="/archives/2020/page/5/">5</a><a class="extend next" rel="next" href="/archives/2020/page/3/">NEXT &amp;#62;</a>
     </nav>
     
 </main>
@@ -1290,9 +1285,43 @@ ZOOKEEPER 监听器原理:（1）在Zookeeper的API操作中，创建main()主�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 40
+        Total : 42
         </div>
         <!-- search  -->
         
@@ -1305,6 +1334,16 @@ ZOOKEEPER 监听器原理:（1）在Zookeeper的API操作中，创建main()主�
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href= "/2020/06/03/Python-Flume-Kafka-%E6%97%A5%E5%BF%97%E7%94%9F%E6%88%90%E9%87%87%E9%9B%86/" >Python+Flume+Kafka 日志生成采集</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href= "/2020/06/03/SparkStreaming%E6%95%B4%E5%90%88Kafka/" >SparkStreaming整合Kafka</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1572,6 +1611,10 @@ ZOOKEEPER 监听器原理:（1）在Zookeeper的API操作中，创建main()主�
         <span class="sidebar-tag-name" data-tags="FlumePushStream"><span class="iconfont-archer">&#xe606;</span>FlumePushStream</span>
     
         <span class="sidebar-tag-name" data-tags="日志采集"><span class="iconfont-archer">&#xe606;</span>日志采集</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

@@ -339,114 +339,27 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/python%E6%93%8D%E4%BD%9Czookeeper/" >
+        <a class="abstract-title" href = "/2020/06/03/Python-Flume-Kafka-%E6%97%A5%E5%BF%97%E7%94%9F%E6%88%90%E9%87%87%E9%9B%86/" >
             
-                <span>python操作zookeeper</span>
+                <span>Python+Flume+Kafka 日志生成采集</span>
         </a>
         <div class="abstract-content">
-            一、安装1pip install kazoo
-
-二、连接Zookeeper123from kazoo.client import KazooClientzk = KazooClient(hosts='39.99.221.106')
-
-
-默认端口为2181，注意防火墙/安全组
-
-三、创建节点
-
-path：          节点路径
-value：         节点对应的值，注意值的类型是 bytes
-ephemeral： 若为 True 则创建一个临时节点，session 中断后自动删除该节点。默认 False
-sequence:     若为 True 则在你创建节点名后面增加10位...
+            Python+Flume+Kafka 日志生成采集生成日志123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869#!/usr/bin/env python# coding=utf-8import loggingimport osimport randomimport datetimelog_path = os.getcwd()ip_list = [23, 12, 103, 88, 120...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/03</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Flume">Flume</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Python">Python</a>
     
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/26/matplotlib%E5%9F%BA%E7%A1%80%E5%9B%BE%E8%A1%A8/" >
-            
-                <span>matplotlib基础图表</span>
-        </a>
-        <div class="abstract-content">
-            matplotlib基础图表一、根据x,y绘制12345678910111213import numpy as npfrom matplotlib import pyplot as pltx = np.arange(1, 11)y = x * 2 + 1plt.title("demo1")plt.xlabel("x")plt.ylabel("y")plt.plot(x, y)plt.show()
-
-
-12345678910111213import numpy as npfrom matplotlib import pyplot as pltx = np.arange(0, 3 * np....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "matplotlib">matplotlib</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/27/flask%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86/" >
-            
-                <span>flask思路整理</span>
-        </a>
-        <div class="abstract-content">
-            flask思路整理一. 创建虚拟环境python3 -m venv venv. venv/bin/activate
-二. init.py主要工作：
-
-创建应用
-添加配置
-初始化应用
-注册蓝图
-
-
-创建应用:
-123456import osfrom flask import Flaskdef create_app(test_config=None):    ## instance_relative_config 使用True的话就会从instance文件夹作为配置文件的路径    app = Flask(__name__, instance_relative_config=True)
-
-添...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "flask">flask</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Kafka">Kafka</a>
     
 </div>
             
@@ -1075,9 +988,43 @@ sequence:     若为 True 则在你创建节点名后面增加10位...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 40
+        Total : 42
         </div>
         <!-- search  -->
         
@@ -1090,6 +1037,16 @@ sequence:     若为 True 则在你创建节点名后面增加10位...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href= "/2020/06/03/Python-Flume-Kafka-%E6%97%A5%E5%BF%97%E7%94%9F%E6%88%90%E9%87%87%E9%9B%86/" >Python+Flume+Kafka 日志生成采集</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href= "/2020/06/03/SparkStreaming%E6%95%B4%E5%90%88Kafka/" >SparkStreaming整合Kafka</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1358,6 +1315,10 @@ sequence:     若为 True 则在你创建节点名后面增加10位...
     
         <span class="sidebar-tag-name" data-tags="日志采集"><span class="iconfont-archer">&#xe606;</span>日志采集</span>
     
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1400,6 +1361,67 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
         <span class="sidebar-category-name" data-categories="Elasticsearch"><span class="iconfont-archer">&#xe60a;</span>Elasticsearch</span>
+    
+        <span class="sidebar-category-name" data-categories="nginx"><span class="iconfont-archer">&#xe60a;</span>nginx</span>
+    
+        <span class="sidebar-category-name" data-categories="nginx/uwsgi"><span class="iconfont-archer">&#xe60a;</span>nginx/uwsgi</span>
+    
+        <span class="sidebar-category-name" data-categories="mysql"><span class="iconfont-archer">&#xe60a;</span>mysql</span>
+    
+        <span class="sidebar-category-name" data-categories="scala"><span class="iconfont-archer">&#xe60a;</span>scala</span>
+    
+        <span class="sidebar-category-name" data-categories="hadoop"><span class="iconfont-archer">&#xe60a;</span>hadoop</span>
+    
+        <span class="sidebar-category-name" data-categories="Pandas"><span class="iconfont-archer">&#xe60a;</span>Pandas</span>
+    
+        <span class="sidebar-category-name" data-categories="Numpy"><span class="iconfont-archer">&#xe60a;</span>Numpy</span>
+    
+        <span class="sidebar-category-name" data-categories="Pandas/Python"><span class="iconfont-archer">&#xe60a;</span>Pandas/Python</span>
+    
+        <span class="sidebar-category-name" data-categories="Numpy/Python"><span class="iconfont-archer">&#xe60a;</span>Numpy/Python</span>
+    
+        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
+    
+        <span class="sidebar-category-name" data-categories="数据库"><span class="iconfont-archer">&#xe60a;</span>数据库</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "kowhoy"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+     
+    </body>
+</html>
+
+
+ticsearch"><span class="iconfont-archer">&#xe60a;</span>Elasticsearch</span>
     
         <span class="sidebar-category-name" data-categories="nginx"><span class="iconfont-archer">&#xe60a;</span>nginx</span>
     
