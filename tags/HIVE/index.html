@@ -339,58 +339,33 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/09/HQL%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/" >
+        <a class="abstract-title" href = "/2020/05/07/HIVE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >
             
-                <span>HQL执行流程</span>
+                <span>HIVE安装配置</span>
         </a>
         <div class="abstract-content">
-            
+            HIVE安装配置一、前置环境
+JAVA
+HADOOP
+MYSQL
 
+二、安装
+下载解压
+123wget https://mirrors.huaweicloud.com/apache/hive/hive-2.3.6/apache-hive-2.3.6-bin.tar.gztar -zxvf apache-hive-2.3.6-bin.tar.gz -C ../
+
+配置环境变量 vim ~/.bash_profile
+12HIVE_HOME&#x3D;&#x2F;home&#x2F;kowhoy&#x2F;software&#x2F;apache-hive-2.3.6-binexport P...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "hive">hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/09/hive%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B/" >
-            
-                <span>hive存储模型</span>
-        </a>
-        <div class="abstract-content">
-            hive存储模型一、内部表与外部表
-内部表的一切都在hive上管理，删除了内部表，将丢失数据外部表hive上只是提供操作以及结构，数据分开存储，删除外部表，数据不会丢失，重新建表即可正常使用
-
-1. 建立内部表123456789create table atm (id int,name string,address string,money float)row format delimitedfileds terminated by ','stored as textfile;
-
-1load data local inpath &#39;file_path&#39; into table...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "hive">hive</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HIVE">HIVE</a>
     
 </div>
             
@@ -1053,9 +1028,43 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 42
+        Total : 44
         </div>
         <!-- search  -->
         
@@ -1068,6 +1077,16 @@
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/08</span><a class="archive-post-title" href= "/2020/06/08/%E7%BD%91%E7%82%B9%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E8%AE%A1%E7%AE%97%E8%B7%9D%E7%A6%BB/" >网点排列组合计算距离</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href= "/2020/06/04/SparkStreaming%E6%B6%88%E8%B4%B9Kakfa%E8%BE%93%E5%87%BA%E6%97%A5%E5%BF%97/" >SparkStreaming消费Kakfa输出日志</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1417,6 +1436,42 @@ jsonContent:
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "kowhoy"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+     
+    </body>
+</html>
+
+
+t-archer sidebar-categories-empty">&#xe678;</div>
     <div class="sidebar-categories-list"></div>
 </div>
     </div>

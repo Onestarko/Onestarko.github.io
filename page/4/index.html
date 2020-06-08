@@ -354,6 +354,73 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/04/15/%E6%9F%AF%E9%87%8C%E5%8C%96/" >
+            
+                <span>柯里化</span>
+        </a>
+        <div class="abstract-content">
+            柯里化定义
+将原来多个参数的函数，分成多个单个参数的函数
+
+好处
+复杂逻辑简单化
+
+示例12345678910111213141516171819package com.kowhoy.scala//柯里化object keli &#123;  def main(args: Array[String]): Unit = &#123;    var inc = (x:Int, y:Int) =&gt; x + y    println(inc(1, 2))    println(inc_kl(1)(2))    var firstNum = inc_kl((1))_    var res =...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/15</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "scala">scala</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/04/15/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/" >
+            
+                <span>匿名函数</span>
+        </a>
+        <div class="abstract-content">
+            匿名函数
+简写函数定义, 匿名函数不可以写成传名调用
+
+12345678910111213141516171819202122232425262728293031package com.kowhoy.scala//匿名函数object niming &#123;  def main(args: Array[String]): Unit = &#123;    var initNum = 0    var counter = () =&gt; &#123;      initNum += 1      initNum    &#125;    var sendValue = (x:  In...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/15</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "scala">scala</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/04/15/%E4%BC%A0%E5%80%BC%E4%BC%A0%E5%90%8D%E8%B0%83%E7%94%A8/" >
             
                 <span>传值传名调用</span>
@@ -629,80 +696,6 @@ catconfig.py12345678910111213141516171819202122232425262728293031323334353637383
         <a class="post-tag" href="javascript:void(0);" data-tags = "flask">flask</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/27/tmux%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/" >
-            
-                <span>tmux——基本使用示例</span>
-        </a>
-        <div class="abstract-content">
-            tmux——基本使用示例
-使用tmux后台运行bash_history_notify项目
-
-一、安装tmux12345#mac:brew install tmux#centos:yum install tmux
-
-二、配置tmux
-使用了github上的配置，然后做了修改tmux的默认快捷键前缀为 ctrl + b, 现在改为ctrl+a，下文中使用Prefix代替ctrl+a⚠️ :使用快捷键是先摁下快捷键前缀，然后抬手，在进行具体的快捷按键
-
-1234cdgit clone https:&#x2F;&#x2F;github.com&#x2F;gpakosz&#x2F;.tmux.gi...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/27</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/26/kafak%E7%A4%BA%E4%BE%8B-%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7%E7%BB%88%E7%AB%AF%E8%BE%93%E5%85%A5/" >
-            
-                <span>kafak示例-远程监控终端输入</span>
-        </a>
-        <div class="abstract-content">
-            kafak示例-远程监控终端输入
-使用pyinotify监听.bash_history文件，使用kafka生产消费
-
-一、kafka安装配置
-安装java环境
-
-官网下载kafka安装包
-1wget http:&#x2F;&#x2F;archive.apache.org&#x2F;dist&#x2F;kafka&#x2F;1.0.0&#x2F;kafka_2.12-1.0.0.tgz
-
-解压压缩包
-
-配置/config/server.properties
-1advertised.listeners&#x3D;PLAINTEXT:&#x2F;&#x2F;&#123;&#123;IP&#12...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "kafka">kafka</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "pyinotify">pyinotify</a>
     
 </div>
             
@@ -1426,9 +1419,43 @@ catconfig.py12345678910111213141516171819202122232425262728293031323334353637383
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 42
+        Total : 44
         </div>
         <!-- search  -->
         
@@ -1441,6 +1468,16 @@ catconfig.py12345678910111213141516171819202122232425262728293031323334353637383
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/08</span><a class="archive-post-title" href= "/2020/06/08/%E7%BD%91%E7%82%B9%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E8%AE%A1%E7%AE%97%E8%B7%9D%E7%A6%BB/" >网点排列组合计算距离</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href= "/2020/06/04/SparkStreaming%E6%B6%88%E8%B4%B9Kakfa%E8%BE%93%E5%87%BA%E6%97%A5%E5%BF%97/" >SparkStreaming消费Kakfa输出日志</a>
+        </li>
     
     
         <li class="archive-post-item">

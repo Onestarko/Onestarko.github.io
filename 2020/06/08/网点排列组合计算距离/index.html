@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>tags · Kowhoy&#39;s Studio</title>
+    <title>网点排列组合计算距离 · Kowhoy&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180709 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180709 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -194,12 +196,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >kowhoy&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">网点排列组合计算距离</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>kowhoy's Studio.</a>
 </header>
@@ -213,24 +226,74 @@
 
 
 
+height:50vh;
+
 >
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/pt.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            网点排列组合计算距离
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "spark">spark</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">601</span> / Reading time: <span class="post-count">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/06/08</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -333,7 +396,10 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        
+        <h1 id="网点排列组合计算距离"><a href="#网点排列组合计算距离" class="headerlink" title="网点排列组合计算距离"></a>网点排列组合计算距离</h1><blockquote>
+<p>根据<code>oss_id</code>, <code>lon</code>, <code>lat</code>三个字段来计算每两个网点之间的空间距离</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> <span class="type">OssDistance</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.&#123;<span class="type">DataFrame</span>, <span class="type">SparkSession</span>&#125;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.functions.col</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.types.&#123;<span class="type">DoubleType</span>, <span class="type">IntegerType</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scala.collection.mutable.<span class="type">ListBuffer</span></span><br><span class="line"><span class="keyword">import</span> <span class="type">Math</span>.&#123;<span class="type">PI</span>, pow, cos, sin, asin, sqrt&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">OssDistance</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">if</span> (args.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">      <span class="type">System</span>.err.println(<span class="string">"Usage OssDistance &lt;ossLimitNum&gt; &lt;savePath&gt;"</span>)</span><br><span class="line">      <span class="type">System</span>.exit(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> <span class="type">Array</span>(ossLimitNum, savePath) = args</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> spark = <span class="type">SparkSession</span>.builder().getOrCreate()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> ossDF = _getOssDF(spark, ossLimitNum.toInt)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> (ossIds, ossLocation) = _getOssData(ossDF)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> combinations = _getOssIdsCombinations(ossIds)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> combinationsRDD = spark.sparkContext.parallelize(combinations)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> ossLocationBroadcast = spark.sparkContext.broadcast(ossLocation)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> ossDistance = combinationsRDD.map&#123;</span><br><span class="line">      ossCombination =&gt; &#123;</span><br><span class="line">        <span class="keyword">val</span> ossAId = ossCombination._1</span><br><span class="line">        <span class="keyword">val</span> ossBId = ossCombination._2</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> ossLocationData = ossLocationBroadcast.value</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> ossALon = ossLocationData(ossAId)(<span class="string">"lon"</span>)</span><br><span class="line">        <span class="keyword">val</span> ossALat = ossLocationData(ossAId)(<span class="string">"lat"</span>)</span><br><span class="line">        <span class="keyword">val</span> ossBLon = ossLocationData(ossBId)(<span class="string">"lon"</span>)</span><br><span class="line">        <span class="keyword">val</span> ossBLat = ossLocationData(ossBId)(<span class="string">"lat"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> distance = _computeDistance(ossALon, ossALat, ossBLon, ossBLat)</span><br><span class="line"></span><br><span class="line">        ossDistanceR(ossAId, ossBId, distance)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> ossDistanceDF = spark.createDataFrame(ossDistance)</span><br><span class="line"></span><br><span class="line">    ossDistanceDF.write.format(<span class="string">"json"</span>).save(savePath)</span><br><span class="line"></span><br><span class="line">    ossDistanceDF.show(<span class="number">10</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 网点数据</span></span><br><span class="line"><span class="comment">    * @Date 2:23 下午 2020/6/8</span></span><br><span class="line"><span class="comment">    * @Param [spark]</span></span><br><span class="line"><span class="comment">    * @Return DataSet</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">_getOssDF</span></span>(spark: <span class="type">SparkSession</span>, ossLimitNum:<span class="type">Int</span>): <span class="type">DataFrame</span> = &#123;</span><br><span class="line">    spark.read.format(<span class="string">"jdbc"</span>)</span><br><span class="line">      .option(<span class="string">"url"</span>, <span class="string">"jdbc:mysql://"</span>+<span class="type">Tools</span>.getConfig(<span class="string">"host"</span>)+<span class="string">"/dw_2_basic"</span>)</span><br><span class="line">      .option(<span class="string">"driver"</span>, <span class="string">"com.mysql.jdbc.Driver"</span>)</span><br><span class="line">      .option(<span class="string">"dbtable"</span>, <span class="type">Tools</span>.getConfig(<span class="string">"defaultDb"</span>))</span><br><span class="line">      .option(<span class="string">"user"</span>, <span class="type">Tools</span>.getConfig(<span class="string">"USER"</span>))</span><br><span class="line">      .option(<span class="string">"password"</span>, <span class="type">Tools</span>.getConfig(<span class="string">"password"</span>))</span><br><span class="line">      .load().select(</span><br><span class="line">      col(<span class="string">"oms网点ID"</span>).cast(<span class="type">IntegerType</span>).as(<span class="string">"oss_id"</span>),</span><br><span class="line">      col(<span class="string">"经度"</span>).cast(<span class="type">DoubleType</span>).as(<span class="string">"lon"</span>),</span><br><span class="line">      col(<span class="string">"纬度"</span>).cast(<span class="type">DoubleType</span>).as(<span class="string">"lat"</span>)</span><br><span class="line">    ).limit(ossLimitNum)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 根据网点DF 输出网点ID列表和网点位置Map</span></span><br><span class="line"><span class="comment">    * @Date 2:22 下午 2020/6/8</span></span><br><span class="line"><span class="comment">    * @Param [ossDF]</span></span><br><span class="line"><span class="comment">    * @Return (ListBuffer[Int], Map[Int, Map[String, Double]])</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">_getOssData</span></span>(ossDF:<span class="type">DataFrame</span>): (<span class="type">ListBuffer</span>[<span class="type">Int</span>], <span class="type">Map</span>[<span class="type">Int</span>, <span class="type">Map</span>[<span class="type">String</span>, <span class="type">Double</span>]]) = &#123;</span><br><span class="line">    <span class="keyword">val</span> ossList = ossDF.collectAsList()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> ossCount = ossDF.count().toInt</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> ossLocation: <span class="type">Map</span>[<span class="type">Int</span>, <span class="type">Map</span>[<span class="type">String</span>, <span class="type">Double</span>]] = <span class="type">Map</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> ossIds: <span class="type">ListBuffer</span>[<span class="type">Int</span>] = <span class="type">ListBuffer</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i &lt;- <span class="number">0</span> to ossCount<span class="number">-1</span>) &#123;</span><br><span class="line">      <span class="keyword">val</span> ossRow = ossList.get(i)</span><br><span class="line">      <span class="keyword">val</span> ossId:<span class="type">Int</span> = ossRow(<span class="number">0</span>).asInstanceOf[<span class="type">Int</span>]</span><br><span class="line">      <span class="keyword">val</span> lon:<span class="type">Double</span> = ossRow(<span class="number">1</span>).asInstanceOf[<span class="type">Double</span>]</span><br><span class="line">      <span class="keyword">val</span> lat:<span class="type">Double</span> = ossRow(<span class="number">2</span>).asInstanceOf[<span class="type">Double</span>]</span><br><span class="line"></span><br><span class="line">      ossLocation += (ossId -&gt; <span class="type">Map</span>(<span class="string">"lon"</span> -&gt; lon, <span class="string">"lat"</span> -&gt; lat))</span><br><span class="line"></span><br><span class="line">      ossIds.append(ossId)</span><br><span class="line">    &#125;</span><br><span class="line">    (ossIds, ossLocation)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 网点ID排列组合</span></span><br><span class="line"><span class="comment">    * @Date 2:34 下午 2020/6/8</span></span><br><span class="line"><span class="comment">    * @Param [ossIds]</span></span><br><span class="line"><span class="comment">    * @Return scala.collection.mutable.ListBuffer&lt;scala.Tuple2&lt;java.lang.Object,java.lang.Object&gt;&gt;</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">_getOssIdsCombinations</span></span>(ossIds: <span class="type">ListBuffer</span>[<span class="type">Int</span>]): <span class="type">ListBuffer</span>[(<span class="type">Int</span>, <span class="type">Int</span>)] = &#123;</span><br><span class="line">    <span class="keyword">val</span> ossIdsLength = ossIds.length</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> combinations: <span class="type">ListBuffer</span>[(<span class="type">Int</span>, <span class="type">Int</span>)] = <span class="type">ListBuffer</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i &lt;- <span class="number">0</span> to ossIdsLength - <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">val</span> ossId = ossIds(i)</span><br><span class="line">      <span class="keyword">val</span> leftOss = ossIds.slice(i+<span class="number">1</span>, ossIdsLength)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (id &lt;- leftOss) &#123;</span><br><span class="line">        combinations.append((ossId, id))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    combinations</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @Desc 网点ID之间的空间距离</span></span><br><span class="line"><span class="comment">    * @Date 2:39 下午 2020/6/8</span></span><br><span class="line"><span class="comment">    * @Param [lon1, lat1, lon2, lat2]</span></span><br><span class="line"><span class="comment">    * @Return double</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">_computeDistance</span></span>(lonA:<span class="type">Double</span>, latA:<span class="type">Double</span>, lonB:<span class="type">Double</span>, latB:<span class="type">Double</span>): <span class="type">Double</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> <span class="type">Array</span>(lon1, lat1, lon2, lat2) = <span class="type">Array</span>(lonA, latA, lonB, latB).map(_ * <span class="type">PI</span> / <span class="number">180</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> dLon = lon2 - lon1</span><br><span class="line">    <span class="keyword">val</span> dLat = lat2 - lat1</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> a = pow(sin(dLat/<span class="number">2</span>), <span class="number">2</span>) + cos(lat1) * cos(lat2) * pow(sin(dLon/<span class="number">2</span>), <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> c = <span class="number">2</span> * asin(sqrt(a))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> r = <span class="number">6371</span></span><br><span class="line"></span><br><span class="line">    c * r</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">ossDistanceR</span>(<span class="params">oss1: <span class="type">Int</span>, oss2: <span class="type">Int</span>, distance: <span class="type">Double</span></span>)</span></span><br><span class="line"><span class="class">&#125;</span></span><br></pre></td></tr></table></figure>
     </article>
     <!-- license  -->
     
@@ -343,6 +409,11 @@
             
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/06/04/SparkStreaming%E6%B6%88%E8%B4%B9Kakfa%E8%BE%93%E5%87%BA%E6%97%A5%E5%BF%97/" title= SparkStreaming消费Kakfa输出日志 >
+                    <div class="prevTitle">SparkStreaming消费Kakfa输出日志</div>
+                </a>
             
         </li>
     </ul>
@@ -428,6 +499,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#网点排列组合计算距离"><span class="toc-number">1.</span> <span class="toc-text">网点排列组合计算距离</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1453,6 +1542,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
