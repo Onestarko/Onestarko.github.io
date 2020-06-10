@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Kowhoy&#39;s Studio</title>
+    <title>HBASE DDL · Kowhoy&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180709 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180709 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -194,12 +196,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >kowhoy&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">HBASE DDL</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>kowhoy's Studio.</a>
 </header>
@@ -213,24 +226,74 @@
 
 
 
+height:50vh;
+
 >
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/pt.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            HBASE DDL
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">1.1k</span> / Reading time: <span class="post-count">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/06/10</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -331,78 +394,68 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/27/tmux%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/" >
-            
-                <span>tmux——基本使用示例</span>
-        </a>
-        <div class="abstract-content">
-            tmux——基本使用示例
-使用tmux后台运行bash_history_notify项目
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="HBASE-DDL"><a href="#HBASE-DDL" class="headerlink" title="HBASE DDL"></a>HBASE DDL</h1><ol>
+<li><p>启动HBASE SHELL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hbase shell</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看版本、状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):037:0&gt; version</span><br><span class="line">2.2.2, re6513a76c91cceda95dad7af246ac81d46fa2589, Sat Oct 19 10:10:12 UTC 2019</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hbase(main):036:0&gt; status</span><br><span class="line">1 active master, 0 backup masters, 1 servers, 1 dead, 3.0000 average load</span><br><span class="line">Took 0.0105 seconds</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):042:0* create &#39;member&#39;, &#39;member_id&#39;, &#39;info&#39;, &#39;address&#39;</span><br><span class="line">Created table member</span><br><span class="line">Took 2.2730 seconds</span><br><span class="line">&#x3D;&gt; Hbase::Table - member</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## create &#39;表名&#39;, &#39;列族1&#x2F;cf&#39;, &#39;列族2&#x2F;cf&#39;...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DESC表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):043:0&gt; desc &#39;member&#39;</span><br><span class="line">Table member is ENABLED</span><br><span class="line">member</span><br><span class="line">COLUMN FAMILIES DESCRIPTION</span><br><span class="line">&#123;NAME &#x3D;&gt; &#39;address&#39;, VERSIONS &#x3D;&gt; &#39;1&#39;, EVICT_BLOCKS_ON_CLOSE &#x3D;&gt; &#39;false&#39;, NEW_VERSION_BEHAVIOR &#x3D;&gt; &#39;false&#39;, KEEP_DELETED_CELLS &#x3D;&gt; &#39;FALSE&#39;, CACHE_DATA_ON_WRITE &#x3D;&gt; &#39;false&#39;, DATA_BLOCK_</span><br><span class="line">ENCODING &#x3D;&gt; &#39;NONE&#39;, TTL &#x3D;&gt; &#39;FOREVER&#39;, MIN_VERSIONS &#x3D;&gt; &#39;0&#39;, REPLICATION_SCOPE &#x3D;&gt; &#39;0&#39;, BLOOMFILTER &#x3D;&gt; &#39;ROW&#39;, CACHE_INDEX_ON_WRITE &#x3D;&gt; &#39;false&#39;, IN_MEMORY &#x3D;&gt; &#39;false&#39;, CACHE_BLOOMS_ON_</span><br><span class="line">WRITE &#x3D;&gt; &#39;false&#39;, PREFETCH_BLOCKS_ON_OPEN &#x3D;&gt; &#39;false&#39;, COMPRESSION &#x3D;&gt; &#39;NONE&#39;, BLOCKCACHE &#x3D;&gt; &#39;true&#39;, BLOCKSIZE &#x3D;&gt; &#39;65536&#39;&#125;</span><br><span class="line"></span><br><span class="line">&#123;NAME &#x3D;&gt; &#39;info&#39;, VERSIONS &#x3D;&gt; &#39;1&#39;, EVICT_BLOCKS_ON_CLOSE &#x3D;&gt; &#39;false&#39;, NEW_VERSION_BEHAVIOR &#x3D;&gt; &#39;false&#39;, KEEP_DELETED_CELLS &#x3D;&gt; &#39;FALSE&#39;, CACHE_DATA_ON_WRITE &#x3D;&gt; &#39;false&#39;, DATA_BLOCK_ENC</span><br><span class="line">ODING &#x3D;&gt; &#39;NONE&#39;, TTL &#x3D;&gt; &#39;FOREVER&#39;, MIN_VERSIONS &#x3D;&gt; &#39;0&#39;, REPLICATION_SCOPE &#x3D;&gt; &#39;0&#39;, BLOOMFILTER &#x3D;&gt; &#39;ROW&#39;, CACHE_INDEX_ON_WRITE &#x3D;&gt; &#39;false&#39;, IN_MEMORY &#x3D;&gt; &#39;false&#39;, CACHE_BLOOMS_ON_WRI</span><br><span class="line">TE &#x3D;&gt; &#39;false&#39;, PREFETCH_BLOCKS_ON_OPEN &#x3D;&gt; &#39;false&#39;, COMPRESSION &#x3D;&gt; &#39;NONE&#39;, BLOCKCACHE &#x3D;&gt; &#39;true&#39;, BLOCKSIZE &#x3D;&gt; &#39;65536&#39;&#125;</span><br><span class="line"></span><br><span class="line">&#123;NAME &#x3D;&gt; &#39;member_id&#39;, VERSIONS &#x3D;&gt; &#39;1&#39;, EVICT_BLOCKS_ON_CLOSE &#x3D;&gt; &#39;false&#39;, NEW_VERSION_BEHAVIOR &#x3D;&gt; &#39;false&#39;, KEEP_DELETED_CELLS &#x3D;&gt; &#39;FALSE&#39;, CACHE_DATA_ON_WRITE &#x3D;&gt; &#39;false&#39;, DATA_BLOC</span><br><span class="line">K_ENCODING &#x3D;&gt; &#39;NONE&#39;, TTL &#x3D;&gt; &#39;FOREVER&#39;, MIN_VERSIONS &#x3D;&gt; &#39;0&#39;, REPLICATION_SCOPE &#x3D;&gt; &#39;0&#39;, BLOOMFILTER &#x3D;&gt; &#39;ROW&#39;, CACHE_INDEX_ON_WRITE &#x3D;&gt; &#39;false&#39;, IN_MEMORY &#x3D;&gt; &#39;false&#39;, CACHE_BLOOMS_O</span><br><span class="line">N_WRITE &#x3D;&gt; &#39;false&#39;, PREFETCH_BLOCKS_ON_OPEN &#x3D;&gt; &#39;false&#39;, COMPRESSION &#x3D;&gt; &#39;NONE&#39;, BLOCKCACHE &#x3D;&gt; &#39;true&#39;, BLOCKSIZE &#x3D;&gt; &#39;65536&#39;&#125;</span><br><span class="line"></span><br><span class="line">3 row(s)</span><br><span class="line"></span><br><span class="line">QUOTAS</span><br><span class="line">0 row(s)</span><br><span class="line">Took 0.0436 seconds</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):044:0&gt; list</span><br><span class="line">TABLE</span><br><span class="line">member</span><br><span class="line">user</span><br><span class="line">2 row(s)</span><br><span class="line">Took 0.0048 seconds</span><br><span class="line">&#x3D;&gt; [&quot;member&quot;, &quot;user&quot;]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除列族/CF</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):071:0&gt; alter &#39;member&#39;, &#39;delete&#39;&#x3D;&gt;&#39;member_id&#39;</span><br><span class="line">Updating all regions with the new schema...</span><br><span class="line">1&#x2F;1 regions updated.</span><br><span class="line">Done.</span><br><span class="line">Took 2.0179 seconds</span><br><span class="line">hbase(main):072:0&gt; desc &#39;member&#39;</span><br><span class="line">Table member is ENABLED</span><br><span class="line">member</span><br><span class="line">COLUMN FAMILIES DESCRIPTION</span><br><span class="line">&#123;NAME &#x3D;&gt; &#39;address&#39;, VERSIONS &#x3D;&gt; &#39;1&#39;, EVICT_BLOCKS_ON_CLOSE &#x3D;&gt; &#39;false&#39;, NEW_VERSION_BEHAVIOR &#x3D;&gt; &#39;false&#39;, KEEP_DELETED_CELLS &#x3D;&gt; &#39;FALSE&#39;, CACHE_DATA_ON_WRITE &#x3D;&gt; &#39;false&#39;, DATA_BLOCK_</span><br><span class="line">ENCODING &#x3D;&gt; &#39;NONE&#39;, TTL &#x3D;&gt; &#39;FOREVER&#39;, MIN_VERSIONS &#x3D;&gt; &#39;0&#39;, REPLICATION_SCOPE &#x3D;&gt; &#39;0&#39;, BLOOMFILTER &#x3D;&gt; &#39;ROW&#39;, CACHE_INDEX_ON_WRITE &#x3D;&gt; &#39;false&#39;, IN_MEMORY &#x3D;&gt; &#39;false&#39;, CACHE_BLOOMS_ON_</span><br><span class="line">WRITE &#x3D;&gt; &#39;false&#39;, PREFETCH_BLOCKS_ON_OPEN &#x3D;&gt; &#39;false&#39;, COMPRESSION &#x3D;&gt; &#39;NONE&#39;, BLOCKCACHE &#x3D;&gt; &#39;true&#39;, BLOCKSIZE &#x3D;&gt; &#39;65536&#39;&#125;</span><br><span class="line"></span><br><span class="line">&#123;NAME &#x3D;&gt; &#39;info&#39;, VERSIONS &#x3D;&gt; &#39;1&#39;, EVICT_BLOCKS_ON_CLOSE &#x3D;&gt; &#39;false&#39;, NEW_VERSION_BEHAVIOR &#x3D;&gt; &#39;false&#39;, KEEP_DELETED_CELLS &#x3D;&gt; &#39;FALSE&#39;, CACHE_DATA_ON_WRITE &#x3D;&gt; &#39;false&#39;, DATA_BLOCK_ENC</span><br><span class="line">ODING &#x3D;&gt; &#39;NONE&#39;, TTL &#x3D;&gt; &#39;FOREVER&#39;, MIN_VERSIONS &#x3D;&gt; &#39;0&#39;, REPLICATION_SCOPE &#x3D;&gt; &#39;0&#39;, BLOOMFILTER &#x3D;&gt; &#39;ROW&#39;, CACHE_INDEX_ON_WRITE &#x3D;&gt; &#39;false&#39;, IN_MEMORY &#x3D;&gt; &#39;false&#39;, CACHE_BLOOMS_ON_WRI</span><br><span class="line">TE &#x3D;&gt; &#39;false&#39;, PREFETCH_BLOCKS_ON_OPEN &#x3D;&gt; &#39;false&#39;, COMPRESSION &#x3D;&gt; &#39;NONE&#39;, BLOCKCACHE &#x3D;&gt; &#39;true&#39;, BLOCKSIZE &#x3D;&gt; &#39;65536&#39;&#125;</span><br><span class="line"></span><br><span class="line">2 row(s)</span><br><span class="line"></span><br><span class="line">QUOTAS</span><br><span class="line">0 row(s)</span><br><span class="line">Took 0.0503 seconds</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除表</p>
+</li>
+</ol>
+<ul>
+<li>disable tb</li>
+<li>drop tb<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):078:0* disable &#39;member&#39;</span><br><span class="line">Took 0.7507 seconds</span><br><span class="line">hbase(main):079:0&gt;</span><br><span class="line">hbase(main):080:0* desc &#39;member&#39;</span><br><span class="line">Table member is DISABLED</span><br><span class="line">member</span><br><span class="line">COLUMN FAMILIES DESCRIPTION</span><br><span class="line">&#123;NAME &#x3D;&gt; &#39;address&#39;, VERSIONS &#x3D;&gt; &#39;1&#39;, EVICT_BLOCKS_ON_CLOSE &#x3D;&gt; &#39;false&#39;, NEW_VERSION_BEHAVIOR &#x3D;&gt; &#39;false&#39;, KEEP_DELETED_CELLS &#x3D;&gt; &#39;FALSE&#39;, CACHE_DATA_ON_WRITE &#x3D;&gt; &#39;false&#39;, DATA_BLOCK_</span><br><span class="line">ENCODING &#x3D;&gt; &#39;NONE&#39;, TTL &#x3D;&gt; &#39;FOREVER&#39;, MIN_VERSIONS &#x3D;&gt; &#39;0&#39;, REPLICATION_SCOPE &#x3D;&gt; &#39;0&#39;, BLOOMFILTER &#x3D;&gt; &#39;ROW&#39;, CACHE_INDEX_ON_WRITE &#x3D;&gt; &#39;false&#39;, IN_MEMORY &#x3D;&gt; &#39;false&#39;, CACHE_BLOOMS_ON_</span><br><span class="line">WRITE &#x3D;&gt; &#39;false&#39;, PREFETCH_BLOCKS_ON_OPEN &#x3D;&gt; &#39;false&#39;, COMPRESSION &#x3D;&gt; &#39;NONE&#39;, BLOCKCACHE &#x3D;&gt; &#39;true&#39;, BLOCKSIZE &#x3D;&gt; &#39;65536&#39;&#125;</span><br><span class="line"></span><br><span class="line">&#123;NAME &#x3D;&gt; &#39;info&#39;, VERSIONS &#x3D;&gt; &#39;1&#39;, EVICT_BLOCKS_ON_CLOSE &#x3D;&gt; &#39;false&#39;, NEW_VERSION_BEHAVIOR &#x3D;&gt; &#39;false&#39;, KEEP_DELETED_CELLS &#x3D;&gt; &#39;FALSE&#39;, CACHE_DATA_ON_WRITE &#x3D;&gt; &#39;false&#39;, DATA_BLOCK_ENC</span><br><span class="line">ODING &#x3D;&gt; &#39;NONE&#39;, TTL &#x3D;&gt; &#39;FOREVER&#39;, MIN_VERSIONS &#x3D;&gt; &#39;0&#39;, REPLICATION_SCOPE &#x3D;&gt; &#39;0&#39;, BLOOMFILTER &#x3D;&gt; &#39;ROW&#39;, CACHE_INDEX_ON_WRITE &#x3D;&gt; &#39;false&#39;, IN_MEMORY &#x3D;&gt; &#39;false&#39;, CACHE_BLOOMS_ON_WRI</span><br><span class="line">TE &#x3D;&gt; &#39;false&#39;, PREFETCH_BLOCKS_ON_OPEN &#x3D;&gt; &#39;false&#39;, COMPRESSION &#x3D;&gt; &#39;NONE&#39;, BLOCKCACHE &#x3D;&gt; &#39;true&#39;, BLOCKSIZE &#x3D;&gt; &#39;65536&#39;&#125;</span><br><span class="line"></span><br><span class="line">2 row(s)</span><br><span class="line"></span><br><span class="line">QUOTAS</span><br><span class="line">0 row(s)</span><br><span class="line">Took 0.0326 seconds</span><br><span class="line">hbase(main):081:0&gt; drop &#39;member&#39;</span><br><span class="line">Took 0.2391 seconds</span><br><span class="line">hbase(main):082:0&gt; desc &#39;member&#39;</span><br><span class="line"></span><br><span class="line">ERROR: Table member does not exist.</span><br><span class="line"></span><br><span class="line">For usage try &#39;help &quot;describe&quot;&#39;</span><br><span class="line"></span><br><span class="line">Took 0.0035 seconds</span><br><span class="line">hbase(main):083:0&gt; list</span><br><span class="line">TABLE</span><br><span class="line">user</span><br><span class="line">1 row(s)</span><br><span class="line">Took 0.0030 seconds</span><br><span class="line">&#x3D;&gt; [&quot;user&quot;]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
-一、安装tmux12345#mac:brew install tmux#centos:yum install tmux
-
-二、配置tmux
-使用了github上的配置，然后做了修改tmux的默认快捷键前缀为 ctrl + b, 现在改为ctrl+a，下文中使用Prefix代替ctrl+a⚠️ :使用快捷键是先摁下快捷键前缀，然后抬手，在进行具体的快捷按键
-
-1234cdgit clone https:&#x2F;&#x2F;github.com&#x2F;gpakosz&#x2F;.tmux.gi...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/27</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/13/mac%E4%B8%8Bchromedriver%E5%8D%87%E7%BA%A7/" >
-            
-                <span>mac下chromedriver升级</span>
-        </a>
-        <div class="abstract-content">
-            
-下载与本地chrome版本一致的chromedriver,下载地址[http://chromedriver.storage.googleapis.com/index.html]
-
-解压到本地的 /usr/local/bin
-
-检查版本 chromedirver -v
-
-
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "工具">工具</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/06/10/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEHBASE/" title= 安装配置HBASE >
+                    <div class="prevTitle">安装配置HBASE</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -470,6 +523,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HBASE-DDL"><span class="toc-number">1.</span> <span class="toc-text">HBASE DDL</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1541,6 +1612,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
