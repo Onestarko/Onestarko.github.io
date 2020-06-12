@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Kowhoy&#39;s Studio</title>
+    <title>HBase DDL API · Kowhoy&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180709 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180709 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -194,12 +196,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >kowhoy&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">HBase DDL API</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>kowhoy's Studio.</a>
 </header>
@@ -213,24 +226,74 @@
 
 
 
+height:50vh;
+
 >
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/pt.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            HBase DDL API
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">375</span> / Reading time: <span class="post-count">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/06/12</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -331,337 +394,66 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/12/HBase-DDL-API/" >
-            
-                <span>HBase DDL API</span>
-        </a>
-        <div class="abstract-content">
-            HBase DDL APIGAV12345&lt;dependency&gt;    &lt;groupId&gt;org.apache.hbase&lt;/groupId&gt;    &lt;artifactId&gt;hbase-client&lt;/artifactId&gt;    &lt;version&gt;$&#123;hbase.version&#125;&lt;/version&gt;&lt;/dependency&gt;
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="HBase-DDL-API"><a href="#HBase-DDL-API" class="headerlink" title="HBase DDL API"></a>HBase DDL API</h1><h3 id="GAV"><a href="#GAV" class="headerlink" title="GAV"></a>GAV</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hbase<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hbase-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;hbase.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-主要依赖1234567891011121314import org.apache.hadoop.conf.Configuration;impor...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
-    
-</div>
-            
-        </div>
+<h3 id="主要依赖"><a href="#主要依赖" class="headerlink" title="主要依赖"></a>主要依赖</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.HColumnDescriptor;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.HTableDescriptor;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.TableName;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.Admin;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.Connection;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.ConnectionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.util.Bytes;</span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Create-Connection-and-Admin"><a href="#Create-Connection-and-Admin" class="headerlink" title="Create Connection and Admin"></a>Create Connection and Admin</h3><blockquote>
+<p>ConnectionFactory.createConnection<br>Configuration</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">    configuration.set(<span class="string">"hbase.rootdir"</span>, <span class="string">"hdfs://localhost:9000/hbase"</span>); </span><br><span class="line">    configuration.set(<span class="string">"hbase.zookeeper.quorum"</span>, <span class="string">"localhost:2181"</span>);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        connection = ConnectionFactory.createConnection(configuration);</span><br><span class="line">        admin = connection.getAdmin();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOExpection e)&#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    <span class="function">Assert <span class="title">assertNotNull</span><span class="params">(admin)</span></span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="create-table"><a href="#create-table" class="headerlink" title="create table"></a>create table</h3><blockquote>
+<ol>
+<li>创建表需要有表的描述 HTableDescriptor</li>
+<li>表的描述包含了列族的描述 HColumnDescriptor</li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createTable</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    String tableName = <span class="string">"demo_table"</span>;</span><br><span class="line">    </span><br><span class="line">    TableName table = TableName.valueof(tableName);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> admin.tableExists(table) &#123;</span><br><span class="line">        System.out.println(tableName + <span class="string">"表已经存在..."</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        HTableDescriptor tableDescriptor = <span class="keyword">new</span> HTableDescriptor(table);</span><br><span class="line">        tableDescriptor.addFamily(<span class="keyword">new</span> HColumnDescriptor(<span class="string">"info"</span>));</span><br><span class="line">        tableDescriptor.addFamily(<span class="keyword">new</span> HColumnDescriptor(<span class="string">"address"</span>));</span><br><span class="line">        </span><br><span class="line">        admin.createTable(tableDescriptor); </span><br><span class="line">        System.out.println(tableName + <span class="string">"表创建完成..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="desc-table"><a href="#desc-table" class="headerlink" title="desc table"></a>desc table</h3><blockquote>
+<p>listTables()<br>getColumnFamilies()</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">descTablesInfos</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    HTableDescriptor[] tables = admin.listTables();</span><br><span class="line">    <span class="keyword">for</span> (HTableDescriptor table : tables) &#123;</span><br><span class="line">        System.out.println(table.getNameAsString());</span><br><span class="line"></span><br><span class="line">        HColumnDescriptor[] columns = table.getColumnFamilies();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (HColumnDescriptor column : columns) &#123;</span><br><span class="line">            System.out.println(<span class="string">"\t"</span> +  column.getNameAsString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="delete-Column-Family"><a href="#delete-Column-Family" class="headerlink" title="delete Column Family"></a>delete Column Family</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteColumnFamily</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    String tableName = <span class="string">"member"</span>;</span><br><span class="line"></span><br><span class="line">    TableName table = TableName.valueOf(tableName);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">byte</span>[] column = Bytes.toBytes(<span class="string">"info"</span>);</span><br><span class="line"></span><br><span class="line">    admin.deleteColumnFamily(table, column);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="drop-table"><a href="#drop-table" class="headerlink" title="drop table"></a>drop table</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteTable</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String tableName = <span class="string">"java_api"</span>;</span><br><span class="line"></span><br><span class="line">    TableName table = TableName.valueOf(tableName);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (admin.tableExists(table)) &#123;</span><br><span class="line">            admin.disableTable(table);</span><br><span class="line">            admin.deleteTable(table);</span><br><span class="line">            System.out.println(tableName + <span class="string">"删除完成..."</span>); </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(tableName + <span class="string">"不存在..."</span>); </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/10/HBASE-DML/" >
-            
-                <span>HBASE DML</span>
-        </a>
-        <div class="abstract-content">
-            HBASE DML
-创建数据
-1put 表名,RowKey,&#39;CF:COL&#39;, VALUE
-
-扫描表
-1scan 表名
-
-删除数据
-1delete 表名, RowKey, &#39;CF:COL&#39;
-
-修改数据
-1put 表名, RowKey, &#39;CF:COL&#39;, VALUE
-
-删除整行
-1deleteall 表名, RowKey
-
-行数
-1count 表名
-
-查看数据
-1get 表名, RowKey [, &#39;CF:COL&#39;]
-
-清空表
-1truncate 表名
-
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/10/HBASE-DDL/" >
-            
-                <span>HBASE DDL</span>
-        </a>
-        <div class="abstract-content">
-            HBASE DDL
-启动HBASE SHELL
-1hbase shell
-
-查看版本、状态
-1234567hbase(main):037:0&gt; version2.2.2, re6513a76c91cceda95dad7af246ac81d46fa2589, Sat Oct 19 10:10:12 UTC 2019hbase(main):036:0&gt; status1 active master, 0 backup masters, 1 servers, 1 dead, 3.0000 average loadTook 0.0105 seconds
-
-创建表
-1234567hbas...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/10/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEHBASE/" >
-            
-                <span>安装配置HBASE</span>
-        </a>
-        <div class="abstract-content">
-            安装配置HBASE一、安装
-安装包1wget https://mirrors.huaweicloud.com/apache/hbase/2.2.2/hbase-2.2.2-bin.tar.gz
-解压配置.bash_profile1234567tar -zxvf hbase-2.2.2-bin.tar.gz -C ..&#x2F;vim ~&#x2F;.bash_profileexport HBASH_HOME&#x3D;..export $PATH&#x3D;$HBASH_HOME&#x2F;bin:$PATHsource ~&#x2F;.bash_profile
-
-
-
-二、配置
-vim...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/08/%E7%BD%91%E7%82%B9%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E8%AE%A1%E7%AE%97%E8%B7%9D%E7%A6%BB/" >
-            
-                <span>网点排列组合计算距离</span>
-        </a>
-        <div class="abstract-content">
-            网点排列组合计算距离
-根据oss_id, lon, lat三个字段来计算每两个网点之间的空间距离
-
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001011021031041051061071081091101111121131141151161171181...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "spark">spark</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/04/SparkStreaming%E6%B6%88%E8%B4%B9Kakfa%E8%BE%93%E5%87%BA%E6%97%A5%E5%BF%97/" >
-            
-                <span>SparkStreaming消费Kakfa输出日志</span>
-        </a>
-        <div class="abstract-content">
-            SparkStreaming消费Kakfa输出日志SparkStreaming代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273package workuseimport kafka.serializer.StringDecoderimport org.apache.spark.SparkConfimport org.apache.spark.streaming....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/03/Python-Flume-Kafka-%E6%97%A5%E5%BF%97%E7%94%9F%E6%88%90%E9%87%87%E9%9B%86/" >
-            
-                <span>Python+Flume+Kafka 日志生成采集</span>
-        </a>
-        <div class="abstract-content">
-            Python+Flume+Kafka 日志生成采集生成日志123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869#!/usr/bin/env python# coding=utf-8import loggingimport osimport randomimport datetimelog_path = os.getcwd()ip_list = [23, 12, 103, 88, 120...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Flume">Flume</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Python">Python</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Kafka">Kafka</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/03/SparkStreaming%E6%95%B4%E5%90%88Kafka/" >
-            
-                <span>SparkStreaming整合Kafka</span>
-        </a>
-        <div class="abstract-content">
-            SparkStreaming整合Kafka
-Spark2.3版本之前可以支持broker0-8和0-10两个streaming-kafka版本，2.3版本之后不再支持0-8   0-8版本可以使用 Receviers-based 和 Direct 两种方式接收Kafka数据   0-10版本使用Kafka010操作
-
-spark-streaming-kafka-0-8
-可以使用 Receviers-based 和 Direct 两种方式
-
-Receivers-based是基于receivers和高级API进行接收数据
-特点
-这种方式，使用接收器，接收器一直处于等待接收的状态，就会浪费资源...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "kafka">kafka</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/01/SparkStreaming%E6%95%B4%E5%90%88Flume/" >
-            
-                <span>SparkStreaming整合Flume </span>
-        </a>
-        <div class="abstract-content">
-            SparkStreaming整合Flume
-可以通过Push 和 Pull两种方式整合Push: 是Flume Push到Spark, 缺点是只能一个executor进行处理，造成压力Pull: 是Spark主动去Pull推荐使用Pull方式
-
-
-Push方式，先执行Spark,再执行Flume  Pull方式，先执行Flume,再执行Spark
-
-Push方式Flume.confnetcat-memory-avro.conf
-12345678910111213141516netcat-avro-agent.sources &#x3D; netcat-avro-sourcenetcat-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/06/10/HBASE-DML/" title= HBASE DML >
+                    <div class="prevTitle">HBASE DML</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -729,6 +521,24 @@ Push方式Flume.confnetcat-memory-avro.conf
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HBase-DDL-API"><span class="toc-number">1.</span> <span class="toc-text">HBase DDL API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GAV"><span class="toc-number">1.0.1.</span> <span class="toc-text">GAV</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要依赖"><span class="toc-number">1.0.2.</span> <span class="toc-text">主要依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-Connection-and-Admin"><span class="toc-number">1.0.3.</span> <span class="toc-text">Create Connection and Admin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create-table"><span class="toc-number">1.0.4.</span> <span class="toc-text">create table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#desc-table"><span class="toc-number">1.0.5.</span> <span class="toc-text">desc table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete-Column-Family"><span class="toc-number">1.0.6.</span> <span class="toc-text">delete Column Family</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#drop-table"><span class="toc-number">1.0.7.</span> <span class="toc-text">drop table</span></a></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1846,6 +1656,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
