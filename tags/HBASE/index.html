@@ -339,23 +339,48 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/15/HBase-DML-API/" >
+        <a class="abstract-title" href = "/2020/06/10/HBASE-DML/" >
             
-                <span>HBase DML API</span>
+                <span>HBASE DML</span>
         </a>
         <div class="abstract-content">
-            HBase DML API一、写数据1. 单条写12345678910111213141516@Testpublic void addSingle() throws Exception &#123;    String tableName = "sku_info";    TableName table = TableName.valueOf(tableName);    String rowKey = "ok";    Put put = new Put(Bytes.toBytes(rowKey));    put.addColumn(Bytes.toBytes("basic"), B...
+            HBASE DML
+创建数据
+1put 表名,RowKey,&#39;CF:COL&#39;, VALUE
+
+扫描表
+1scan 表名
+
+删除数据
+1delete 表名, RowKey, &#39;CF:COL&#39;
+
+修改数据
+1put 表名, RowKey, &#39;CF:COL&#39;, VALUE
+
+删除整行
+1deleteall 表名, RowKey
+
+行数
+1count 表名
+
+查看数据
+1get 表名, RowKey [, &#39;CF:COL&#39;]
+
+清空表
+1truncate 表名
+
+
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/15</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/10</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
     
 </div>
             
@@ -368,25 +393,67 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/12/HBase-DDL-API/" >
+        <a class="abstract-title" href = "/2020/06/10/HBASE-DDL/" >
             
-                <span>HBase DDL API</span>
+                <span>HBASE DDL</span>
         </a>
         <div class="abstract-content">
-            HBase DDL APIGAV12345&lt;dependency&gt;    &lt;groupId&gt;org.apache.hbase&lt;/groupId&gt;    &lt;artifactId&gt;hbase-client&lt;/artifactId&gt;    &lt;version&gt;$&#123;hbase.version&#125;&lt;/version&gt;&lt;/dependency&gt;
+            HBASE DDL
+启动HBASE SHELL
+1hbase shell
 
-主要依赖1234567891011121314import org.apache.hadoop.conf.Configuration;impor...
+查看版本、状态
+1234567hbase(main):037:0&gt; version2.2.2, re6513a76c91cceda95dad7af246ac81d46fa2589, Sat Oct 19 10:10:12 UTC 2019hbase(main):036:0&gt; status1 active master, 0 backup masters, 1 servers, 1 dead, 3.0000 average loadTook 0.0105 seconds
+
+创建表
+1234567hbas...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/12</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/10</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/06/10/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEHBASE/" >
+            
+                <span>安装配置HBASE</span>
+        </a>
+        <div class="abstract-content">
+            安装配置HBASE一、安装
+安装包1wget https://mirrors.huaweicloud.com/apache/hbase/2.2.2/hbase-2.2.2-bin.tar.gz
+解压配置.bash_profile1234567tar -zxvf hbase-2.2.2-bin.tar.gz -C ..&#x2F;vim ~&#x2F;.bash_profileexport HBASH_HOME&#x3D;..export $PATH&#x3D;$HBASH_HOME&#x2F;bin:$PATHsource ~&#x2F;.bash_profile
+
+
+
+二、配置
+vim...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
     
 </div>
             
@@ -1168,9 +1235,60 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 49
+        Total : 52
         </div>
         <!-- search  -->
         
@@ -1183,6 +1301,21 @@
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/28</span><a class="archive-post-title" href= "/2020/06/28/IP%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7/" >IP解析工具</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/28</span><a class="archive-post-title" href= "/2020/06/28/UserAgent%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7/" >UserAgent解析工具</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/28</span><a class="archive-post-title" href= "/2020/06/28/%E6%97%A5%E5%BF%97ETL%E5%88%B0HBase/" >日志ETL到HBase</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1504,6 +1637,14 @@
     
         <span class="sidebar-tag-name" data-tags="HBase"><span class="iconfont-archer">&#xe606;</span>HBase</span>
     
+        <span class="sidebar-tag-name" data-tags="Java"><span class="iconfont-archer">&#xe606;</span>Java</span>
+    
+        <span class="sidebar-tag-name" data-tags="日志"><span class="iconfont-archer">&#xe606;</span>日志</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+    
+        <span class="sidebar-tag-name" data-tags="ETL"><span class="iconfont-archer">&#xe606;</span>ETL</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1606,32 +1747,7 @@ jsonContent:
 </html>
 
 
-大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
-    
-        <span class="sidebar-category-name" data-categories="数据库"><span class="iconfont-archer">&#xe60a;</span>数据库</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "kowhoy"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
+src="/scripts/main.js"></script>
     <!-- algolia -->
     
     <!-- busuanzi  -->
