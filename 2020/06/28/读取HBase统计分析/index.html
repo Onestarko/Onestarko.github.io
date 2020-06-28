@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Kowhoy&#39;s Studio</title>
+    <title>读取HBase统计分析 · Kowhoy&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180709 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180709 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -194,12 +196,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >kowhoy&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">读取HBase统计分析</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>kowhoy's Studio.</a>
 </header>
@@ -213,24 +226,76 @@
 
 
 
+height:50vh;
+
 >
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/pt.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            读取HBase统计分析
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Spark">Spark</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">383</span> / Reading time: <span class="post-count">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/06/28</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -331,359 +396,41 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/28/%E8%AF%BB%E5%8F%96HBase%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" >
-            
-                <span>读取HBase统计分析</span>
-        </a>
-        <div class="abstract-content">
-            1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889package com.kowhoyimport org.apache.hadoop.conf.Configurationimport org.apache.hadoop.hbase.client.&#123;Result, Scan&#125;impor...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Spark">Spark</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kowhoy</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.&#123;Result, Scan&#125;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.io.ImmutableBytesWritable</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.mapreduce.&#123;TableInputFormat, TableMapReduceUtil&#125;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.util.Bytes</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.SparkSession</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@DESC</span> 日志按国家省份统计分析</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/6/28 2:49 下午</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"></span><br><span class="line">object AnalysisAppV2 &#123;</span><br><span class="line">  <span class="function">def <span class="title">main</span><span class="params">(args: Array[String])</span>: Unit </span>= &#123;</span><br><span class="line">    val spark = SparkSession.builder().config(<span class="string">"spark.serializer"</span>, <span class="string">"org.apache.spark.serializer.KryoSerializer"</span>)</span><br><span class="line">      .appName(<span class="string">"AnalysisAppV2"</span>).master(<span class="string">"local[2]"</span>).getOrCreate()</span><br><span class="line"></span><br><span class="line">    spark.sparkContext.setLogLevel(<span class="string">"WARN"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从HBase读取数据</span></span><br><span class="line">    val date = <span class="string">"2020-06-28"</span></span><br><span class="line">    val tableName = <span class="string">"access_"</span> + date</span><br><span class="line"></span><br><span class="line">    val conf = <span class="keyword">new</span> Configuration()</span><br><span class="line"></span><br><span class="line">    val scan = <span class="keyword">new</span> Scan()</span><br><span class="line">    scan.addFamily(Bytes.toBytes(<span class="string">"o"</span>)) <span class="comment">//列族</span></span><br><span class="line">    scan.addColumn(Bytes.toBytes(<span class="string">"o"</span>), Bytes.toBytes(<span class="string">"country"</span>))</span><br><span class="line">    scan.addColumn(Bytes.toBytes(<span class="string">"o"</span>), Bytes.toBytes(<span class="string">"province"</span>))</span><br><span class="line"></span><br><span class="line">    conf.set(<span class="string">"hbase.rootdir"</span>, <span class="string">"hdfs://localhost:9000/hbase"</span>)</span><br><span class="line">    conf.set(<span class="string">"hbase.zookeeper.quorum"</span>, <span class="string">"localhost:2181"</span>)</span><br><span class="line">    conf.set(TableInputFormat.INPUT_TABLE, tableName)</span><br><span class="line">    conf.set(TableInputFormat.SCAN, TableMapReduceUtil.convertScanToString(scan))</span><br><span class="line"></span><br><span class="line">    val hBaseRDD = spark.sparkContext.newAPIHadoopRDD(</span><br><span class="line">      conf,</span><br><span class="line">      classOf[TableInputFormat],</span><br><span class="line">      classOf[ImmutableBytesWritable],</span><br><span class="line">      classOf[Result]</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    hBaseRDD.cache()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方式1, 使用SparkCore 统计</span></span><br><span class="line">    hBaseRDD.map(x =&gt; &#123;</span><br><span class="line">      val country = Bytes.toString(x._2.getValue(<span class="string">"o"</span>.getBytes(), <span class="string">"country"</span>.getBytes()))</span><br><span class="line">      val province = Bytes.toString(x._2.getValue(<span class="string">"o"</span>.getBytes(), <span class="string">"province"</span>.getBytes()))</span><br><span class="line">      ((country, province), <span class="number">1</span>)</span><br><span class="line">    &#125;).reduceByKey(_+_)</span><br><span class="line">        .map(x =&gt; (x._2, x._1)).sortByKey(<span class="keyword">false</span>)</span><br><span class="line">        .map(x =&gt; (x._2, x._1)).take(<span class="number">10</span>).foreach(println)</span><br><span class="line"></span><br><span class="line">    println(<span class="string">"---------------------------------------------------"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方式二, 使用SparkSql API</span></span><br><span class="line">    <span class="keyword">import</span> spark.implicits._</span><br><span class="line"></span><br><span class="line">    hBaseRDD.map(x =&gt; &#123;</span><br><span class="line">      val country = Bytes.toString(x._2.getValue(<span class="string">"o"</span>.getBytes(), <span class="string">"country"</span>.getBytes()))</span><br><span class="line">      val province = Bytes.toString(x._2.getValue(<span class="string">"o"</span>.getBytes(), <span class="string">"province"</span>.getBytes()))</span><br><span class="line"></span><br><span class="line">      CountryProvince(country, province)</span><br><span class="line">    &#125;).toDF.select(<span class="string">"country"</span>, <span class="string">"province"</span>)</span><br><span class="line">        .groupBy(<span class="string">"country"</span>, <span class="string">"province"</span>).count().sort($<span class="string">"count"</span>.desc).show(<span class="number">10</span>, <span class="keyword">false</span>)</span><br><span class="line"></span><br><span class="line">    println(<span class="string">"---------------------------------------------------"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方式三, 使用SparkSql 临时表</span></span><br><span class="line">    hBaseRDD.map(x =&gt; &#123;</span><br><span class="line">      val country = Bytes.toString(x._2.getValue(<span class="string">"o"</span>.getBytes(), <span class="string">"country"</span>.getBytes()))</span><br><span class="line">      val province = Bytes.toString(x._2.getValue(<span class="string">"o"</span>.getBytes(), <span class="string">"province"</span>.getBytes()))</span><br><span class="line"></span><br><span class="line">      CountryProvince(country, province)</span><br><span class="line">    &#125;).toDF().createOrReplaceTempView(<span class="string">"log"</span>)</span><br><span class="line"></span><br><span class="line">    spark.sql(<span class="string">"select country, province, count(1) cnt from log group by country, province order by cnt desc limit 10"</span>).show(<span class="keyword">false</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    hBaseRDD.unpersist(<span class="keyword">true</span>)</span><br><span class="line"></span><br><span class="line">    spark.stop()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">case</span> class <span class="title">CountryProvince</span><span class="params">(country:String, province:String)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/28/%E6%97%A5%E5%BF%97ETL%E5%88%B0HBase/" >
-            
-                <span>日志ETL到HBase</span>
-        </a>
-        <div class="abstract-content">
-            123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "scala">scala</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "日志">日志</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Spark">Spark</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ETL">ETL</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/28/IP%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7/" >
-            
-                <span>IP解析工具</span>
-        </a>
-        <div class="abstract-content">
-            IpRegionInfo12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455package com.kowhoy.domain;/** * @ClassName IpRegionInfo * @DESC 自定义IP解析地理位置类 _城市Id|国家|区域|省份|城市|ISP_  995|中国|0|上海|上海市|联通|126445 * @Date 2020/6/16 3:38 下午 **/public class IpRegionInfo &#...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Java">Java</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/28/UserAgent%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7/" >
-            
-                <span>UserAgent解析工具</span>
-        </a>
-        <div class="abstract-content">
-            UserAgentInfo12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758package com.kowhoy.domain;/** * @ClassName UserAgentInfo * @DESC 自定义UserAgent工具类 * @Date 2020/6/16 2:56 下午 **/public class UserAgentInfo &#123;    private String browserName;   ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Java">Java</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/15/HBase-DML-API/" >
-            
-                <span>HBase DML API</span>
-        </a>
-        <div class="abstract-content">
-            HBase DML API一、写数据1. 单条写12345678910111213141516@Testpublic void addSingle() throws Exception &#123;    String tableName = "sku_info";    TableName table = TableName.valueOf(tableName);    String rowKey = "ok";    Put put = new Put(Bytes.toBytes(rowKey));    put.addColumn(Bytes.toBytes("basic"), B...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/12/HBase-DDL-API/" >
-            
-                <span>HBase DDL API</span>
-        </a>
-        <div class="abstract-content">
-            HBase DDL APIGAV12345&lt;dependency&gt;    &lt;groupId&gt;org.apache.hbase&lt;/groupId&gt;    &lt;artifactId&gt;hbase-client&lt;/artifactId&gt;    &lt;version&gt;$&#123;hbase.version&#125;&lt;/version&gt;&lt;/dependency&gt;
-
-主要依赖1234567891011121314import org.apache.hadoop.conf.Configuration;impor...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/10/HBASE-DML/" >
-            
-                <span>HBASE DML</span>
-        </a>
-        <div class="abstract-content">
-            HBASE DML
-创建数据
-1put 表名,RowKey,&#39;CF:COL&#39;, VALUE
-
-扫描表
-1scan 表名
-
-删除数据
-1delete 表名, RowKey, &#39;CF:COL&#39;
-
-修改数据
-1put 表名, RowKey, &#39;CF:COL&#39;, VALUE
-
-删除整行
-1deleteall 表名, RowKey
-
-行数
-1count 表名
-
-查看数据
-1get 表名, RowKey [, &#39;CF:COL&#39;]
-
-清空表
-1truncate 表名
-
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/10/HBASE-DDL/" >
-            
-                <span>HBASE DDL</span>
-        </a>
-        <div class="abstract-content">
-            HBASE DDL
-启动HBASE SHELL
-1hbase shell
-
-查看版本、状态
-1234567hbase(main):037:0&gt; version2.2.2, re6513a76c91cceda95dad7af246ac81d46fa2589, Sat Oct 19 10:10:12 UTC 2019hbase(main):036:0&gt; status1 active master, 0 backup masters, 1 servers, 1 dead, 3.0000 average loadTook 0.0105 seconds
-
-创建表
-1234567hbas...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/10/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEHBASE/" >
-            
-                <span>安装配置HBASE</span>
-        </a>
-        <div class="abstract-content">
-            安装配置HBASE一、安装
-安装包1wget https://mirrors.huaweicloud.com/apache/hbase/2.2.2/hbase-2.2.2-bin.tar.gz
-解压配置.bash_profile1234567tar -zxvf hbase-2.2.2-bin.tar.gz -C ..&#x2F;vim ~&#x2F;.bash_profileexport HBASH_HOME&#x3D;..export $PATH&#x3D;$HBASH_HOME&#x2F;bin:$PATHsource ~&#x2F;.bash_profile
-
-
-
-二、配置
-vim...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/08/%E7%BD%91%E7%82%B9%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E8%AE%A1%E7%AE%97%E8%B7%9D%E7%A6%BB/" >
-            
-                <span>网点排列组合计算距离</span>
-        </a>
-        <div class="abstract-content">
-            网点排列组合计算距离
-根据oss_id, lon, lat三个字段来计算每两个网点之间的空间距离
-
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001011021031041051061071081091101111121131141151161171181...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "spark">spark</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/06/28/%E6%97%A5%E5%BF%97ETL%E5%88%B0HBase/" title= 日志ETL到HBase >
+                    <div class="prevTitle">日志ETL到HBase</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="page-number" href="/archives/2020/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/6/">6</a><a class="extend next" rel="next" href="/archives/2020/page/2/">NEXT &amp;#62;</a>
-    </nav>
     
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -751,6 +498,24 @@ vim...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1986,6 +1751,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
