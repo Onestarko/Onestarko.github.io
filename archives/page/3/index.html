@@ -339,6 +339,38 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/05/27/updateStateByKey/" >
+            
+                <span>updateStateByKey</span>
+        </a>
+        <div class="abstract-content">
+            updateStateByKey
+对于状态的累计更新
+
+123456789101112131415161718192021222324252627282930313233343536373839package sk_demoimport org.apache.spark.SparkConfimport org.apache.spark.streaming.&#123;Seconds, StreamingContext&#125;object UpdateStateByKeyApp &#123;  def main(args: Array[String]): Unit = &#123;  ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/27</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "updateStateByKey">updateStateByKey</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/05/22/SparkCore-%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%BE%8B/" >
             
                 <span>SparkCore 生产实例</span>
@@ -609,36 +641,6 @@ mysql2mysql123456789101112131415161718192021222324252627282930313233343536373839
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "hive">hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8/" >
-            
-                <span>数据库的优化器</span>
-        </a>
-        <div class="abstract-content">
-            数据库主要由三部分组成，分别是解析器、优化器和执行引擎。
-RBORBO(Rule-Based Optimizer) 基于规则的优化器。是根据已经制定好的一些优化规则对关系表达式进行转换，最终生成一个最优的执行计划。它是一种经验式的优化方法，优化规则都是预先定义好的，只需要将SQL按照优化规则的顺序往上套就行，一旦满足某个规则则进行优化。这样的结果就是同样一条SQL，无论读取的表中的数据是怎样的，最后生成的执行计划都是一样的（优化规则都一样）。而且SQL的写法不同也很有可能影响最终的执行计划，从而影响SQL的性能（基于优化规则顺序执行）。所以说，虽然RBO是一个老司机，知道常见的套路，但是...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "优化器">优化器</a>
     
 </div>
             
@@ -1492,9 +1494,26 @@ RBORBO(Rule-Based Optimizer) 基于规则的优化器。是根据已经制定好
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 53
+        Total : 54
         </div>
         <!-- search  -->
         
@@ -1507,6 +1526,11 @@ RBORBO(Rule-Based Optimizer) 基于规则的优化器。是根据已经制定好
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/29</span><a class="archive-post-title" href= "/2020/06/29/Spark%E6%9C%AF%E8%AF%AD%E5%8F%8ASpark-on-yarn/" >Spark术语及Spark-on-yarn</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1855,6 +1879,8 @@ RBORBO(Rule-Based Optimizer) 基于规则的优化器。是根据已经制定好
         <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
     
         <span class="sidebar-tag-name" data-tags="ETL"><span class="iconfont-archer">&#xe606;</span>ETL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Yarn"><span class="iconfont-archer">&#xe606;</span>Yarn</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

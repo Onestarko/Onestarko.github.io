@@ -339,334 +339,63 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8/" >
+        <a class="abstract-title" href = "/2020/06/29/Spark%E6%9C%AF%E8%AF%AD%E5%8F%8ASpark-on-yarn/" >
             
-                <span>数据库的优化器</span>
+                <span>Spark术语及Spark-on-yarn</span>
         </a>
         <div class="abstract-content">
-            数据库主要由三部分组成，分别是解析器、优化器和执行引擎。
-RBORBO(Rule-Based Optimizer) 基于规则的优化器。是根据已经制定好的一些优化规则对关系表达式进行转换，最终生成一个最优的执行计划。它是一种经验式的优化方法，优化规则都是预先定义好的，只需要将SQL按照优化规则的顺序往上套就行，一旦满足某个规则则进行优化。这样的结果就是同样一条SQL，无论读取的表中的数据是怎样的，最后生成的执行计划都是一样的（优化规则都一样）。而且SQL的写法不同也很有可能影响最终的执行计划，从而影响SQL的性能（基于优化规则顺序执行）。所以说，虽然RBO是一个老司机，知道常见的套路，但是...
+            术语概念机器层面
+Master 节点负责管理Worker节点
+
+Worker 节点 与Master节点通信，管理Executor进程
+
+
+应用层面
+Application
+Spark 应用程序
+
+
+
+
+Driver 驱动程序
+
+Application中的main方法及创建SparkContext
+
+
+创建SparkContext是用来准备Application的运行环境
+
+
+SparkContext向ClusterManager申请资源
+
+
+执行完成之后关闭资源
+
+
+
+
+ClusterManager 资源管理器
+
+集群上获取资源的外部服务
+
+
+分类：
+
+
+
+Standalone Spar...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/29</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "优化器">优化器</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Spark">Spark</a>
     
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/python%E6%93%8D%E4%BD%9Czookeeper/" >
-            
-                <span>python操作zookeeper</span>
-        </a>
-        <div class="abstract-content">
-            一、安装1pip install kazoo
-
-二、连接Zookeeper123from kazoo.client import KazooClientzk = KazooClient(hosts='39.99.221.106')
-
-
-默认端口为2181，注意防火墙/安全组
-
-三、创建节点
-
-path：          节点路径
-value：         节点对应的值，注意值的类型是 bytes
-ephemeral： 若为 True 则创建一个临时节点，session 中断后自动删除该节点。默认 False
-sequence:     若为 True 则在你创建节点名后面增加10位...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/ZOOKEEPER%E5%9F%BA%E7%A1%80/" >
-            
-                <span>ZOOKEEPER基础</span>
-        </a>
-        <div class="abstract-content">
-            
-ZOOKEEPER 监听器原理:（1）在Zookeeper的API操作中，创建main()主方法即主线程；
-（2）在main线程中创建Zookeeper客户端（zkClient），这时会创建两个线程：
-线程connet负责网络通信连接，连接服务器；
-
-线程Listener负责监听；（3）客户端通过connet线程连接服务器；
-图中getChildren(&quot;/&quot; , true) ，&quot; / &quot;表示监听的是根目录，true表示监听，不监听用false（4）在Zookeeper的注册监听列表中将注册的监听事件添加到列表中，表示这个服务器中的/path，即...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/zookeeper%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" >
-            
-                <span>zookeeper安装部署</span>
-        </a>
-        <div class="abstract-content">
-            zookeeper安装部署一、本地模式安装部署1. 下载安装1wget https://mirrors.huaweicloud.com/apache/zookeeper/zookeeper-3.4.13/zookeeper-3.4.13.tar.gz
-
-1tar -zxvf zookeeper-3.4.13.tar.gz -C ../
-
-12cd zookeeper-3.4.13mkdir zkData
-
-12cd conf/cp zoo_sample.cfg zoo.cfg
-
-12vim zoo.cfgdataDir=/home/kowhoy/software/zookeeper-3....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/HIVE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >
-            
-                <span>HIVE安装配置</span>
-        </a>
-        <div class="abstract-content">
-            HIVE安装配置一、前置环境
-JAVA
-HADOOP
-MYSQL
-
-二、安装
-下载解压
-123wget https://mirrors.huaweicloud.com/apache/hive/hive-2.3.6/apache-hive-2.3.6-bin.tar.gztar -zxvf apache-hive-2.3.6-bin.tar.gz -C ../
-
-配置环境变量 vim ~/.bash_profile
-12HIVE_HOME&#x3D;&#x2F;home&#x2F;kowhoy&#x2F;software&#x2F;apache-hive-2.3.6-binexport P...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HIVE">HIVE</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/26/Pandas%E8%84%91%E5%9B%BE/" >
-            
-                <span>Pandas脑图</span>
-        </a>
-        <div class="abstract-content">
-            
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Pandas">Pandas</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/26/Numpy%E8%84%91%E5%9B%BE/" >
-            
-                <span>Numpy脑图</span>
-        </a>
-        <div class="abstract-content">
-            
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Numpy">Numpy</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/26/matplotlib%E5%9F%BA%E7%A1%80%E5%9B%BE%E8%A1%A8/" >
-            
-                <span>matplotlib基础图表</span>
-        </a>
-        <div class="abstract-content">
-            matplotlib基础图表一、根据x,y绘制12345678910111213import numpy as npfrom matplotlib import pyplot as pltx = np.arange(1, 11)y = x * 2 + 1plt.title("demo1")plt.xlabel("x")plt.ylabel("y")plt.plot(x, y)plt.show()
-
-
-12345678910111213import numpy as npfrom matplotlib import pyplot as pltx = np.arange(0, 3 * np....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "matplotlib">matplotlib</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/22/hadoop%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >
-            
-                <span>hadoop云服务器分布式安装配置</span>
-        </a>
-        <div class="abstract-content">
-            hadoop云服务器分布式安装配置
-在三台云服务器上搭建hadoop集群, 1master + 2slave使用版本: hadoop-3.2.1、jdk1.8.0_191、 scala-2.13.1⚠️ jdk11版本会出现Caused by: java.lang.NoClassDefFoundError: javax/activation/DataSource错误，还是选择了低版本
-
-一、服务器创建用户设置密码、配置互相之间免密登录** ⚠️ 服务器的hostname 以及 /etc/hosts中配置的hostname 均不可带_下划线 ** 
-一、下载安装包(使用国内镜像)scrip...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "hadoop">hadoop</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/21/Scala%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/" >
-            
-                <span>Scala模式匹配</span>
-        </a>
-        <div class="abstract-content">
-            模式匹配12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879package com.kowhoy.scalaimport scala.util.Random// 模式匹配object MatchDemo &#123;  def main(args: Array[String]): Unit = &#123;    // 基础匹配     basi...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "scala">scala</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Yarn">Yarn</a>
     
 </div>
             
@@ -674,10 +403,6 @@ MYSQL
     </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/2020/page/3/">&amp;#60; PREV</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><a class="page-number" href="/archives/2020/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2020/page/5/">5</a><a class="page-number" href="/archives/2020/page/6/">6</a><a class="extend next" rel="next" href="/archives/2020/page/5/">NEXT &amp;#62;</a>
-    </nav>
     
 </main>
             <!-- profile -->
