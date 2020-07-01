@@ -354,6 +354,78 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/04/10/uwsgi-nginx%E9%83%A8%E7%BD%B2flask/" >
+            
+                <span>uwsgi+nginx部署flask</span>
+        </a>
+        <div class="abstract-content">
+            uwsgi + nginx部署flask一、安装uwsgi
+使用python版本对应的pip进行安装uwsgi
+1pip install uwsgi
+
+在项目下创建uwsgi.ini文件
+12345678910111213[uwsgi]http &#x3D; 0.0.0.0:5000pythonpath &#x3D; &#x2F;home&#x2F;anaconda3&#x2F;bin&#x2F;pythonchdir &#x3D; &#x2F;home&#x2F;code&#x2F;apiwsgi-file &#x3D; app.pycallable &#x3D; appprocess...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "uwsgi">uwsgi</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "nginx">nginx</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/04/02/Elasticsearch%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" >
+            
+                <span>Elasticsearch基础使用</span>
+        </a>
+        <div class="abstract-content">
+            Elasticsearch基础使用一、安装
+需要java环境
+
+下载安装包
+1wget https:&#x2F;&#x2F;mirrors.huaweicloud.com&#x2F;elasticsearch&#x2F;7.6.1&#x2F;elasticsearch-7.6.1-linux-x86_64.tar.gz
+
+解压，配置环境变量
+12345tar -zxvf elasticsearch-7.6.1-linux-x86_64.tar.gz#~&#x2F;.bash_profileexport ELASTICSEARCH_PATH&#x3D;&#x2F;home&#x2F;kow...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Elasticsearch">Elasticsearch</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/03/27/flask%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86/" >
             
                 <span>flask思路整理</span>
@@ -1481,9 +1553,43 @@ height:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 55
+        Total : 57
         </div>
         <!-- search  -->
         
@@ -1496,6 +1602,16 @@ height:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2020/07/01/%E5%9F%BA%E4%BA%8EHFile%E5%90%8C%E6%AD%A5%E5%88%B0HBase%E7%9A%84%E6%97%A5%E5%BF%97ETL/" >基于HFile同步到HBase的日志ETL</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2020/07/01/Alluxio%E5%AE%89%E8%A3%85/" >Alluxio安装</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1858,6 +1974,10 @@ height:50vh;
         <span class="sidebar-tag-name" data-tags="Yarn"><span class="iconfont-archer">&#xe606;</span>Yarn</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Alluxio"><span class="iconfont-archer">&#xe606;</span>Alluxio</span>
+    
+        <span class="sidebar-tag-name" data-tags="HFile"><span class="iconfont-archer">&#xe606;</span>HFile</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

@@ -339,6 +339,73 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/04/26/matplotlib%E5%9F%BA%E7%A1%80%E5%9B%BE%E8%A1%A8/" >
+            
+                <span>matplotlib基础图表</span>
+        </a>
+        <div class="abstract-content">
+            matplotlib基础图表一、根据x,y绘制12345678910111213import numpy as npfrom matplotlib import pyplot as pltx = np.arange(1, 11)y = x * 2 + 1plt.title("demo1")plt.xlabel("x")plt.ylabel("y")plt.plot(x, y)plt.show()
+
+
+12345678910111213import numpy as npfrom matplotlib import pyplot as pltx = np.arange(0, 3 * np....
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "matplotlib">matplotlib</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/04/22/hadoop%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >
+            
+                <span>hadoop云服务器分布式安装配置</span>
+        </a>
+        <div class="abstract-content">
+            hadoop云服务器分布式安装配置
+在三台云服务器上搭建hadoop集群, 1master + 2slave使用版本: hadoop-3.2.1、jdk1.8.0_191、 scala-2.13.1⚠️ jdk11版本会出现Caused by: java.lang.NoClassDefFoundError: javax/activation/DataSource错误，还是选择了低版本
+
+一、服务器创建用户设置密码、配置互相之间免密登录** ⚠️ 服务器的hostname 以及 /etc/hosts中配置的hostname 均不可带_下划线 ** 
+一、下载安装包(使用国内镜像)scrip...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "hadoop">hadoop</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/04/21/Scala%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/" >
             
                 <span>Scala模式匹配</span>
@@ -595,78 +662,6 @@ catconfig.py12345678910111213141516171819202122232425262728293031323334353637383
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "工具">工具</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/10/uwsgi-nginx%E9%83%A8%E7%BD%B2flask/" >
-            
-                <span>uwsgi+nginx部署flask</span>
-        </a>
-        <div class="abstract-content">
-            uwsgi + nginx部署flask一、安装uwsgi
-使用python版本对应的pip进行安装uwsgi
-1pip install uwsgi
-
-在项目下创建uwsgi.ini文件
-12345678910111213[uwsgi]http &#x3D; 0.0.0.0:5000pythonpath &#x3D; &#x2F;home&#x2F;anaconda3&#x2F;bin&#x2F;pythonchdir &#x3D; &#x2F;home&#x2F;code&#x2F;apiwsgi-file &#x3D; app.pycallable &#x3D; appprocess...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "uwsgi">uwsgi</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "nginx">nginx</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/04/02/Elasticsearch%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" >
-            
-                <span>Elasticsearch基础使用</span>
-        </a>
-        <div class="abstract-content">
-            Elasticsearch基础使用一、安装
-需要java环境
-
-下载安装包
-1wget https:&#x2F;&#x2F;mirrors.huaweicloud.com&#x2F;elasticsearch&#x2F;7.6.1&#x2F;elasticsearch-7.6.1-linux-x86_64.tar.gz
-
-解压，配置环境变量
-12345tar -zxvf elasticsearch-7.6.1-linux-x86_64.tar.gz#~&#x2F;.bash_profileexport ELASTICSEARCH_PATH&#x3D;&#x2F;home&#x2F;kow...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Elasticsearch">Elasticsearch</a>
     
 </div>
             
@@ -1554,9 +1549,43 @@ catconfig.py12345678910111213141516171819202122232425262728293031323334353637383
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 55
+        Total : 57
         </div>
         <!-- search  -->
         
@@ -1569,6 +1598,16 @@ catconfig.py12345678910111213141516171819202122232425262728293031323334353637383
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2020/07/01/%E5%9F%BA%E4%BA%8EHFile%E5%90%8C%E6%AD%A5%E5%88%B0HBase%E7%9A%84%E6%97%A5%E5%BF%97ETL/" >基于HFile同步到HBase的日志ETL</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2020/07/01/Alluxio%E5%AE%89%E8%A3%85/" >Alluxio安装</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1931,6 +1970,10 @@ catconfig.py12345678910111213141516171819202122232425262728293031323334353637383
         <span class="sidebar-tag-name" data-tags="Yarn"><span class="iconfont-archer">&#xe606;</span>Yarn</span>
     
         <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Alluxio"><span class="iconfont-archer">&#xe606;</span>Alluxio</span>
+    
+        <span class="sidebar-tag-name" data-tags="HFile"><span class="iconfont-archer">&#xe606;</span>HFile</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

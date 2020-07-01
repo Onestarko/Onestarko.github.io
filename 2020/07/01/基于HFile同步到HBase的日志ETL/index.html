@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html>
+    <!-- title -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="kowhoy">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="kowhoy">
+    <meta name="keywords" content="onestarko | kowhoy">
+    <meta name="description" content="">
+    <meta name="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>基于HFile同步到HBase的日志ETL · Kowhoy&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s 1;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= /css/style.css?v=20180709 as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= /css/mobile.css?v=20180709 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/xb.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >kowhoy&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">基于HFile同步到HBase的日志ETL</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>kowhoy's Studio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style=
+
+
+
+
+
+
+
+
+height:50vh;
+
+>
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/pt.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            基于HFile同步到HBase的日志ETL
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Spark">Spark</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ETL">ETL</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HFile">HFile</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">2.8k</span> / Reading time: <span class="post-count">16 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/07/01</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="基于HFile同步到HBase的日志ETL"><a href="#基于HFile同步到HBase的日志ETL" class="headerlink" title="基于HFile同步到HBase的日志ETL"></a>基于HFile同步到HBase的日志ETL</h2><h3 id="一、数据格式"><a href="#一、数据格式" class="headerlink" title="一、数据格式"></a>一、数据格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">110.85.18.234 - - [30&#x2F;Jan&#x2F;2019:00:00:21 +0800] &quot;GET &#x2F;course&#x2F;list?c&#x3D;cb HTTP&#x2F;1.1&quot; 200 12800 &quot;www.imooc.com&quot; &quot;https:&#x2F;&#x2F;www.imooc.com&#x2F;course&#x2F;list?c&#x3D;data&quot; - &quot;Mozilla&#x2F;5.0 (Windows NT 10.0; WOW64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;58.0.3029.110 Safari&#x2F;537.36 SE 2.X MetaSr 1.0&quot; &quot;-&quot; 10.100.16.243:80 200 0.172 0.172</span><br><span class="line">218.74.48.154 - - [30&#x2F;Jan&#x2F;2019:00:00:22 +0800] &quot;GET &#x2F;.well-known&#x2F;apple-app-site-association HTTP&#x2F;1.1&quot; 200 165 &quot;www.imooc.com&quot; &quot;-&quot; - &quot;swcd (unknown version) CFNetwork&#x2F;974.2.1 Darwin&#x2F;18.0.0&quot; &quot;-&quot; 10.100.135.47:80 200 0.001 0.001</span><br><span class="line">113.77.139.245 - - [30&#x2F;Jan&#x2F;2019:00:00:22 +0800] &quot;GET &#x2F;static&#x2F;img&#x2F;common&#x2F;new.png HTTP&#x2F;1.1&quot; 200 1020 &quot;www.imooc.com&quot; &quot;https:&#x2F;&#x2F;www.imooc.com&#x2F;&quot; - &quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;73.0.3642.0 Safari&#x2F;537.36&quot; &quot;-&quot; 10.100.16.241:80 200 0.001 0.001</span><br><span class="line">113.77.139.245 - - [30&#x2F;Jan&#x2F;2019:00:00:22 +0800] &quot;GET &#x2F;static&#x2F;img&#x2F;menu_icon.png HTTP&#x2F;1.1&quot; 200 4816 &quot;www.imooc.com&quot; &quot;https:&#x2F;&#x2F;www.imooc.com&#x2F;&quot; - &quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;73.0.3642.0 Safari&#x2F;537.36&quot; &quot;-&quot; 10.100.16.243:80 200 0.001 0.001</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、整体思路"><a href="#二、整体思路" class="headerlink" title="二、整体思路"></a>二、整体思路</h3><blockquote>
+<ol>
+<li>因为每组字段中也存在空格键，所以使用分隔符进行分隔解析出各个字段不可行，因此使用分组的正则匹配进行解析日志</li>
+<li>对<code>IP</code>字段可以解析出 <code>country\province\city\operator</code>信息，使用Java实现解析工具类</li>
+<li>对<code>UserAgent</code>字段可以解析出<code>browserName\browserVersion\osName\osVersion</code>信息，使用Java实现解析工具类</li>
+<li>日志中的时间字段，不便于解析统计，将时间字段进行格式化</li>
+<li>使用<code>PUT</code>的方法效率低，使用生成HFile，load到HBase的方式进行存储</li>
+</ol>
+</blockquote>
+<h3 id="三、目录结构"><a href="#三、目录结构" class="headerlink" title="三、目录结构"></a>三、目录结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── java</span><br><span class="line">│   └── com</span><br><span class="line">│       └── kowhoy</span><br><span class="line">│           ├── domain</span><br><span class="line">│           │   ├── IpInfo.java</span><br><span class="line">│           │   └── UaInfo.java</span><br><span class="line">│           └── util</span><br><span class="line">│               ├── IpParseUtil.java</span><br><span class="line">│               └── UaParseUtil.java</span><br><span class="line">├── resources</span><br><span class="line">│   ├── application.conf</span><br><span class="line">│   ├── core-site.xml</span><br><span class="line">│   └── hdfs-site.xml</span><br><span class="line">└── scala</span><br><span class="line">    └── com</span><br><span class="line">        └── kowhoy</span><br><span class="line">            ├── ETLApp.scala</span><br><span class="line">            └── commonUtil</span><br><span class="line">                └── Util.scala</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>java目录下，主要是解析工具类</p>
+<p>domain存放结构化类</p>
+<p>util存放解析方法</p>
+<p>scala目录下,  主要是ETL，和常用工具类</p>
+<p>resources/application.conf 为配置文件</p>
+</blockquote>
+<h3 id="四、IP解析"><a href="#四、IP解析" class="headerlink" title="四、IP解析"></a>四、IP解析</h3><h4 id="IpIfo-java"><a href="#IpIfo-java" class="headerlink" title="IpIfo.java"></a>IpIfo.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">package com.kowhoy.domain;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @ClassName IpInfo</span><br><span class="line"> * @DESC IpInfo结构</span><br><span class="line"> * @Date 2020&#x2F;6&#x2F;30 9:39 下午</span><br><span class="line"> **&#x2F;</span><br><span class="line">public class IpInfo &#123;</span><br><span class="line">    private String country &#x3D; null;</span><br><span class="line">    private String province &#x3D; null;</span><br><span class="line">    private String city &#x3D; null;</span><br><span class="line">    private String operator &#x3D; null;</span><br><span class="line"></span><br><span class="line">    public String getCountry() &#123;</span><br><span class="line">        return country;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getProvince() &#123;</span><br><span class="line">        return province;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getCity() &#123;</span><br><span class="line">        return city;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getOperator() &#123;</span><br><span class="line">        return operator;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCountry(String country) &#123;</span><br><span class="line">        this.country &#x3D; country;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setProvince(String province) &#123;</span><br><span class="line">        this.province &#x3D; province;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCity(String city) &#123;</span><br><span class="line">        this.city &#x3D; city;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setOperator(String operator) &#123;</span><br><span class="line">        this.operator &#x3D; operator;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;IpInfo&#123;&quot; +</span><br><span class="line">                &quot;country&#x3D;&#39;&quot; + country + &#39;\&#39;&#39; +</span><br><span class="line">                &quot;, province&#x3D;&#39;&quot; + province + &#39;\&#39;&#39; +</span><br><span class="line">                &quot;, city&#x3D;&#39;&quot; + city + &#39;\&#39;&#39; +</span><br><span class="line">                &quot;, operator&#x3D;&#39;&quot; + operator + &#39;\&#39;&#39; +</span><br><span class="line">                &#39;&#125;&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="IpParseUtil-java"><a href="#IpParseUtil-java" class="headerlink" title="IpParseUtil.java"></a>IpParseUtil.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">package com.kowhoy.util;</span><br><span class="line"></span><br><span class="line">import com.kowhoy.domain.IpInfo;</span><br><span class="line">import org.lionsoul.ip2region.*;</span><br><span class="line"></span><br><span class="line">import java.io.FileNotFoundException;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.util.logging.Logger;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @ClassName IpParseUtil</span><br><span class="line"> * @DESC Ip解析工具类</span><br><span class="line"> * @Date 2020&#x2F;6&#x2F;30 9:39 下午</span><br><span class="line"> **&#x2F;</span><br><span class="line">public class IpParseUtil &#123;</span><br><span class="line">    private static DbConfig dbConfig &#x3D; null;</span><br><span class="line"></span><br><span class="line">    private static DbSearcher dbSearcher &#x3D; null;</span><br><span class="line"></span><br><span class="line">    private static Logger logger &#x3D; Logger.getLogger(IpParseUtil.class.getName());</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        String dbFile &#x3D; &quot;&#x2F;Users&#x2F;zhouke&#x2F;tmp_data&#x2F;ip2region.db&quot;;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            dbConfig &#x3D; new DbConfig();</span><br><span class="line"></span><br><span class="line">            dbSearcher &#x3D; new DbSearcher(dbConfig, dbFile);</span><br><span class="line">        &#125; catch (DbMakerConfigException e) &#123;</span><br><span class="line">            logger.warning(&quot;ipParser config init exception&quot; + e.getMessage());</span><br><span class="line">        &#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">            logger.warning(&quot;ipParser file not found&quot; + e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 根据ip解析出ip的位置信息</span><br><span class="line">     * @param ip: String</span><br><span class="line">     * @return IpInfo</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static IpInfo getIpInfo(String ip) &#123;</span><br><span class="line">        IpInfo info &#x3D; null;</span><br><span class="line"></span><br><span class="line">        DataBlock block &#x3D; null;</span><br><span class="line"></span><br><span class="line">        if (Util.isIpAddress(ip)) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                block &#x3D; dbSearcher.btreeSearch(ip);</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                logger.warning(&quot;ipParser parse error io:&quot; + e.getMessage() + &quot;\t&quot; + ip);</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                logger.warning(&quot;ipParser parse error:&quot; + e.getMessage() + &quot;\t&quot; + ip);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (null !&#x3D; block) &#123;</span><br><span class="line">            info &#x3D; new IpInfo();</span><br><span class="line"></span><br><span class="line">            String regionStr &#x3D; block.getRegion();</span><br><span class="line"></span><br><span class="line">            String[] regionData &#x3D; regionStr.replace(&quot;|&quot;, &quot;,&quot;).split(&quot;,&quot;);</span><br><span class="line"></span><br><span class="line">            info.setCountry(regionData[0]);</span><br><span class="line">            info.setProvince(regionData.length &gt; 2 ? regionData[2] : &quot;-&quot;);</span><br><span class="line">            info.setCity(regionData.length &gt; 3 ? regionData[3] : &quot;-&quot;);</span><br><span class="line">            info.setOperator(regionData.length &gt; 4 ? regionData[4] : &quot;-&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return info;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、UserAgent解析"><a href="#五、UserAgent解析" class="headerlink" title="五、UserAgent解析"></a>五、UserAgent解析</h3><h4 id="UaInfo-java"><a href="#UaInfo-java" class="headerlink" title="UaInfo.java"></a>UaInfo.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">package com.kowhoy.domain;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @ClassName UaInfo</span><br><span class="line"> * @DESC UserAgent类</span><br><span class="line"> * @Date 2020&#x2F;7&#x2F;1 11:02 上午</span><br><span class="line"> **&#x2F;</span><br><span class="line">public class UaInfo &#123;</span><br><span class="line">    private String browserName &#x3D; null;</span><br><span class="line"></span><br><span class="line">    private String browserVersion &#x3D; null;</span><br><span class="line"></span><br><span class="line">    private String osName &#x3D; null;</span><br><span class="line"></span><br><span class="line">    private String osVersion &#x3D; null;</span><br><span class="line"></span><br><span class="line">    public String getBrowserName() &#123;</span><br><span class="line">        return browserName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setBrowserName(String browserName) &#123;</span><br><span class="line">        this.browserName &#x3D; browserName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getBrowserVersion() &#123;</span><br><span class="line">        return browserVersion;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setBrowserVersion(String browserVersion) &#123;</span><br><span class="line">        this.browserVersion &#x3D; browserVersion;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getOsName() &#123;</span><br><span class="line">        return osName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setOsName(String osName) &#123;</span><br><span class="line">        this.osName &#x3D; osName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getOsVersion() &#123;</span><br><span class="line">        return osVersion;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setOsVersion(String osVersion) &#123;</span><br><span class="line">        this.osVersion &#x3D; osVersion;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;UaInfo&#123;&quot; +</span><br><span class="line">                &quot;browserName&#x3D;&#39;&quot; + browserName + &#39;\&#39;&#39; +</span><br><span class="line">                &quot;, browserVersion&#x3D;&#39;&quot; + browserVersion + &#39;\&#39;&#39; +</span><br><span class="line">                &quot;, osName&#x3D;&#39;&quot; + osName + &#39;\&#39;&#39; +</span><br><span class="line">                &quot;, osVersion&#x3D;&#39;&quot; + osVersion + &#39;\&#39;&#39; +</span><br><span class="line">                &#39;&#125;&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="UaParseUtil-java"><a href="#UaParseUtil-java" class="headerlink" title="UaParseUtil.java"></a>UaParseUtil.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">package com.kowhoy.util;</span><br><span class="line"></span><br><span class="line">import com.kowhoy.domain.UaInfo;</span><br><span class="line">import cz.mallat.uasparser.OnlineUpdater;</span><br><span class="line">import cz.mallat.uasparser.UASparser;</span><br><span class="line">import cz.mallat.uasparser.UserAgentInfo;</span><br><span class="line">import org.apache.commons.lang3.StringUtils;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @ClassName UaParseUtil</span><br><span class="line"> * @DESC UserAgent解析类</span><br><span class="line"> * @Date 2020&#x2F;7&#x2F;1 11:02 上午</span><br><span class="line"> **&#x2F;</span><br><span class="line">public class UaParseUtil &#123;</span><br><span class="line">    private static UASparser parser &#x3D; null;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            parser &#x3D; new UASparser(OnlineUpdater.getVendoredInputStream());</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static UaInfo getUaInfo(String ua) &#123;</span><br><span class="line">        UaInfo info &#x3D; null;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            if (StringUtils.isNotEmpty(ua)) &#123;</span><br><span class="line">                info &#x3D; new UaInfo();</span><br><span class="line">                UserAgentInfo uaInfo &#x3D; parser.parse(ua);</span><br><span class="line"></span><br><span class="line">                if (null !&#x3D; uaInfo) &#123;</span><br><span class="line">                    info.setBrowserName(uaInfo.getUaFamily());</span><br><span class="line">                    info.setBrowserVersion(uaInfo.getBrowserVersionInfo());</span><br><span class="line"></span><br><span class="line">                    info.setOsName(uaInfo.getOsFamily());</span><br><span class="line">                    info.setOsVersion(uaInfo.getOsName());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return info;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="六、Scala工具类"><a href="#六、Scala工具类" class="headerlink" title="六、Scala工具类"></a>六、Scala工具类</h3><h4 id="Util-scala"><a href="#Util-scala" class="headerlink" title="Util.scala"></a>Util.scala</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">package com.kowhoy.commonUtil</span><br><span class="line"></span><br><span class="line">import java.util.zip.CRC32</span><br><span class="line"></span><br><span class="line">import com.typesafe.config.&#123;Config, ConfigFactory&#125;</span><br><span class="line">import org.apache.commons.lang3.StringUtils</span><br><span class="line">import org.apache.hadoop.conf.Configuration</span><br><span class="line">import org.apache.hadoop.hbase.client.&#123;Admin, Connection, ConnectionFactory&#125;</span><br><span class="line">import org.apache.hadoop.hbase.util.Bytes</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @DESC 基础工具类</span><br><span class="line"> * @Date 2020&#x2F;7&#x2F;1 1:37 下午</span><br><span class="line"> **&#x2F;</span><br><span class="line"></span><br><span class="line">object Util &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;***</span><br><span class="line">    * @Desc 生成rowKey</span><br><span class="line">    * @Date 1:42 下午 2020&#x2F;7&#x2F;1</span><br><span class="line">    * @Param [date, info]</span><br><span class="line">    * @Return java.lang.String</span><br><span class="line">  **&#x2F;</span><br><span class="line">  def generatingRowKey(date:String, info:String): String &#x3D; &#123;</span><br><span class="line">    val builder &#x3D; new StringBuilder(date)</span><br><span class="line"></span><br><span class="line">    builder.append(&quot;_&quot;)</span><br><span class="line"></span><br><span class="line">    val crc32 &#x3D; new CRC32()</span><br><span class="line"></span><br><span class="line">    crc32.reset()</span><br><span class="line"></span><br><span class="line">    if (StringUtils.isNotEmpty(info)) &#123;</span><br><span class="line">      crc32.update(Bytes.toBytes(info))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    builder.append(crc32.getValue)</span><br><span class="line"></span><br><span class="line">    builder.toString()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;***</span><br><span class="line">    * @Desc 获取配置字段</span><br><span class="line">    * @Date 2:27 下午 2020&#x2F;7&#x2F;1</span><br><span class="line">    * @Param [key]</span><br><span class="line">    * @Return java.lang.Object</span><br><span class="line">  **&#x2F;</span><br><span class="line">  def getConfigField(key: String): String &#x3D; &#123;</span><br><span class="line">    lazy val conf: Config &#x3D; ConfigFactory.load()</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">     conf.getString(key)</span><br><span class="line">    &#125; catch &#123;</span><br><span class="line">      case _ &#x3D;&gt; System.err.println(key + &quot;不存在&quot;)</span><br><span class="line">        &quot;not exists&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#x2F;***</span><br><span class="line">    * @Desc HBase的相关</span><br><span class="line">    * @Date 2:22 下午 2020&#x2F;7&#x2F;1</span><br><span class="line">    * @Param []</span><br><span class="line">    * @Return scala.Tuple3&lt;org.apache.hadoop.conf.Configuration,org.apache.hadoop.hbase.client.Connection,org.apache.hadoop.hbase.client.Admin&gt;</span><br><span class="line">  **&#x2F;</span><br><span class="line">  def getHBaseEngine(): (Configuration, Connection, Admin) &#x3D; &#123;</span><br><span class="line">    val conf &#x3D; new Configuration()</span><br><span class="line"></span><br><span class="line">    conf.set(&quot;hbase.rootdir&quot;, getConfigField(&quot;HBASE_ROOT_DIR&quot;))</span><br><span class="line">    conf.set(&quot;hbase.zookeeper.quorum&quot;, getConfigField(&quot;ZOOKEEPER_PATH&quot;))</span><br><span class="line"></span><br><span class="line">    var connection: Connection &#x3D; null;</span><br><span class="line">    var admin: Admin &#x3D; null;</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">      connection &#x3D; ConnectionFactory.createConnection(conf)</span><br><span class="line">      admin &#x3D; connection.getAdmin</span><br><span class="line">    &#125; catch &#123;</span><br><span class="line">      case e: Exception &#x3D;&gt; e.printStackTrace()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    (conf, connection, admin)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="七、ETLApp"><a href="#七、ETLApp" class="headerlink" title="七、ETLApp"></a>七、ETLApp</h3><h4 id="ETLApp-scala"><a href="#ETLApp-scala" class="headerlink" title="ETLApp.scala"></a>ETLApp.scala</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br></pre></td><td class="code"><pre><span class="line">package com.kowhoy</span><br><span class="line"></span><br><span class="line">import java.util.Locale</span><br><span class="line">import java.util.regex.&#123;Matcher, Pattern&#125;</span><br><span class="line"></span><br><span class="line">import com.kowhoy.domain.&#123;IpInfo, UaInfo&#125;</span><br><span class="line">import com.kowhoy.util.&#123;IpParseUtil, UaParseUtil&#125;</span><br><span class="line">import org.apache.commons.lang3.time.FastDateFormat</span><br><span class="line">import org.apache.hadoop.fs.&#123;FileSystem, Path&#125;</span><br><span class="line">import org.apache.hadoop.hbase.&#123;KeyValue, TableName&#125;</span><br><span class="line">import org.apache.hadoop.hbase.client.&#123;Admin, ColumnFamilyDescriptorBuilder, TableDescriptorBuilder&#125;</span><br><span class="line">import org.apache.hadoop.hbase.io.ImmutableBytesWritable</span><br><span class="line">import org.apache.hadoop.hbase.mapreduce.&#123;HFileOutputFormat2, LoadIncrementalHFiles, TableOutputFormat&#125;</span><br><span class="line">import org.apache.hadoop.hbase.util.Bytes</span><br><span class="line">import org.apache.spark.sql.SparkSession</span><br><span class="line">import org.apache.hadoop.mapreduce.&#123;Job &#x3D;&gt; NewAPIHadoopJob&#125;</span><br><span class="line">import org.apache.spark.internal.Logging</span><br><span class="line"></span><br><span class="line">import scala.collection.mutable.ListBuffer</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @DESC ETL log through HFile saved to HBase</span><br><span class="line"> * @Date 2020&#x2F;6&#x2F;30 5:49 下午</span><br><span class="line"> **&#x2F;</span><br><span class="line"></span><br><span class="line">object ETLApp extends Logging&#123;</span><br><span class="line">  def main(args: Array[String]): Unit &#x3D; &#123;</span><br><span class="line">    if (args.length &lt; 1) &#123;</span><br><span class="line">      System.err.println(&quot;Usage: ETLApp &lt;date&gt;&quot;)</span><br><span class="line">      System.exit(1)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 传入时间变量</span><br><span class="line">    val Array(date) &#x3D; args</span><br><span class="line"></span><br><span class="line">    val spark &#x3D; SparkSession.builder().config(&quot;spark.serializer&quot;, &quot;org.apache.spark.serializer.KryoSerializer&quot;)</span><br><span class="line">      .appName(&quot;ETLApp&quot;).master(&quot;local[2]&quot;).getOrCreate()</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 日志文件路径</span><br><span class="line">    val logPath &#x3D; &quot;hdfs:&#x2F;&#x2F;localhost:9000&#x2F;access_logs&#x2F;2020-06-17.log&quot;</span><br><span class="line"></span><br><span class="line">    val data &#x3D; spark.sparkContext.textFile(logPath).take(10)</span><br><span class="line"></span><br><span class="line">    val logRDD &#x3D; spark.sparkContext.parallelize(data)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 将日志RDD 使用分组正则匹配进行解析</span><br><span class="line"></span><br><span class="line">    val pattern: Pattern &#x3D; Pattern.compile(&quot;([\\d\\.]&#123;7,&#125;) - - (\\[.&#123;26,&#125;\\]) (\&quot;.+?\&quot;|\\-) (\\d&#123;3&#125;|\\-) (\\d+|\\-) (\&quot;.+?\&quot;|\\-) (\&quot;.+?\&quot;|\\-) - (\&quot;.+?\&quot;|\\-) (\&quot;.+?\&quot;|\\-) ([\\d\\.]&#123;7,&#125;:\\d+|\\-) (\\d+|\\-) (\\d+?\\.\\d+|\\-) (\\d+?\\.\\d+|\\-)&quot;)</span><br><span class="line"></span><br><span class="line">    val columnMatcherMap &#x3D; Map(&quot;ip&quot;-&gt;1, &quot;time&quot;-&gt;2, &quot;requestData&quot;-&gt;3, &quot;status&quot;-&gt;4, &quot;bytesSent&quot;-&gt;5,</span><br><span class="line">    &quot;host&quot;-&gt;6, &quot;referer&quot;-&gt;7, &quot;ua&quot;-&gt;8, &quot;hostIp&quot;-&gt;10, &quot;spendTime&quot;-&gt;12)</span><br><span class="line"></span><br><span class="line">    val saveRDD &#x3D; logRDD.mapPartitions(partition &#x3D;&gt; &#123;</span><br><span class="line">      partition.flatMap(</span><br><span class="line">        log &#x3D;&gt; &#123;</span><br><span class="line">          val matcher: Matcher &#x3D; pattern.matcher(log)</span><br><span class="line">          val logMap &#x3D; scala.collection.mutable.HashMap[String, String]()</span><br><span class="line"></span><br><span class="line">          val rowKeyColValueList &#x3D; new ListBuffer[((String, String), KeyValue)]</span><br><span class="line">          if (matcher.matches()) &#123;</span><br><span class="line">            for ((k, v) &lt;- columnMatcherMap) &#123;</span><br><span class="line">              logMap.put(k, matcher.group(v))</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            val ip &#x3D; logMap(&quot;ip&quot;)</span><br><span class="line">            val time &#x3D; logMap(&quot;time&quot;)</span><br><span class="line">            val ua &#x3D; logMap(&quot;ua&quot;)</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 解析IP</span><br><span class="line">            val ipInfo: IpInfo &#x3D; IpParseUtil.getIpInfo(ip)</span><br><span class="line">            var (country, province, city, operator) &#x3D; (&quot;-&quot;, &quot;-&quot;, &quot;-&quot;, &quot;-&quot;)</span><br><span class="line"></span><br><span class="line">            if (null !&#x3D; ipInfo) &#123;</span><br><span class="line">              country &#x3D; ipInfo.getCountry</span><br><span class="line">              province &#x3D; ipInfo.getProvince</span><br><span class="line">              city &#x3D; ipInfo.getCity</span><br><span class="line">              operator &#x3D; ipInfo.getOperator</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 解析UA</span><br><span class="line">            val uaInfo: UaInfo &#x3D; UaParseUtil.getUaInfo(ua)</span><br><span class="line">            var (browserName, browserVersion, osName, osVersion) &#x3D; (&quot;-&quot;, &quot;-&quot;, &quot;-&quot;, &quot;-&quot;)</span><br><span class="line"></span><br><span class="line">            if (null !&#x3D; uaInfo) &#123;</span><br><span class="line">              browserName &#x3D; uaInfo.getBrowserName</span><br><span class="line">              browserVersion &#x3D; uaInfo.getBrowserVersion</span><br><span class="line">              osName &#x3D; uaInfo.getOsName</span><br><span class="line">              osVersion &#x3D; uaInfo.getOsVersion</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 分隔RequestData</span><br><span class="line">            val requestArr &#x3D; logMap(&quot;requestData&quot;).split(&quot; &quot;)</span><br><span class="line">            var(method, url, protocol) &#x3D; (&quot;-&quot;, &quot;-&quot;, &quot;-&quot;)</span><br><span class="line"></span><br><span class="line">            if (requestArr.length &gt; 2) &#123;</span><br><span class="line">              method &#x3D; requestArr(0).replace(&quot;\&quot;&quot;, &quot;&quot;)</span><br><span class="line">              url &#x3D; requestArr(1)</span><br><span class="line">              protocol &#x3D; requestArr(2).replace(&quot;\&quot;&quot;, &quot;&quot;)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 格式化时间</span><br><span class="line">            val timeStr &#x3D; time.substring(time.indexOf(&quot;[&quot;)+1, time.indexOf(&quot;]&quot;))</span><br><span class="line"></span><br><span class="line">            val logTime &#x3D; FastDateFormat.getInstance(&quot;dd&#x2F;MMM&#x2F;yyy:HH:mm:ss Z&quot;, Locale.ENGLISH).parse(timeStr).getTime</span><br><span class="line"></span><br><span class="line">            val formatTime &#x3D; FastDateFormat.getInstance(&quot;yyyy-MM-dd HH:mm:ss&quot;).format(logTime)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            logMap.put(&quot;browserName&quot;, browserName)</span><br><span class="line">            logMap.put(&quot;browserVersion&quot;, browserVersion)</span><br><span class="line">            logMap.put(&quot;osName&quot;, osName)</span><br><span class="line">            logMap.put(&quot;osVersion&quot;, osVersion)</span><br><span class="line"></span><br><span class="line">            logMap.put(&quot;country&quot;, country)</span><br><span class="line">            logMap.put(&quot;province&quot;, province)</span><br><span class="line">            logMap.put(&quot;city&quot;, city)</span><br><span class="line">            logMap.put(&quot;operator&quot;, operator)</span><br><span class="line"></span><br><span class="line">            logMap.put(&quot;formatTime&quot;, formatTime)</span><br><span class="line"></span><br><span class="line">            logMap.put(&quot;method&quot;, method)</span><br><span class="line">            logMap.put(&quot;url&quot;, url)</span><br><span class="line">            logMap.put(&quot;protocol&quot;, protocol)</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 生成rowKey</span><br><span class="line">            val rowKey: String &#x3D; commonUtil.Util.generatingRowKey(date, logMap(&quot;referer&quot;)+url+ip+ua)</span><br><span class="line"></span><br><span class="line">            val rowKeyBytes &#x3D; Bytes.toBytes(rowKey)</span><br><span class="line"></span><br><span class="line">            for ((col, value) &lt;- logMap) &#123;</span><br><span class="line">              val keyValue &#x3D; new KeyValue(rowKeyBytes, &quot;o&quot;.getBytes, Bytes.toBytes(String.valueOf(col)), Bytes.toBytes(String.valueOf(value)))</span><br><span class="line">              rowKeyColValueList.append(((rowKey, col), keyValue)) &#x2F;&#x2F;加入col字段为了排序用</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          rowKeyColValueList.toList</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;).sortByKey() &#x2F;&#x2F; 写入HFile需要是排序后的</span><br><span class="line">      .map(x &#x3D;&gt; (new ImmutableBytesWritable(Bytes.toBytes(x._1._1)), x._2))</span><br><span class="line"></span><br><span class="line">    val (conf, connection, admin) &#x3D; commonUtil.Util.getHBaseEngine()</span><br><span class="line"></span><br><span class="line">    val tableName: String &#x3D; &quot;access_log_&quot; + date</span><br><span class="line">    val table: TableName &#x3D; TableName.valueOf(tableName)</span><br><span class="line"></span><br><span class="line">    createTable(tableName, admin)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 设置输出表</span><br><span class="line">    conf.set(TableOutputFormat.OUTPUT_TABLE, tableName)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 设置HFileOutPutFormat需要的 job &#x2F; table.descriptor &#x2F; regionLocator</span><br><span class="line">    val job &#x3D; NewAPIHadoopJob.getInstance(conf) &#x2F;&#x2F; NewAPIHadoopJob手动导入</span><br><span class="line">    val tableDescriptor &#x3D; connection.getTable(table)</span><br><span class="line">    val regionLocator &#x3D; connection.getRegionLocator(table)</span><br><span class="line"></span><br><span class="line">    HFileOutputFormat2.configureIncrementalLoad(job, tableDescriptor, regionLocator)</span><br><span class="line"></span><br><span class="line">    val output &#x3D; commonUtil.Util.getConfigField(&quot;OUTPUT_PATH&quot;) + s&quot;-$date-logs&quot;</span><br><span class="line">    val outputPath &#x3D; new Path(output)</span><br><span class="line"></span><br><span class="line">    if (FileSystem.get(conf).exists(outputPath)) &#123;</span><br><span class="line">      FileSystem.get(conf).delete(outputPath, true)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 保存HFile, 写到output的路径上</span><br><span class="line">    saveRDD.saveAsNewAPIHadoopFile(</span><br><span class="line">      output,</span><br><span class="line">      classOf[ImmutableBytesWritable],</span><br><span class="line">      classOf[KeyValue],</span><br><span class="line">      classOf[HFileOutputFormat2],</span><br><span class="line">      job.getConfiguration</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 如果output上有文件，将文件load到HBase,并删除HFile</span><br><span class="line">    if (FileSystem.get(conf).exists(outputPath)) &#123;</span><br><span class="line">      val load &#x3D; new LoadIncrementalHFiles(conf)</span><br><span class="line">      load.doBulkLoad(outputPath, admin, connection.getTable(table), regionLocator)</span><br><span class="line">      logInfo(&quot;删除HFile&quot;)</span><br><span class="line">      FileSystem.get(conf).delete(outputPath, true)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    logInfo(&quot;写入完成&quot;)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 关闭资源</span><br><span class="line">    if (null !&#x3D; connection) &#123;</span><br><span class="line">      connection.close()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (null !&#x3D; admin) &#123;</span><br><span class="line">      admin.close()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    spark.stop()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">    * @Desc 创建数据表</span><br><span class="line">    * @Date 2:39 下午 2020&#x2F;7&#x2F;1</span><br><span class="line">    * @Param [tableName, admin]</span><br><span class="line">    * @Return void</span><br><span class="line">  **&#x2F;</span><br><span class="line">  def createTable(tableName: String, admin: Admin): Unit &#x3D; &#123;</span><br><span class="line">    val table &#x3D; TableName.valueOf(tableName)</span><br><span class="line"></span><br><span class="line">    if (admin.tableExists(table)) &#123;  &#x2F;&#x2F; 表已存在的话 先删除</span><br><span class="line">      admin.disableTable(table)</span><br><span class="line">      admin.deleteTable(table)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">      val tableDescriptorBuilder &#x3D; TableDescriptorBuilder.newBuilder(table)</span><br><span class="line"></span><br><span class="line">      val columnFamilyDescriptor &#x3D; ColumnFamilyDescriptorBuilder.newBuilder(Bytes.toBytes(&quot;o&quot;)).build()</span><br><span class="line"></span><br><span class="line">      tableDescriptorBuilder.setColumnFamily(columnFamilyDescriptor)</span><br><span class="line"></span><br><span class="line">      admin.createTable(tableDescriptorBuilder.build())</span><br><span class="line">    &#125; catch &#123;</span><br><span class="line">      case e: Exception &#x3D;&gt; e.printStackTrace()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="八、异常处理"><a href="#八、异常处理" class="headerlink" title="八、异常处理"></a>八、异常处理</h3><p><code>java.io.IOException: Mkdirs failed to create</code></p>
+<blockquote>
+<p>将${HADOOP_HOME}/etc/hadoop/core-site.xml  和 hdfs-site.xml拷贝的src/main/resources下</p>
+</blockquote>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/07/01/Alluxio%E5%AE%89%E8%A3%85/" title= Alluxio安装 >
+                    <div class="prevTitle">Alluxio安装</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:onestarko@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/onestarko" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基于HFile同步到HBase的日志ETL"><span class="toc-number">1.</span> <span class="toc-text">基于HFile同步到HBase的日志ETL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、数据格式"><span class="toc-number">1.1.</span> <span class="toc-text">一、数据格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、整体思路"><span class="toc-number">1.2.</span> <span class="toc-text">二、整体思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、目录结构"><span class="toc-number">1.3.</span> <span class="toc-text">三、目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、IP解析"><span class="toc-number">1.4.</span> <span class="toc-text">四、IP解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IpIfo-java"><span class="toc-number">1.4.1.</span> <span class="toc-text">IpIfo.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IpParseUtil-java"><span class="toc-number">1.4.2.</span> <span class="toc-text">IpParseUtil.java</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、UserAgent解析"><span class="toc-number">1.5.</span> <span class="toc-text">五、UserAgent解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UaInfo-java"><span class="toc-number">1.5.1.</span> <span class="toc-text">UaInfo.java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UaParseUtil-java"><span class="toc-number">1.5.2.</span> <span class="toc-text">UaParseUtil.java</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、Scala工具类"><span class="toc-number">1.6.</span> <span class="toc-text">六、Scala工具类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Util-scala"><span class="toc-number">1.6.1.</span> <span class="toc-text">Util.scala</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七、ETLApp"><span class="toc-number">1.7.</span> <span class="toc-text">七、ETLApp</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ETLApp-scala"><span class="toc-number">1.7.1.</span> <span class="toc-text">ETLApp.scala</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#八、异常处理"><span class="toc-number">1.8.</span> <span class="toc-text">八、异常处理</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 57
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2020/07/01/%E5%9F%BA%E4%BA%8EHFile%E5%90%8C%E6%AD%A5%E5%88%B0HBase%E7%9A%84%E6%97%A5%E5%BF%97ETL/" >基于HFile同步到HBase的日志ETL</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2020/07/01/Alluxio%E5%AE%89%E8%A3%85/" >Alluxio安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/29</span><a class="archive-post-title" href= "/2020/06/29/spark%E7%BB%9F%E8%AE%A1HBase%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%BE%93%E5%87%BA%E5%88%B0MySQL/" >spark统计HBase数据，输出到MySQL</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/29</span><a class="archive-post-title" href= "/2020/06/29/Spark%E6%9C%AF%E8%AF%AD%E5%8F%8ASpark-on-yarn/" >Spark术语及Spark-on-yarn</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/28</span><a class="archive-post-title" href= "/2020/06/28/%E8%AF%BB%E5%8F%96HBase%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" >读取HBase统计分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/28</span><a class="archive-post-title" href= "/2020/06/28/IP%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7/" >IP解析工具</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/28</span><a class="archive-post-title" href= "/2020/06/28/UserAgent%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7/" >UserAgent解析工具</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/28</span><a class="archive-post-title" href= "/2020/06/28/%E6%97%A5%E5%BF%97ETL%E5%88%B0HBase/" >日志ETL到HBase</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/15</span><a class="archive-post-title" href= "/2020/06/15/HBase-DML-API/" >HBase DML API</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/12</span><a class="archive-post-title" href= "/2020/06/12/HBase-DDL-API/" >HBase DDL API</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/10</span><a class="archive-post-title" href= "/2020/06/10/HBASE-DML/" >HBASE DML</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/10</span><a class="archive-post-title" href= "/2020/06/10/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEHBASE/" >安装配置HBASE</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/10</span><a class="archive-post-title" href= "/2020/06/10/HBASE-DDL/" >HBASE DDL</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/08</span><a class="archive-post-title" href= "/2020/06/08/%E7%BD%91%E7%82%B9%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E8%AE%A1%E7%AE%97%E8%B7%9D%E7%A6%BB/" >网点排列组合计算距离</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href= "/2020/06/04/SparkStreaming%E6%B6%88%E8%B4%B9Kakfa%E8%BE%93%E5%87%BA%E6%97%A5%E5%BF%97/" >SparkStreaming消费Kakfa输出日志</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href= "/2020/06/03/Python-Flume-Kafka-%E6%97%A5%E5%BF%97%E7%94%9F%E6%88%90%E9%87%87%E9%9B%86/" >Python+Flume+Kafka 日志生成采集</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href= "/2020/06/03/SparkStreaming%E6%95%B4%E5%90%88Kafka/" >SparkStreaming整合Kafka</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href= "/2020/06/01/SparkStreaming%E6%95%B4%E5%90%88Flume/" >SparkStreaming整合Flume </a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/29</span><a class="archive-post-title" href= "/2020/05/29/WEB%E6%97%A5%E5%BF%97%E9%87%87%E9%9B%86/" >WEB日志采集</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href= "/2020/05/28/FlumePushStream/" >FlumePushStream</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href= "/2020/05/28/Streaming2Sql/" >Streaming2Sql</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href= "/2020/05/28/SparkStreaming-Transform/" >SparkStreaming Transform</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/27</span><a class="archive-post-title" href= "/2020/05/27/mapWithState/" >mapWithState</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/27</span><a class="archive-post-title" href= "/2020/05/27/updateStateByKey/" >updateStateByKey</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href= "/2020/05/22/SparkCore-%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%BE%8B/" >SparkCore 生产实例</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href= "/2020/05/22/flume%E8%B7%A8%E6%9C%BA%E5%99%A8%E4%BC%A0%E8%BE%93/" >flume跨机器传输</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href= "/2020/05/20/socket-file-queue-streaming/" >socket/file/queue_streaming</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2020/05/18/spark-core%E5%9B%BE%E8%B0%B1/" >spark_core图谱</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href= "/2020/05/15/spark-transformation/" >spark_transformation</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "/2020/05/12/datax%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" >datax的基本使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2020/05/09/mysql-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B-%E8%A7%A6%E5%8F%91%E5%99%A8%E7%A4%BA%E4%BE%8B/" >mysql_存储过程/触发器示例</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2020/05/09/hive%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B/" >hive存储模型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2020/05/09/HQL%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/" >HQL执行流程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2020/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8/" >数据库的优化器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2020/05/07/ZOOKEEPER%E5%9F%BA%E7%A1%80/" >ZOOKEEPER基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2020/05/07/python%E6%93%8D%E4%BD%9Czookeeper/" >python操作zookeeper</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2020/05/07/zookeeper%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" >zookeeper安装部署</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2020/05/07/HIVE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >HIVE安装配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2020/04/26/Pandas%E8%84%91%E5%9B%BE/" >Pandas脑图</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2020/04/26/Numpy%E8%84%91%E5%9B%BE/" >Numpy脑图</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2020/04/26/matplotlib%E5%9F%BA%E7%A1%80%E5%9B%BE%E8%A1%A8/" >matplotlib基础图表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href= "/2020/04/22/hadoop%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" >hadoop云服务器分布式安装配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href= "/2020/04/21/Scala%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/" >Scala模式匹配</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2020/04/15/Scala%E4%B8%AD%E7%9A%84lazy%E4%BD%BF%E7%94%A8/" >Scala中的lazy使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2020/04/15/%E4%BC%A0%E5%80%BC%E4%BC%A0%E5%90%8D%E8%B0%83%E7%94%A8/" >传值传名调用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2020/04/15/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0/" >匿名函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2020/04/15/scala%E5%8F%98%E9%95%BF%E5%8F%82%E6%95%B0/" >scala变长参数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2020/04/15/%E6%9F%AF%E9%87%8C%E5%8C%96/" >柯里化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/14</span><a class="archive-post-title" href= "/2020/04/14/mysql%E5%88%86%E7%BB%84top%E4%BC%98%E5%8C%96/" >mysql分组top优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2020/04/10/%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%9F%A5%E8%AF%A2/" >配置数据管理查询</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2020/04/10/uwsgi-nginx%E9%83%A8%E7%BD%B2flask/" >uwsgi+nginx部署flask</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/02</span><a class="archive-post-title" href= "/2020/04/02/Elasticsearch%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" >Elasticsearch基础使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href= "/2020/03/27/flask%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86/" >flask思路整理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href= "/2020/03/27/tmux%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/" >tmux——基本使用示例</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/26</span><a class="archive-post-title" href= "/2020/03/26/kafak%E7%A4%BA%E4%BE%8B-%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7%E7%BB%88%E7%AB%AF%E8%BE%93%E5%85%A5/" >kafak示例-远程监控终端输入</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href= "/2020/03/13/mac%E4%B8%8Bchromedriver%E5%8D%87%E7%BA%A7/" >mac下chromedriver升级</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "/2020/02/23/scala%E4%BC%B4%E7%94%9F%E7%B1%BB%E5%92%8C%E4%BC%B4%E7%94%9F%E5%AF%B9%E8%B1%A1/" >scala伴生类和伴生对象</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="伴生"><span class="iconfont-archer">&#xe606;</span>伴生</span>
+    
+        <span class="sidebar-tag-name" data-tags="工具"><span class="iconfont-archer">&#xe606;</span>工具</span>
+    
+        <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
+    
+        <span class="sidebar-tag-name" data-tags="pyinotify"><span class="iconfont-archer">&#xe606;</span>pyinotify</span>
+    
+        <span class="sidebar-tag-name" data-tags="flask"><span class="iconfont-archer">&#xe606;</span>flask</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="Elasticsearch"><span class="iconfont-archer">&#xe606;</span>Elasticsearch</span>
+    
+        <span class="sidebar-tag-name" data-tags="uwsgi"><span class="iconfont-archer">&#xe606;</span>uwsgi</span>
+    
+        <span class="sidebar-tag-name" data-tags="nginx"><span class="iconfont-archer">&#xe606;</span>nginx</span>
+    
+        <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
+    
+        <span class="sidebar-tag-name" data-tags="scala"><span class="iconfont-archer">&#xe606;</span>scala</span>
+    
+        <span class="sidebar-tag-name" data-tags="hadoop"><span class="iconfont-archer">&#xe606;</span>hadoop</span>
+    
+        <span class="sidebar-tag-name" data-tags="Pandas"><span class="iconfont-archer">&#xe606;</span>Pandas</span>
+    
+        <span class="sidebar-tag-name" data-tags="Numpy"><span class="iconfont-archer">&#xe606;</span>Numpy</span>
+    
+        <span class="sidebar-tag-name" data-tags="matplotlib"><span class="iconfont-archer">&#xe606;</span>matplotlib</span>
+    
+        <span class="sidebar-tag-name" data-tags="HIVE"><span class="iconfont-archer">&#xe606;</span>HIVE</span>
+    
+        <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
+    
+        <span class="sidebar-tag-name" data-tags="优化器"><span class="iconfont-archer">&#xe606;</span>优化器</span>
+    
+        <span class="sidebar-tag-name" data-tags="hive"><span class="iconfont-archer">&#xe606;</span>hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="datax"><span class="iconfont-archer">&#xe606;</span>datax</span>
+    
+        <span class="sidebar-tag-name" data-tags="spark"><span class="iconfont-archer">&#xe606;</span>spark</span>
+    
+        <span class="sidebar-tag-name" data-tags="transformation"><span class="iconfont-archer">&#xe606;</span>transformation</span>
+    
+        <span class="sidebar-tag-name" data-tags="sparkStreaming"><span class="iconfont-archer">&#xe606;</span>sparkStreaming</span>
+    
+        <span class="sidebar-tag-name" data-tags="Flume"><span class="iconfont-archer">&#xe606;</span>Flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="mapWithState"><span class="iconfont-archer">&#xe606;</span>mapWithState</span>
+    
+        <span class="sidebar-tag-name" data-tags="SparkCore"><span class="iconfont-archer">&#xe606;</span>SparkCore</span>
+    
+        <span class="sidebar-tag-name" data-tags="updateStateByKey"><span class="iconfont-archer">&#xe606;</span>updateStateByKey</span>
+    
+        <span class="sidebar-tag-name" data-tags="transform"><span class="iconfont-archer">&#xe606;</span>transform</span>
+    
+        <span class="sidebar-tag-name" data-tags="Streaming2Sql"><span class="iconfont-archer">&#xe606;</span>Streaming2Sql</span>
+    
+        <span class="sidebar-tag-name" data-tags="FlumePushStream"><span class="iconfont-archer">&#xe606;</span>FlumePushStream</span>
+    
+        <span class="sidebar-tag-name" data-tags="日志采集"><span class="iconfont-archer">&#xe606;</span>日志采集</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
+    
+        <span class="sidebar-tag-name" data-tags="HBASE"><span class="iconfont-archer">&#xe606;</span>HBASE</span>
+    
+        <span class="sidebar-tag-name" data-tags="HBase"><span class="iconfont-archer">&#xe606;</span>HBase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java"><span class="iconfont-archer">&#xe606;</span>Java</span>
+    
+        <span class="sidebar-tag-name" data-tags="日志"><span class="iconfont-archer">&#xe606;</span>日志</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+    
+        <span class="sidebar-tag-name" data-tags="ETL"><span class="iconfont-archer">&#xe606;</span>ETL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Yarn"><span class="iconfont-archer">&#xe606;</span>Yarn</span>
+    
+        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
+    
+        <span class="sidebar-tag-name" data-tags="Alluxio"><span class="iconfont-archer">&#xe606;</span>Alluxio</span>
+    
+        <span class="sidebar-tag-name" data-tags="HFile"><span class="iconfont-archer">&#xe606;</span>HFile</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Scala"><span class="iconfont-archer">&#xe60a;</span>Scala</span>
+    
+        <span class="sidebar-category-name" data-categories="工具"><span class="iconfont-archer">&#xe60a;</span>工具</span>
+    
+        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
+    
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
+    
+        <span class="sidebar-category-name" data-categories="Elasticsearch"><span class="iconfont-archer">&#xe60a;</span>Elasticsearch</span>
+    
+        <span class="sidebar-category-name" data-categories="nginx"><span class="iconfont-archer">&#xe60a;</span>nginx</span>
+    
+        <span class="sidebar-category-name" data-categories="nginx/uwsgi"><span class="iconfont-archer">&#xe60a;</span>nginx/uwsgi</span>
+    
+        <span class="sidebar-category-name" data-categories="mysql"><span class="iconfont-archer">&#xe60a;</span>mysql</span>
+    
+        <span class="sidebar-category-name" data-categories="scala"><span class="iconfont-archer">&#xe60a;</span>scala</span>
+    
+        <span class="sidebar-category-name" data-categories="hadoop"><span class="iconfont-archer">&#xe60a;</span>hadoop</span>
+    
+        <span class="sidebar-category-name" data-categories="Pandas"><span class="iconfont-archer">&#xe60a;</span>Pandas</span>
+    
+        <span class="sidebar-category-name" data-categories="Numpy"><span class="iconfont-archer">&#xe60a;</span>Numpy</span>
+    
+        <span class="sidebar-category-name" data-categories="Pandas/Python"><span class="iconfont-archer">&#xe60a;</span>Pandas/Python</span>
+    
+        <span class="sidebar-category-name" data-categories="Numpy/Python"><span class="iconfont-archer">&#xe60a;</span>Numpy/Python</span>
+    
+        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
+    
+        <span class="sidebar-category-name" data-categories="数据库"><span class="iconfont-archer">&#xe60a;</span>数据库</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "kowhoy"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
