@@ -339,6 +339,35 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/06/15/HBase-DML-API/" >
+            
+                <span>HBase DML API</span>
+        </a>
+        <div class="abstract-content">
+            HBase DML API一、写数据1. 单条写12345678910111213141516@Testpublic void addSingle() throws Exception &#123;    String tableName = "sku_info";    TableName table = TableName.valueOf(tableName);    String rowKey = "ok";    Put put = new Put(Bytes.toBytes(rowKey));    put.addColumn(Bytes.toBytes("basic"), B...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/15</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/06/12/HBase-DDL-API/" >
             
                 <span>HBase DDL API</span>
@@ -654,44 +683,6 @@ Push方式Flume.confnetcat-memory-avro.conf
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/29/WEB%E6%97%A5%E5%BF%97%E9%87%87%E9%9B%86/" >
-            
-                <span>WEB日志采集</span>
-        </a>
-        <div class="abstract-content">
-            WEB日志采集一、浏览器日志采集
-页面浏览日志 解决PV(Page View)、UV(Unique Visitors) 页面流量、页面来源的问题
-页面交互日志 用户兴趣点、体验优化点
-
-二、页面浏览日志1. 页面HTTP请求过程浏览器发送请求 –1⃣️–&gt; 服务器接受请求,返回HTML –2⃣️–&gt; 浏览器接受响应、解析渲染
-
-过程1⃣️中包含:    - 请求行 (请求方法/URL/HTTP版本号)    - 请求报头 (附加信息，如Cookie)    - 请求正文
-
-
-过程2⃣️中包含:    - 状态行 (200/ 404/..)    - 响应报头 （Cookie....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "日志采集">日志采集</a>
     
 </div>
             
@@ -1630,9 +1621,26 @@ Push方式Flume.confnetcat-memory-avro.conf
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 58
+        Total : 59
         </div>
         <!-- search  -->
         
@@ -1645,6 +1653,11 @@ Push方式Flume.confnetcat-memory-avro.conf
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/03</span><a class="archive-post-title" href= "/2020/07/03/%E8%BF%90%E8%A1%8C%E4%BA%8EAlluxio%E4%B9%8B%E4%B8%8A%E7%9A%84Spark%E4%BB%BB%E5%8A%A1/" >运行于Alluxio之上的Spark任务</a>
+        </li>
     
     
         <li class="archive-post-item">
