@@ -354,6 +354,54 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/07/09/SparkStreaming%E6%B5%81%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90%E8%AE%A2%E5%8D%95%E6%97%A5%E5%BF%97/" >
+            
+                <span>SparkStreaming流处理分析订单日志</span>
+        </a>
+        <div class="abstract-content">
+            SparkStreaming流处理分析订单日志一、项目说明
+订单数据发送到Kafka中，SparkStreaming消费Kafka数据，以天/时/分钟的维度统计下单单数、成交单数、成交金额，将结果写入到Redis中
+
+二、模块分解
+基础模块（配置项类、Redis连接池）
+mock 订单JSON数据发送到Kafka
+消费Kafka进行统计，使用Zookeeper和Kafka两种方式进行Offset管理
+储存统计结果到Redis
+
+三、基础模块1. 基础项类
+使用com.typesafe:config
+
+
+工具类
+
+ 123456789101112131415161718/***  * @D...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Kafka">Kafka</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "SparkStreaming">SparkStreaming</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Redis">Redis</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/07/03/%E8%BF%90%E8%A1%8C%E4%BA%8EAlluxio%E4%B9%8B%E4%B8%8A%E7%9A%84Spark%E4%BB%BB%E5%8A%A1/" >
             
                 <span>运行于Alluxio之上的Spark任务</span>
@@ -664,35 +712,6 @@ Standalone Spar...
         </a>
         <div class="abstract-content">
             IpRegionInfo12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455package com.kowhoy.domain;/** * @ClassName IpRegionInfo * @DESC 自定义IP解析地理位置类 _城市Id|国家|区域|省份|城市|ISP_  995|中国|0|上海|上海市|联通|126445 * @Date 2020/6/16 3:38 下午 **/public class IpRegionInfo &#...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Java">Java</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/28/UserAgent%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7/" >
-            
-                <span>UserAgent解析工具</span>
-        </a>
-        <div class="abstract-content">
-            UserAgentInfo12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758package com.kowhoy.domain;/** * @ClassName UserAgentInfo * @DESC 自定义UserAgent工具类 * @Date 2020/6/16 2:56 下午 **/public class UserAgentInfo &#123;    private String browserName;   ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1716,9 +1735,26 @@ Standalone Spar...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 59
+        Total : 60
         </div>
         <!-- search  -->
         
@@ -1731,6 +1767,11 @@ Standalone Spar...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/09</span><a class="archive-post-title" href= "/2020/07/09/SparkStreaming%E6%B5%81%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90%E8%AE%A2%E5%8D%95%E6%97%A5%E5%BF%97/" >SparkStreaming流处理分析订单日志</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2117,6 +2158,10 @@ Standalone Spar...
         <span class="sidebar-tag-name" data-tags="Alluxio"><span class="iconfont-archer">&#xe606;</span>Alluxio</span>
     
         <span class="sidebar-tag-name" data-tags="HFile"><span class="iconfont-archer">&#xe606;</span>HFile</span>
+    
+        <span class="sidebar-tag-name" data-tags="SparkStreaming"><span class="iconfont-archer">&#xe606;</span>SparkStreaming</span>
+    
+        <span class="sidebar-tag-name" data-tags="Redis"><span class="iconfont-archer">&#xe606;</span>Redis</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

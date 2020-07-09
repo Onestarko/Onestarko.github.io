@@ -339,48 +339,30 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/10/HBASE-DML/" >
+        <a class="abstract-title" href = "/2020/07/02/Spark%E7%BB%9F%E8%AE%A1HBase%EF%BC%8C%E8%BE%93%E5%87%BAMysql-%E5%AD%97%E6%AE%B5%E8%87%AA%E5%AE%9A%E4%B9%89%E7%89%88%E6%9C%AC/" >
             
-                <span>HBASE DML</span>
+                <span>Spark统计HBase，输出Mysql(字段自定义版本)</span>
         </a>
         <div class="abstract-content">
-            HBASE DML
-创建数据
-1put 表名,RowKey,&#39;CF:COL&#39;, VALUE
+            
+使用两种方式 SparkCore, SparkSQL
 
-扫描表
-1scan 表名
-
-删除数据
-1delete 表名, RowKey, &#39;CF:COL&#39;
-
-修改数据
-1put 表名, RowKey, &#39;CF:COL&#39;, VALUE
-
-删除整行
-1deleteall 表名, RowKey
-
-行数
-1count 表名
-
-查看数据
-1get 表名, RowKey [, &#39;CF:COL&#39;]
-
-清空表
-1truncate 表名
-
-
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001011021031041051061071081091101111121131141151161171181191201211221231241251...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/10</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/02</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Spark">Spark</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "MySQL">MySQL</a>
     
 </div>
             
@@ -393,31 +375,29 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/10/HBASE-DDL/" >
+        <a class="abstract-title" href = "/2020/07/01/%E5%9F%BA%E4%BA%8EHFile%E5%90%8C%E6%AD%A5%E5%88%B0HBase%E7%9A%84%E6%97%A5%E5%BF%97ETL/" >
             
-                <span>HBASE DDL</span>
+                <span>基于HFile同步到HBase的日志ETL</span>
         </a>
         <div class="abstract-content">
-            HBASE DDL
-启动HBASE SHELL
-1hbase shell
-
-查看版本、状态
-1234567hbase(main):037:0&gt; version2.2.2, re6513a76c91cceda95dad7af246ac81d46fa2589, Sat Oct 19 10:10:12 UTC 2019hbase(main):036:0&gt; status1 active master, 0 backup masters, 1 servers, 1 dead, 3.0000 average loadTook 0.0105 seconds
-
-创建表
-1234567hbas...
+            基于HFile同步到HBase的日志ETL一、数据格式1234110.85.18.234 - - [30&#x2F;Jan&#x2F;2019:00:00:21 +0800] &quot;GET &#x2F;course&#x2F;list?c&#x3D;cb HTTP&#x2F;1.1&quot; 200 12800 &quot;www.imooc.com&quot; &quot;https:&#x2F;&#x2F;www.imooc.com&#x2F;course&#x2F;list?c&#x3D;data&quot; - &quot;Mozilla&#x2F;5.0 (Window...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/10</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/01</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Spark">Spark</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ETL">ETL</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HFile">HFile</a>
     
 </div>
             
@@ -430,30 +410,155 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/06/10/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEHBASE/" >
+        <a class="abstract-title" href = "/2020/06/29/spark%E7%BB%9F%E8%AE%A1HBase%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%BE%93%E5%87%BA%E5%88%B0MySQL/" >
             
-                <span>安装配置HBASE</span>
+                <span>spark统计HBase数据，输出到MySQL</span>
         </a>
         <div class="abstract-content">
-            安装配置HBASE一、安装
-安装包1wget https://mirrors.huaweicloud.com/apache/hbase/2.2.2/hbase-2.2.2-bin.tar.gz
-解压配置.bash_profile1234567tar -zxvf hbase-2.2.2-bin.tar.gz -C ..&#x2F;vim ~&#x2F;.bash_profileexport HBASH_HOME&#x3D;..export $PATH&#x3D;$HBASH_HOME&#x2F;bin:$PATHsource ~&#x2F;.bash_profile
-
-
-
-二、配置
-vim...
+            12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394package com.kowhoyimport org.apache.spark.sql.SparkSessionimport org.apache.hadoop.conf.Configurationimport org.apache...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/10</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/29</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HBASE">HBASE</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Spark">Spark</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "MySQL">MySQL</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/06/28/%E8%AF%BB%E5%8F%96HBase%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" >
+            
+                <span>读取HBase统计分析</span>
+        </a>
+        <div class="abstract-content">
+            1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889package com.kowhoyimport org.apache.hadoop.conf.Configurationimport org.apache.hadoop.hbase.client.&#123;Result, Scan&#125;impor...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Spark">Spark</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/06/28/%E6%97%A5%E5%BF%97ETL%E5%88%B0HBase/" >
+            
+                <span>日志ETL到HBase</span>
+        </a>
+        <div class="abstract-content">
+            123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "scala">scala</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "日志">日志</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Spark">Spark</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ETL">ETL</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/06/15/HBase-DML-API/" >
+            
+                <span>HBase DML API</span>
+        </a>
+        <div class="abstract-content">
+            HBase DML API一、写数据1. 单条写12345678910111213141516@Testpublic void addSingle() throws Exception &#123;    String tableName = "sku_info";    TableName table = TableName.valueOf(tableName);    String rowKey = "ok";    Put put = new Put(Bytes.toBytes(rowKey));    put.addColumn(Bytes.toBytes("basic"), B...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/15</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/06/12/HBase-DDL-API/" >
+            
+                <span>HBase DDL API</span>
+        </a>
+        <div class="abstract-content">
+            HBase DDL APIGAV12345&lt;dependency&gt;    &lt;groupId&gt;org.apache.hbase&lt;/groupId&gt;    &lt;artifactId&gt;hbase-client&lt;/artifactId&gt;    &lt;version&gt;$&#123;hbase.version&#125;&lt;/version&gt;&lt;/dependency&gt;
+
+主要依赖1234567891011121314import org.apache.hadoop.conf.Configuration;impor...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HBase">HBase</a>
     
 </div>
             
@@ -1405,9 +1510,26 @@ vim...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 59
+        Total : 60
         </div>
         <!-- search  -->
         
@@ -1420,6 +1542,11 @@ vim...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/09</span><a class="archive-post-title" href= "/2020/07/09/SparkStreaming%E6%B5%81%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90%E8%AE%A2%E5%8D%95%E6%97%A5%E5%BF%97/" >SparkStreaming流处理分析订单日志</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1807,133 +1934,9 @@ vim...
     
         <span class="sidebar-tag-name" data-tags="HFile"><span class="iconfont-archer">&#xe606;</span>HFile</span>
     
-    </div>
-    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br/>
-    1、请确保node版本大于6.2<br/>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tags-list"></div>
-</div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
+        <span class="sidebar-tag-name" data-tags="SparkStreaming"><span class="iconfont-archer">&#xe606;</span>SparkStreaming</span>
     
-        <span class="sidebar-category-name" data-categories="Scala"><span class="iconfont-archer">&#xe60a;</span>Scala</span>
-    
-        <span class="sidebar-category-name" data-categories="工具"><span class="iconfont-archer">&#xe60a;</span>工具</span>
-    
-        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
-    
-        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
-    
-        <span class="sidebar-category-name" data-categories="Elasticsearch"><span class="iconfont-archer">&#xe60a;</span>Elasticsearch</span>
-    
-        <span class="sidebar-category-name" data-categories="nginx"><span class="iconfont-archer">&#xe60a;</span>nginx</span>
-    
-        <span class="sidebar-category-name" data-categories="nginx/uwsgi"><span class="iconfont-archer">&#xe60a;</span>nginx/uwsgi</span>
-    
-        <span class="sidebar-category-name" data-categories="mysql"><span class="iconfont-archer">&#xe60a;</span>mysql</span>
-    
-        <span class="sidebar-category-name" data-categories="scala"><span class="iconfont-archer">&#xe60a;</span>scala</span>
-    
-        <span class="sidebar-category-name" data-categories="hadoop"><span class="iconfont-archer">&#xe60a;</span>hadoop</span>
-    
-        <span class="sidebar-category-name" data-categories="Pandas"><span class="iconfont-archer">&#xe60a;</span>Pandas</span>
-    
-        <span class="sidebar-category-name" data-categories="Numpy"><span class="iconfont-archer">&#xe60a;</span>Numpy</span>
-    
-        <span class="sidebar-category-name" data-categories="Pandas/Python"><span class="iconfont-archer">&#xe60a;</span>Pandas/Python</span>
-    
-        <span class="sidebar-category-name" data-categories="Numpy/Python"><span class="iconfont-archer">&#xe60a;</span>Numpy/Python</span>
-    
-        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
-    
-        <span class="sidebar-category-name" data-categories="数据库"><span class="iconfont-archer">&#xe60a;</span>数据库</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "kowhoy"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-    <!-- busuanzi  -->
-    
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
-    </div>
-    <!-- async load share.js -->
-     
-    </body>
-</html>
-
-
-��集"><span class="iconfont-archer">&#xe606;</span>日志采集</span>
-    
-        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
-    
-        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
-    
-        <span class="sidebar-tag-name" data-tags="HBASE"><span class="iconfont-archer">&#xe606;</span>HBASE</span>
-    
-        <span class="sidebar-tag-name" data-tags="HBase"><span class="iconfont-archer">&#xe606;</span>HBase</span>
-    
-        <span class="sidebar-tag-name" data-tags="Java"><span class="iconfont-archer">&#xe606;</span>Java</span>
-    
-        <span class="sidebar-tag-name" data-tags="日志"><span class="iconfont-archer">&#xe606;</span>日志</span>
-    
-        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
-    
-        <span class="sidebar-tag-name" data-tags="ETL"><span class="iconfont-archer">&#xe606;</span>ETL</span>
-    
-        <span class="sidebar-tag-name" data-tags="Yarn"><span class="iconfont-archer">&#xe606;</span>Yarn</span>
-    
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
-        <span class="sidebar-tag-name" data-tags="Alluxio"><span class="iconfont-archer">&#xe606;</span>Alluxio</span>
-    
-        <span class="sidebar-tag-name" data-tags="HFile"><span class="iconfont-archer">&#xe606;</span>HFile</span>
+        <span class="sidebar-tag-name" data-tags="Redis"><span class="iconfont-archer">&#xe606;</span>Redis</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

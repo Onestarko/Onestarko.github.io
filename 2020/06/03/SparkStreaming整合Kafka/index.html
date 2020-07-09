@@ -269,7 +269,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">771</span> / Reading time: <span class="post-count">3 min</span></span>
+                        <span>Word count: <span class="post-count">1.2k</span> / Reading time: <span class="post-count">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -443,7 +443,35 @@ height:50vh;
 <h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> kafka.serializer.<span class="type">StringDecoder</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="type">SparkConf</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.&#123;<span class="type">Seconds</span>, <span class="type">StreamingContext</span>&#125;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.kafka.<span class="type">KafkaUtils</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">KafkaReceiverApp</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> sparkConf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setMaster(<span class="string">"local[2]"</span>).setAppName(<span class="string">"KafkaReceiver"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> ssc = <span class="keyword">new</span> <span class="type">StreamingContext</span>(sparkConf, <span class="type">Seconds</span>(<span class="number">5</span>))</span><br><span class="line">    ssc.sparkContext.setLogLevel(<span class="string">"ERROR"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> streamData = <span class="type">KafkaUtils</span>.createDirectStream[<span class="type">String</span>, <span class="type">String</span>, <span class="type">StringDecoder</span>, <span class="type">StringDecoder</span>](ssc, <span class="type">Map</span>(<span class="string">"metadata.broker.list"</span>-&gt;<span class="string">"localhost:9092"</span>, <span class="string">"auto.offset.reset"</span>-&gt;<span class="string">"smallest"</span>), <span class="type">Set</span>(<span class="string">"kafkaspark"</span>))</span><br><span class="line"></span><br><span class="line">    streamData.print()</span><br><span class="line"></span><br><span class="line">    ssc.start()</span><br><span class="line">    ssc.awaitTermination()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+<hr>
+<h2 id="spark-streaming-kafka-0-10"><a href="#spark-streaming-kafka-0-10" class="headerlink" title="spark-streaming-kafka-0-10"></a>spark-streaming-kafka-0-10</h2><blockquote>
+<p>只支持<code>Direct</code>模式</p>
+</blockquote>
+<h3 id="GAV-2"><a href="#GAV-2" class="headerlink" title="GAV"></a>GAV</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupId &#x3D; org.apache.spark</span><br><span class="line">artifactId &#x3D; spark-streaming-kafka-0-10_2.12    # 2.12 scala的版本</span><br><span class="line">version &#x3D; $&#123;spark-version&#125;</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>⚠️注意： 不需要再手动添加 org.apache.kafka组建的相关依赖了，比如：<code>kafka-client</code>, 因为spark-straming-kafka-0-10已经和相关的依赖了</p>
+</blockquote>
+<h3 id="创建Direct-Stream"><a href="#创建Direct-Stream" class="headerlink" title="创建Direct Stream"></a>创建Direct Stream</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.consumer.<span class="type">ConsumerRecord</span></span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.common.serialization.<span class="type">StringDeserializer</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.kafka010._</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.kafka010.<span class="type">LocationStrategies</span>.<span class="type">PreferConsistent</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.streaming.kafka010.<span class="type">ConsumerStrategies</span>.<span class="type">Subscribe</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> kafkaParams = <span class="type">Map</span>[<span class="type">String</span>, <span class="type">Object</span>](</span><br><span class="line">  <span class="string">"bootstrap.servers"</span> -&gt; <span class="string">"localhost:9092,anotherhost:9092"</span>,</span><br><span class="line">  <span class="string">"key.deserializer"</span> -&gt; classOf[<span class="type">StringDeserializer</span>], <span class="comment">// key的反序列化</span></span><br><span class="line">  <span class="string">"value.deserializer"</span> -&gt; classOf[<span class="type">StringDeserializer</span>], <span class="comment">// value的反序列化</span></span><br><span class="line">  <span class="string">"group.id"</span> -&gt; <span class="string">"use_a_separate_group_id_for_each_stream"</span>,</span><br><span class="line">  <span class="string">"auto.offset.reset"</span> -&gt; <span class="string">"latest"</span>, <span class="comment">// offset设置 [latest, none, earilest]</span></span><br><span class="line">  <span class="string">"enable.auto.commit"</span> -&gt; (<span class="literal">false</span>: java.lang.<span class="type">Boolean</span>) <span class="comment">// 是否自动提交，如果有stream会产生操作的话，可以不使用自动提交offset，而是处理完数据之后，手动提交offset 防止数据重复消费</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> topics = <span class="type">Array</span>(<span class="string">"topicA"</span>, <span class="string">"topicB"</span>)</span><br><span class="line"><span class="keyword">val</span> stream = <span class="type">KafkaUtils</span>.createDirectStream[<span class="type">String</span>, <span class="type">String</span>](</span><br><span class="line">  streamingContext, </span><br><span class="line">  <span class="type">PreferConsistent</span>, <span class="comment">//分区策略 [PreferConsistent, PreferBrokers, PreferFixed]</span></span><br><span class="line">  <span class="type">Subscribe</span>[<span class="type">String</span>, <span class="type">String</span>](topics, kafkaParams) <span class="comment">//消费策略</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">stream.map(record =&gt; (record.key, record.value))</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取到offset"><a href="#获取到offset" class="headerlink" title="获取到offset"></a>获取到offset</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stream.foreachRDD &#123; rdd =&gt;</span><br><span class="line">  <span class="keyword">val</span> offsetRanges = rdd.asInstanceOf[<span class="type">HasOffsetRanges</span>].offsetRanges</span><br><span class="line">  rdd.foreachPartition &#123; iter =&gt;</span><br><span class="line">    <span class="keyword">val</span> o: <span class="type">OffsetRange</span> = offsetRanges(<span class="type">TaskContext</span>.get.partitionId)</span><br><span class="line">    println(<span class="string">s"<span class="subst">$&#123;o.topic&#125;</span> <span class="subst">$&#123;o.partition&#125;</span> <span class="subst">$&#123;o.fromOffset&#125;</span> <span class="subst">$&#123;o.untilOffset&#125;</span>"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="保存offset"><a href="#保存offset" class="headerlink" title="保存offset"></a>保存offset</h3><blockquote>
+<p>有三种方式</p>
+<ul>
+<li><p>CheckPoints (不推荐使用)</p>
+</li>
+<li><p>Kafka自身</p>
+</li>
+<li><p>外部存储</p>
+</li>
+</ul>
+<p>在kafka-0-8中，可以使用zookeeper里管理offset</p>
+<p>目录结构是<code>/consumers/&lt;group.id&gt;/offsets/ &lt;topic&gt;/&lt;partitionId&gt;</code></p>
+<p>但是由于 zookeeper 的写入能力并不会随着 zookeeper 节点数量的增加而扩大，因而，当存在频繁的 Offset 更新时，ZOOKEEPER 集群本身可能成为瓶颈。因而，不推荐采用这种方式。</p>
+<p>在0-10中，kafka自身的一个特殊 Topic（__consumer_offsets）中：这种方式支持大吞吐量的Offset 更新，又不需要手动编写 Offset 管理程序或者维护一套额外的集群，因而是合适的实现方式。</p>
+</blockquote>
 
     </article>
     <!-- license  -->
@@ -565,7 +593,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SparkStreaming整合Kafka"><span class="toc-number">1.</span> <span class="toc-text">SparkStreaming整合Kafka</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#spark-streaming-kafka-0-8"><span class="toc-number">1.1.</span> <span class="toc-text">spark-streaming-kafka-0-8</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Receivers-based"><span class="toc-number">1.1.1.</span> <span class="toc-text">Receivers-based</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GAV"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">GAV</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Direct-Approach"><span class="toc-number">1.1.2.</span> <span class="toc-text">Direct Approach</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-1"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GAV-1"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">GAV</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法-1"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-1"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">示例</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SparkStreaming整合Kafka"><span class="toc-number">1.</span> <span class="toc-text">SparkStreaming整合Kafka</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#spark-streaming-kafka-0-8"><span class="toc-number">1.1.</span> <span class="toc-text">spark-streaming-kafka-0-8</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Receivers-based"><span class="toc-number">1.1.1.</span> <span class="toc-text">Receivers-based</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GAV"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">GAV</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Direct-Approach"><span class="toc-number">1.1.2.</span> <span class="toc-text">Direct Approach</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-1"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GAV-1"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">GAV</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法-1"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-1"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">示例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spark-streaming-kafka-0-10"><span class="toc-number">1.2.</span> <span class="toc-text">spark-streaming-kafka-0-10</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GAV-2"><span class="toc-number">1.2.1.</span> <span class="toc-text">GAV</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Direct-Stream"><span class="toc-number">1.2.2.</span> <span class="toc-text">创建Direct Stream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取到offset"><span class="toc-number">1.2.3.</span> <span class="toc-text">获取到offset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保存offset"><span class="toc-number">1.2.4.</span> <span class="toc-text">保存offset</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1443,9 +1471,26 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 59
+        Total : 60
         </div>
         <!-- search  -->
         
@@ -1458,6 +1503,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/09</span><a class="archive-post-title" href= "/2020/07/09/SparkStreaming%E6%B5%81%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90%E8%AE%A2%E5%8D%95%E6%97%A5%E5%BF%97/" >SparkStreaming流处理分析订单日志</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1844,6 +1894,10 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="Alluxio"><span class="iconfont-archer">&#xe606;</span>Alluxio</span>
     
         <span class="sidebar-tag-name" data-tags="HFile"><span class="iconfont-archer">&#xe606;</span>HFile</span>
+    
+        <span class="sidebar-tag-name" data-tags="SparkStreaming"><span class="iconfont-archer">&#xe606;</span>SparkStreaming</span>
+    
+        <span class="sidebar-tag-name" data-tags="Redis"><span class="iconfont-archer">&#xe606;</span>Redis</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
