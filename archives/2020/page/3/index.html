@@ -339,6 +339,45 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/06/03/SparkStreaming%E6%95%B4%E5%90%88Kafka/" >
+            
+                <span>SparkStreaming整合Kafka</span>
+        </a>
+        <div class="abstract-content">
+            SparkStreaming整合Kafka
+Spark2.3版本之前可以支持broker0-8和0-10两个streaming-kafka版本，2.3版本之后不再支持0-8   0-8版本可以使用 Receviers-based 和 Direct 两种方式接收Kafka数据   0-10版本使用Kafka010操作
+
+spark-streaming-kafka-0-8
+可以使用 Receviers-based 和 Direct 两种方式
+
+Receivers-based是基于receivers和高级API进行接收数据
+特点
+这种方式，使用接收器，接收器一直处于等待接收的状态，就会浪费资源...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "kafka">kafka</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/06/01/SparkStreaming%E6%95%B4%E5%90%88Flume/" >
             
                 <span>SparkStreaming整合Flume </span>
@@ -628,39 +667,10 @@ ecs00-netcat-memory-avro.conf12345678910111213141516netcat-avro-agent.sources &#
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/20/socket-file-queue-streaming/" >
-            
-                <span>socket/file/queue_streaming</span>
-        </a>
-        <div class="abstract-content">
-            socket_streaming1234567891011121314151617181920212223242526package workuseimport org.apache.spark.streaming.&#123;Seconds, StreamingContext&#125;import org.apache.spark.SparkConfobject socket_streaming &#123;  def main(args: Array[String]): Unit = &#123;    val sparkConf = new SparkConf().setAppN...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/2020/page/2/">&amp;#60; PREV</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2020/page/4/">4</a><a class="page-number" href="/archives/2020/page/5/">5</a><a class="page-number" href="/archives/2020/page/6/">6</a><a class="extend next" rel="next" href="/archives/2020/page/4/">NEXT &amp;#62;</a>
+        <a class="extend prev" rel="prev" href="/archives/2020/page/2/">&amp;#60; PREV</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2020/page/4/">4</a><a class="page-number" href="/archives/2020/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/7/">7</a><a class="extend next" rel="next" href="/archives/2020/page/4/">NEXT &amp;#62;</a>
     </nav>
     
 </main>
@@ -1623,9 +1633,26 @@ ecs00-netcat-memory-avro.conf12345678910111213141516netcat-avro-agent.sources &#
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 60
+        Total : 61
         </div>
         <!-- search  -->
         
@@ -1638,6 +1665,11 @@ ecs00-netcat-memory-avro.conf12345678910111213141516netcat-avro-agent.sources &#
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/10</span><a class="archive-post-title" href= "/2020/07/10/SparkSQL-%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/" >SparkSQL 窗口函数</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -2033,6 +2065,10 @@ ecs00-netcat-memory-avro.conf12345678910111213141516netcat-avro-agent.sources &#
         <span class="sidebar-tag-name" data-tags="SparkStreaming"><span class="iconfont-archer">&#xe606;</span>SparkStreaming</span>
     
         <span class="sidebar-tag-name" data-tags="Redis"><span class="iconfont-archer">&#xe606;</span>Redis</span>
+    
+        <span class="sidebar-tag-name" data-tags="窗口函数"><span class="iconfont-archer">&#xe606;</span>窗口函数</span>
+    
+        <span class="sidebar-tag-name" data-tags="SparkSQL"><span class="iconfont-archer">&#xe606;</span>SparkSQL</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

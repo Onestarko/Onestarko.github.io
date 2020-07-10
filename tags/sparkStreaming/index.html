@@ -339,42 +339,127 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/07/09/SparkStreaming%E6%B5%81%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90%E8%AE%A2%E5%8D%95%E6%97%A5%E5%BF%97/" >
+        <a class="abstract-title" href = "/2020/06/04/SparkStreaming%E6%B6%88%E8%B4%B9Kakfa%E8%BE%93%E5%87%BA%E6%97%A5%E5%BF%97/" >
             
-                <span>SparkStreaming流处理分析订单日志</span>
+                <span>SparkStreaming消费Kakfa输出日志</span>
         </a>
         <div class="abstract-content">
-            SparkStreaming流处理分析订单日志一、项目说明
-订单数据发送到Kafka中，SparkStreaming消费Kafka数据，以天/时/分钟的维度统计下单单数、成交单数、成交金额，将结果写入到Redis中
-
-二、模块分解
-基础模块（配置项类、Redis连接池）
-mock 订单JSON数据发送到Kafka
-消费Kafka进行统计，使用Zookeeper和Kafka两种方式进行Offset管理
-储存统计结果到Redis
-
-三、基础模块1. 基础项类
-使用com.typesafe:config
-
-
-工具类
-
- 123456789101112131415161718/***  * @D...
+            SparkStreaming消费Kakfa输出日志SparkStreaming代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273package workuseimport kafka.serializer.StringDecoderimport org.apache.spark.SparkConfimport org.apache.spark.streaming....
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/09</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/04</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Kafka">Kafka</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "SparkStreaming">SparkStreaming</a>
+</div>
+            
+        </div>
+    </article>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Redis">Redis</a>
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/06/03/SparkStreaming%E6%95%B4%E5%90%88Kafka/" >
+            
+                <span>SparkStreaming整合Kafka</span>
+        </a>
+        <div class="abstract-content">
+            SparkStreaming整合Kafka
+Spark2.3版本之前可以支持broker0-8和0-10两个streaming-kafka版本，2.3版本之后不再支持0-8   0-8版本可以使用 Receviers-based 和 Direct 两种方式接收Kafka数据   0-10版本使用Kafka010操作
+
+spark-streaming-kafka-0-8
+可以使用 Receviers-based 和 Direct 两种方式
+
+Receivers-based是基于receivers和高级API进行接收数据
+特点
+这种方式，使用接收器，接收器一直处于等待接收的状态，就会浪费资源...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "kafka">kafka</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/06/01/SparkStreaming%E6%95%B4%E5%90%88Flume/" >
+            
+                <span>SparkStreaming整合Flume </span>
+        </a>
+        <div class="abstract-content">
+            SparkStreaming整合Flume
+可以通过Push 和 Pull两种方式整合Push: 是Flume Push到Spark, 缺点是只能一个executor进行处理，造成压力Pull: 是Spark主动去Pull推荐使用Pull方式
+
+
+Push方式，先执行Spark,再执行Flume  Pull方式，先执行Flume,再执行Spark
+
+Push方式Flume.confnetcat-memory-avro.conf
+12345678910111213141516netcat-avro-agent.sources &#x3D; netcat-avro-sourcenetcat-...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/06/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/05/20/socket-file-queue-streaming/" >
+            
+                <span>socket/file/queue_streaming</span>
+        </a>
+        <div class="abstract-content">
+            socket_streaming1234567891011121314151617181920212223242526package workuseimport org.apache.spark.streaming.&#123;Seconds, StreamingContext&#125;import org.apache.spark.SparkConfobject socket_streaming &#123;  def main(args: Array[String]): Unit = &#123;    val sparkConf = new SparkConf().setAppN...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
     
 </div>
             
@@ -1343,9 +1428,26 @@ mock 订单JSON数据发送到Kafka
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 60
+        Total : 61
         </div>
         <!-- search  -->
         
@@ -1358,6 +1460,11 @@ mock 订单JSON数据发送到Kafka
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/10</span><a class="archive-post-title" href= "/2020/07/10/SparkSQL-%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/" >SparkSQL 窗口函数</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1754,6 +1861,10 @@ mock 订单JSON数据发送到Kafka
     
         <span class="sidebar-tag-name" data-tags="Redis"><span class="iconfont-archer">&#xe606;</span>Redis</span>
     
+        <span class="sidebar-tag-name" data-tags="窗口函数"><span class="iconfont-archer">&#xe606;</span>窗口函数</span>
+    
+        <span class="sidebar-tag-name" data-tags="SparkSQL"><span class="iconfont-archer">&#xe606;</span>SparkSQL</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1782,81 +1893,6 @@ jsonContent:
     categories: true
     tags: true</pre>
     </div> 
-    <div class="sidebar-tags-list"></div>
-</div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
-    
-        <span class="sidebar-category-name" data-categories="Scala"><span class="iconfont-archer">&#xe60a;</span>Scala</span>
-    
-        <span class="sidebar-category-name" data-categories="工具"><span class="iconfont-archer">&#xe60a;</span>工具</span>
-    
-        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
-    
-        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
-    
-        <span class="sidebar-category-name" data-categories="Elasticsearch"><span class="iconfont-archer">&#xe60a;</span>Elasticsearch</span>
-    
-        <span class="sidebar-category-name" data-categories="nginx"><span class="iconfont-archer">&#xe60a;</span>nginx</span>
-    
-        <span class="sidebar-category-name" data-categories="nginx/uwsgi"><span class="iconfont-archer">&#xe60a;</span>nginx/uwsgi</span>
-    
-        <span class="sidebar-category-name" data-categories="mysql"><span class="iconfont-archer">&#xe60a;</span>mysql</span>
-    
-        <span class="sidebar-category-name" data-categories="scala"><span class="iconfont-archer">&#xe60a;</span>scala</span>
-    
-        <span class="sidebar-category-name" data-categories="hadoop"><span class="iconfont-archer">&#xe60a;</span>hadoop</span>
-    
-        <span class="sidebar-category-name" data-categories="Pandas"><span class="iconfont-archer">&#xe60a;</span>Pandas</span>
-    
-        <span class="sidebar-category-name" data-categories="Numpy"><span class="iconfont-archer">&#xe60a;</span>Numpy</span>
-    
-        <span class="sidebar-category-name" data-categories="Pandas/Python"><span class="iconfont-archer">&#xe60a;</span>Pandas/Python</span>
-    
-        <span class="sidebar-category-name" data-categories="Numpy/Python"><span class="iconfont-archer">&#xe60a;</span>Numpy/Python</span>
-    
-        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
-    
-        <span class="sidebar-category-name" data-categories="数据库"><span class="iconfont-archer">&#xe60a;</span>数据库</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "kowhoy"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-    <!-- busuanzi  -->
-    
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
-    </div>
-    <!-- async load share.js -->
-     
-    </body>
-</html>
-
-
-/div> 
     <div class="sidebar-tags-list"></div>
 </div>
         <div class="sidebar-panel-categories">

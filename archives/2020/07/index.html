@@ -339,6 +339,45 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/07/10/SparkSQL-%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/" >
+            
+                <span>SparkSQL 窗口函数</span>
+        </a>
+        <div class="abstract-content">
+            SparkSQL 窗口函数一、窗口函数的定义和与其他函数的区别
+普通函数 : 作用于每一条记录，依赖于本条记录来计算出一个新列，记录数不变
+聚合函数 : 作用于一组记录，计算出一个聚合值，记录数变少
+窗口函数 : 作用于每一条记录，依赖于窗口中的记录来计算出一个新列，记录数不变
+
+二、窗口函数语法结构12345&lt;窗口函数&gt;([参数]) over ([partition by &lt;分组列&gt;][order by &lt;排序列&gt;] [asc&#x2F;desc](rows | range) &lt;范围条件&gt;)
+
+1. 窗口函数
+ranking functi...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "窗口函数">窗口函数</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "SparkSQL">SparkSQL</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/07/09/SparkStreaming%E6%B5%81%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90%E8%AE%A2%E5%8D%95%E6%97%A5%E5%BF%97/" >
             
                 <span>SparkStreaming流处理分析订单日志</span>
@@ -1477,9 +1516,26 @@ ${SPARK_HOME}/conf/spark-defaults.conf 增加配置spark.driver.extraClassPath  
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 60
+        Total : 61
         </div>
         <!-- search  -->
         
@@ -1492,6 +1548,11 @@ ${SPARK_HOME}/conf/spark-defaults.conf 增加配置spark.driver.extraClassPath  
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/10</span><a class="archive-post-title" href= "/2020/07/10/SparkSQL-%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/" >SparkSQL 窗口函数</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1887,6 +1948,10 @@ ${SPARK_HOME}/conf/spark-defaults.conf 增加配置spark.driver.extraClassPath  
         <span class="sidebar-tag-name" data-tags="SparkStreaming"><span class="iconfont-archer">&#xe606;</span>SparkStreaming</span>
     
         <span class="sidebar-tag-name" data-tags="Redis"><span class="iconfont-archer">&#xe606;</span>Redis</span>
+    
+        <span class="sidebar-tag-name" data-tags="窗口函数"><span class="iconfont-archer">&#xe606;</span>窗口函数</span>
+    
+        <span class="sidebar-tag-name" data-tags="SparkSQL"><span class="iconfont-archer">&#xe606;</span>SparkSQL</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
