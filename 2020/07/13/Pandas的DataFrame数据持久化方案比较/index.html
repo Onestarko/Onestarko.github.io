@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Kowhoy&#39;s Studio</title>
+    <title>Pandas的DataFrame数据持久化方案比较 · Kowhoy&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180709 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180709 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -194,14 +196,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >kowhoy&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Pandas的DataFrame数据持久化方案比较</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>kowhoy's Studio.</a>
 </header>
@@ -222,17 +233,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/full_res-1.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/pt.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            kowhoy's Studio.
-            <!-- 文章页  -->
+            Pandas的DataFrame数据持久化方案比较
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -240,12 +251,49 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                continuego
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Pandas">Pandas</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">283</span> / Reading time: <span class="post-count">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/07/13</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -346,399 +394,64 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/22/flume%E8%B7%A8%E6%9C%BA%E5%99%A8%E4%BC%A0%E8%BE%93/" >
-            
-                <span>flume跨机器传输</span>
-        </a>
-        <div class="abstract-content">
-            Flume跨机器传输
-ecs00:公网ip: 102.102.102.102内网ip: 172.100.100.100
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="Pandas的DataFrame数据持久化方案比较"><a href="#Pandas的DataFrame数据持久化方案比较" class="headerlink" title="Pandas的DataFrame数据持久化方案比较"></a>Pandas的DataFrame数据持久化方案比较</h3><blockquote>
+<p>统一使用30个字段，44w行的订单表</p>
+</blockquote>
+<h4 id="一、使用CSV文件"><a href="#一、使用CSV文件" class="headerlink" title="一、使用CSV文件"></a>一、使用CSV文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">cache_file = <span class="string">"./cache.csv"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> os.path.exists(cache_file):</span><br><span class="line">	df = pd.read_csv(cache_file)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	dbh = create_engine(<span class="string">"mysql+pymysql://user:passwd@ip/db"</span>)</span><br><span class="line">	df = pd.read_sql_query(<span class="string">"select * from orders"</span>, dbh)</span><br><span class="line">	</span><br><span class="line">	df.to_csv(cache_file, encoding=<span class="string">"utf8"</span>, index=<span class="literal">False</span>)</span><br><span class="line">	</span><br><span class="line">print(df.head(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>首次耗时：37.85s<br>读取耗时：3.38s</p>
+</blockquote>
+<h4 id="二、使用pickle对象存储"><a href="#二、使用pickle对象存储" class="headerlink" title="二、使用pickle对象存储"></a>二、使用pickle对象存储</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">cache_file = <span class="string">"./cache"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> os.path.exists(cache_file):</span><br><span class="line">	<span class="keyword">with</span> open(cache_file, <span class="string">"rb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">		df = pickle.load(df)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	dbh = create_engine(<span class="string">"mysql+pymysql://user:passwd@ip/db"</span>)</span><br><span class="line">	df = pd.read_sql_query(<span class="string">"select * from order_profit"</span>, dbh)</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">with</span> open(cache_file, <span class="string">"wb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">		pickle.dump(df, f)</span><br><span class="line">		</span><br><span class="line">print(df.head(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
 
-ecs01:公网ip: 103.103.103.103内网ip: 172.100.100.101
+<blockquote>
+<p>首次耗时：24.86s<br>读取耗时：1.11s</p>
+</blockquote>
+<h4 id="三、使用HDFStore存储"><a href="#三、使用HDFStore存储" class="headerlink" title="三、使用HDFStore存储"></a>三、使用HDFStore存储</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"></span><br><span class="line">cache_file = <span class="string">"./orders.h5"</span></span><br><span class="line"></span><br><span class="line">store = pd.HDFStore(cache_file)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="string">"orders"</span> <span class="keyword">in</span> store:</span><br><span class="line">	df = store[<span class="string">"orders"</span>]</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	dbh = create_engine(<span class="string">"mysql+pymysql://user:passwd@ip/db"</span>)</span><br><span class="line">	df = pd.read_sql_query(<span class="string">"select * from order_profit"</span>, dbh)</span><br><span class="line">	</span><br><span class="line">	store[<span class="string">"orders"</span>] = df</span><br><span class="line">	</span><br><span class="line">print(df.head(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>首次耗时：24.85s<br>读取耗时: 1.78s</p>
+</blockquote>
+<h4 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h4><blockquote>
+<p>对于Pandas的DataFrame进行持久化缓存，使用了上面三种方式进行比较，除此之外还尝试了使用Alluxio的存储方式，差异不大。比较得出使用对象存储速度最快。</p>
+</blockquote>
 
-目标ecs00的44444端口的netcat ==&gt; ecs01的logger
-
-ecs00-netcat-memory-avro.conf12345678910111213141516netcat-avro-agent.sources &#x3D; netcat-avro-sourcenetcat-avro-agent.sinks &#x3D; netcat...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Flume">Flume</a>
-    
-</div>
-            
-        </div>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/20/socket-file-queue-streaming/" >
-            
-                <span>socket/file/queue_streaming</span>
-        </a>
-        <div class="abstract-content">
-            socket_streaming1234567891011121314151617181920212223242526package workuseimport org.apache.spark.streaming.&#123;Seconds, StreamingContext&#125;import org.apache.spark.SparkConfobject socket_streaming &#123;  def main(args: Array[String]): Unit = &#123;    val sparkConf = new SparkConf().setAppN...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "sparkStreaming">sparkStreaming</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/18/spark-core%E5%9B%BE%E8%B0%B1/" >
-            
-                <span>spark_core图谱</span>
-        </a>
-        <div class="abstract-content">
-            
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "spark">spark</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/15/spark-transformation/" >
-            
-                <span>spark_transformation</span>
-        </a>
-        <div class="abstract-content">
-            123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "spark">spark</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "transformation">transformation</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/12/datax%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" >
-            
-                <span>datax的基本使用</span>
-        </a>
-        <div class="abstract-content">
-            datax的基本使用
-datax是一种中心化处理形式，分为reader和writer连接到datax，然后进行转储操作
-
-mysql2mysql123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051&#123;    "job": &#123;        "content": [        &#123;            "reader": &#123;                "name":"mysqlreader",          ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "datax">datax</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/09/mysql-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B-%E8%A7%A6%E5%8F%91%E5%99%A8%E7%A4%BA%E4%BE%8B/" >
-            
-                <span>mysql_存储过程/触发器示例</span>
-        </a>
-        <div class="abstract-content">
-            存储过程1234567891011121314151617create procedure three2(in d double(5, 2),out v1 double(5,2),out v2 double(5,2),out v3 double(5,2),out v4 double(5,2))BEGINselect max(price_val) into v1 from price_log;select min(price_val) into v2 from price_log;select avg(price_val) into v3 from price_log;select d i...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "mysql">mysql</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/09/HQL%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/" >
-            
-                <span>HQL执行流程</span>
-        </a>
-        <div class="abstract-content">
-            
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "hive">hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/09/hive%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B/" >
-            
-                <span>hive存储模型</span>
-        </a>
-        <div class="abstract-content">
-            hive存储模型一、内部表与外部表
-内部表的一切都在hive上管理，删除了内部表，将丢失数据外部表hive上只是提供操作以及结构，数据分开存储，删除外部表，数据不会丢失，重新建表即可正常使用
-
-1. 建立内部表123456789create table atm (id int,name string,address string,money float)row format delimitedfileds terminated by ','stored as textfile;
-
-1load data local inpath &#39;file_path&#39; into table...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "hive">hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BC%98%E5%8C%96%E5%99%A8/" >
-            
-                <span>数据库的优化器</span>
-        </a>
-        <div class="abstract-content">
-            数据库主要由三部分组成，分别是解析器、优化器和执行引擎。
-RBORBO(Rule-Based Optimizer) 基于规则的优化器。是根据已经制定好的一些优化规则对关系表达式进行转换，最终生成一个最优的执行计划。它是一种经验式的优化方法，优化规则都是预先定义好的，只需要将SQL按照优化规则的顺序往上套就行，一旦满足某个规则则进行优化。这样的结果就是同样一条SQL，无论读取的表中的数据是怎样的，最后生成的执行计划都是一样的（优化规则都一样）。而且SQL的写法不同也很有可能影响最终的执行计划，从而影响SQL的性能（基于优化规则顺序执行）。所以说，虽然RBO是一个老司机，知道常见的套路，但是...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "优化器">优化器</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/05/07/python%E6%93%8D%E4%BD%9Czookeeper/" >
-            
-                <span>python操作zookeeper</span>
-        </a>
-        <div class="abstract-content">
-            一、安装1pip install kazoo
-
-二、连接Zookeeper123from kazoo.client import KazooClientzk = KazooClient(hosts='39.99.221.106')
-
-
-默认端口为2181，注意防火墙/安全组
-
-三、创建节点
-
-path：          节点路径
-value：         节点对应的值，注意值的类型是 bytes
-ephemeral： 若为 True 则创建一个临时节点，session 中断后自动删除该节点。默认 False
-sequence:     若为 True 则在你创建节点名后面增加10位...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "zookeeper">zookeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/3/">&amp;#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">NEXT &amp;#62;</a>
-    </nav>
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" src= /avatar/xb.jpeg >
-    <div class="profile-name">kowhoy</div>
-    
-    <div class="profile-signature">
-        continuego
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
+        </li>
+        <li class="previous">
             
-                <a href="mailto:onestarko@qq.com" class="iconfont-archer email" title=email ></a>
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/07/10/SparkSQL-%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/" title= SparkSQL 窗口函数 >
+                    <div class="prevTitle">SparkSQL 窗口函数</div>
+                </a>
             
-        
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        
-            
-                <a href="//github.com/onestarko" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
     
-        
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
     
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
-    </div>
-    
-    
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -804,6 +517,24 @@ sequence:     若为 True 则在你创建节点名后面增加10位...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pandas的DataFrame数据持久化方案比较"><span class="toc-number">1.</span> <span class="toc-text">Pandas的DataFrame数据持久化方案比较</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、使用CSV文件"><span class="toc-number">1.1.</span> <span class="toc-text">一、使用CSV文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、使用pickle对象存储"><span class="toc-number">1.2.</span> <span class="toc-text">二、使用pickle对象存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、使用HDFStore存储"><span class="toc-number">1.3.</span> <span class="toc-text">三、使用HDFStore存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、总结"><span class="toc-number">1.4.</span> <span class="toc-text">四、总结</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -2253,6 +1984,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

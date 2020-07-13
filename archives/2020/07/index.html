@@ -339,6 +339,38 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/07/13/Pandas%E7%9A%84DataFrame%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E6%96%B9%E6%A1%88%E6%AF%94%E8%BE%83/" >
+            
+                <span>Pandas的DataFrame数据持久化方案比较</span>
+        </a>
+        <div class="abstract-content">
+            Pandas的DataFrame数据持久化方案比较
+统一使用30个字段，44w行的订单表
+
+一、使用CSV文件123456789101112131415import pandas as pdfrom sqlalchemy import create_engineimport oscache_file = "./cache.csv"if os.path.exists(cache_file):	df = pd.read_csv(cache_file)else:	dbh = create_engine("mysql+pymysql://user:passwd@ip/db")	df = pd.r...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Pandas">Pandas</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/07/10/SparkSQL-%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/" >
             
                 <span>SparkSQL 窗口函数</span>
@@ -1533,9 +1565,26 @@ ${SPARK_HOME}/conf/spark-defaults.conf 增加配置spark.driver.extraClassPath  
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 61
+        Total : 62
         </div>
         <!-- search  -->
         
@@ -1548,6 +1597,11 @@ ${SPARK_HOME}/conf/spark-defaults.conf 增加配置spark.driver.extraClassPath  
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href= "/2020/07/13/Pandas%E7%9A%84DataFrame%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E6%96%B9%E6%A1%88%E6%AF%94%E8%BE%83/" >Pandas的DataFrame数据持久化方案比较</a>
+        </li>
     
     
         <li class="archive-post-item">
