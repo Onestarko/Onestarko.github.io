@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Scala模式匹配 · Kowhoy&#39;s Studio</title>
+    <title>Python数据结构的性能分析 ( Dict ) · Kowhoy&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -210,7 +210,7 @@
                 <a href="/" >kowhoy&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Scala模式匹配</a>
+                <a href="#" class="post-name">Python数据结构的性能分析 ( Dict )</a>
             </div>
     </div>
     
@@ -242,7 +242,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Scala模式匹配
+            Python数据结构的性能分析 ( Dict )
             <!-- 404 -->
             
         </h1>
@@ -261,18 +261,20 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "scala">scala</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Python">Python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "数据结构">数据结构</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">256</span> / Reading time: <span class="post-count">1 min</span></span>
+                        <span>Word count: <span class="post-count">181</span> / Reading time: <span class="post-count">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/04/21</span>
+                    <span class="post-intro-time">2020/07/24</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -396,7 +398,49 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kowhoy.scala</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scala.util.<span class="type">Random</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 模式匹配</span></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">MatchDemo</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="comment">// 基础匹配 </span></span><br><span class="line">    basic_match()</span><br><span class="line">    <span class="comment">// 条件匹配</span></span><br><span class="line">    condition_match()</span><br><span class="line">    <span class="comment">// 类型匹配</span></span><br><span class="line">    type_match(<span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>))</span><br><span class="line">    type_match(<span class="number">12</span>)</span><br><span class="line">    type_match(<span class="number">1.2</span>)</span><br><span class="line">    <span class="comment">// array匹配</span></span><br><span class="line">    array_match(<span class="type">Array</span>())</span><br><span class="line">    <span class="comment">// 异常处理</span></span><br><span class="line">    error_exception_match()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">basic_match</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> names = <span class="type">Array</span>(<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>)</span><br><span class="line">    <span class="keyword">val</span> name = names(<span class="type">Random</span>.nextInt(names.length))</span><br><span class="line"></span><br><span class="line">    name <span class="keyword">match</span> &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">"A"</span> =&gt; println(<span class="string">"AAAA"</span>)</span><br><span class="line">      <span class="keyword">case</span> <span class="string">"B"</span> =&gt; println(<span class="string">"BBBB"</span>)</span><br><span class="line">      <span class="keyword">case</span> _ =&gt; println(<span class="string">"CCCCC"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">condition_match</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> names = <span class="type">Array</span>(<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> name = names(<span class="type">Random</span>.nextInt(names.length))</span><br><span class="line"><span class="comment">//    name = "C"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> buff = <span class="string">"red"</span></span><br><span class="line"></span><br><span class="line">    name <span class="keyword">match</span> &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">"A"</span> =&gt; println(<span class="string">"A"</span>)</span><br><span class="line">      <span class="keyword">case</span> <span class="string">"B"</span> =&gt; println(<span class="string">"B"</span>)</span><br><span class="line">      <span class="keyword">case</span> _ <span class="keyword">if</span>(buff == <span class="string">"red"</span>) =&gt; println(<span class="string">"D"</span>)</span><br><span class="line">      <span class="keyword">case</span> _ =&gt; println(<span class="string">"C"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">type_match</span></span>(data:<span class="type">Any</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">    data <span class="keyword">match</span> &#123;</span><br><span class="line">      <span class="keyword">case</span> x:<span class="type">Int</span> =&gt; println(<span class="string">"INT"</span>)</span><br><span class="line">      <span class="keyword">case</span> x:<span class="type">String</span> =&gt; println(<span class="string">"String"</span>)</span><br><span class="line">      <span class="keyword">case</span> x:<span class="type">List</span>[<span class="type">Any</span>] =&gt; println(<span class="string">"List"</span>)</span><br><span class="line">      <span class="keyword">case</span> _ =&gt; println(<span class="string">"other"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">array_match</span></span>(array:<span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    array <span class="keyword">match</span> &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="type">Array</span>(<span class="string">"abc"</span>) =&gt; println(<span class="string">"type1_abc"</span>)</span><br><span class="line">      <span class="keyword">case</span> <span class="type">Array</span>(x, y) =&gt; println(<span class="string">"type2:"</span>, x, y)</span><br><span class="line">      <span class="keyword">case</span> <span class="type">Array</span>(x, _*) =&gt; println(<span class="string">"type3"</span>, x)</span><br><span class="line">      <span class="keyword">case</span> _ =&gt; println(<span class="string">"other"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">error_exception_match</span></span>(): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">val</span> d = <span class="number">10</span> / <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">      <span class="keyword">case</span> e: <span class="type">ArithmeticException</span> =&gt; println(<span class="string">"error0"</span>)</span><br><span class="line">      <span class="keyword">case</span> e: <span class="type">Exception</span> =&gt; println(e.getStackTrace)</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      println(<span class="string">"Aaaaaaa"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="Dict的性能分析"><a href="#Dict的性能分析" class="headerlink" title="Dict的性能分析"></a>Dict的性能分析</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间效率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>复制</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>访问</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>赋值</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>包含(in)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>迭代</td>
+<td>O(n)</td>
+</tr>
+</tbody></table>
+<h4 id="Dict-和-List-查找效率对比"><a href="#Dict-和-List-查找效率对比" class="headerlink" title="Dict 和 List 查找效率对比"></a>Dict 和 List 查找效率对比</h4><blockquote>
+<p>List的时间效率为O(n), Dict的时间效率为O(1)</p>
+</blockquote>
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> timeit</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line"></span><br><span class="line">x_list = []</span><br><span class="line">ls_consume_list = []</span><br><span class="line">d_consume_list = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>, <span class="number">100000001</span>, <span class="number">20000</span>):</span><br><span class="line">    x_list.append(i)</span><br><span class="line">    t = timeit.Timer(<span class="string">"random.randrange(%d) in x"</span> % i, <span class="string">"from __main__ import random, x"</span>)</span><br><span class="line"></span><br><span class="line">    x = list(range(i))</span><br><span class="line"></span><br><span class="line">    ls_consume = t.timeit(<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">    ls_consume_list.append(ls_consume)</span><br><span class="line"></span><br><span class="line">    x = &#123;j: <span class="literal">None</span> <span class="keyword">for</span> j <span class="keyword">in</span> range(i)&#125;</span><br><span class="line"></span><br><span class="line">    d_consume = t.timeit(<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">    d_consume_list.append(d_consume)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"%d, %10.3f, %10.3f"</span> % (i, ls_consume, d_consume))</span><br><span class="line"></span><br><span class="line">    ax.cla()</span><br><span class="line"></span><br><span class="line">    ax.plot(x_list, ls_consume_list, <span class="string">'bo'</span>, <span class="number">5</span>)</span><br><span class="line">    ax.plot(x_list, d_consume_list, <span class="string">'r*'</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    plt.pause(<span class="number">0.1</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://md-img.su.bcebos.com/contain.mov" alt=""></p>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><blockquote>
+<p>List的查询元素的复杂度为O(n)， Dict查询元素的复杂度为O(1)</p>
+</blockquote>
+
     </article>
     <!-- license  -->
     
@@ -404,17 +448,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/04/22/hadoop%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title= hadoop云服务器分布式安装配置 >
-                    <div class="nextTitle">hadoop云服务器分布式安装配置</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/04/15/%E6%9F%AF%E9%87%8C%E5%8C%96/" title= 柯里化 >
-                    <div class="prevTitle">柯里化</div>
+                <a href= "/2020/07/24/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-List/" title= Python数据结构的性能分析 ( List ) >
+                    <div class="prevTitle">Python数据结构的性能分析 ( List )</div>
                 </a>
             
         </li>
@@ -517,7 +556,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#模式匹配"><span class="toc-number">1.</span> <span class="toc-text">模式匹配</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dict的性能分析"><span class="toc-number">1.</span> <span class="toc-text">Dict的性能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Dict-和-List-查找效率对比"><span class="toc-number">1.1.</span> <span class="toc-text">Dict 和 List 查找效率对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证"><span class="toc-number">1.2.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结论"><span class="toc-number">1.3.</span> <span class="toc-text">结论</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
