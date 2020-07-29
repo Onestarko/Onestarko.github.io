@@ -339,37 +339,239 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/27/flask%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86/" >
+        <a class="abstract-title" href = "/2020/07/24/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-Dict/" >
             
-                <span>flask思路整理</span>
+                <span>Python数据结构的性能分析 ( Dict )</span>
         </a>
         <div class="abstract-content">
-            flask思路整理一. 创建虚拟环境python3 -m venv venv. venv/bin/activate
-二. init.py主要工作：
-
-创建应用
-添加配置
-初始化应用
-注册蓝图
+            Dict的性能分析
 
 
-创建应用:
-123456import osfrom flask import Flaskdef create_app(test_config=None):    ## instance_relative_config 使用True的话就会从instance文件夹作为配置文件的路径    app = Flask(__name__, instance_relative_config=True)
+操作
+时间效率
 
-添...
+
+
+复制
+O(n)
+
+
+访问
+O(1)
+
+
+赋值
+O(1)
+
+
+删除
+O(1)
+
+
+包含(in)
+O(1)
+
+
+迭代
+O(n)
+
+
+Dict 和 List 查找效率对比
+List的时间效率为O(n), Dict的时间效率为O(1)
+
+验证12345678910111213141516171819202122232425262728293031323334import timeitimport randomimport matplotlib.pyplot as pltfig, ax = plt.subplots()x_list = []ls_con...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/27</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/24</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "flask">flask</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Python">Python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "数据结构">数据结构</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/07/24/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-List/" >
+            
+                <span>Python数据结构的性能分析 ( List )</span>
+        </a>
+        <div class="abstract-content">
+            List的性能分析
+对列表进行扩充，通常有两种方式。1&gt; 使用append 2&gt;使用串联运算符+append的复杂度为O(1), 串联运算符的复杂度为O(k), k为被连接列表的长度
+生成简单的列表有两种方式。 1&gt; [i for i in range(100)]  2&gt; list(range(100))list()方式的效率更高
+对数据进行pop操作， pop()的复杂度为O(1), pop(i) 的复杂度为O(n)
+
+验证一123456789101112131415161718192021222324252627282930313233import timei...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Python">Python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "数据结构">数据结构</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/07/13/Pandas%E7%9A%84DataFrame%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E6%96%B9%E6%A1%88%E6%AF%94%E8%BE%83/" >
+            
+                <span>Pandas的DataFrame数据持久化方案比较</span>
+        </a>
+        <div class="abstract-content">
+            Pandas的DataFrame数据持久化方案比较
+统一使用30个字段，44w行的订单表
+
+一、使用CSV文件123456789101112131415import pandas as pdfrom sqlalchemy import create_engineimport oscache_file = "./cache.csv"if os.path.exists(cache_file):	df = pd.read_csv(cache_file)else:	dbh = create_engine("mysql+pymysql://user:passwd@ip/db")	df = pd.r...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Pandas">Pandas</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/04/26/matplotlib%E5%9F%BA%E7%A1%80%E5%9B%BE%E8%A1%A8/" >
+            
+                <span>matplotlib基础图表</span>
+        </a>
+        <div class="abstract-content">
+            matplotlib基础图表一、根据x,y绘制12345678910111213import numpy as npfrom matplotlib import pyplot as pltx = np.arange(1, 11)y = x * 2 + 1plt.title("demo1")plt.xlabel("x")plt.ylabel("y")plt.plot(x, y)plt.show()
+
+
+12345678910111213import numpy as npfrom matplotlib import pyplot as pltx = np.arange(0, 3 * np....
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "matplotlib">matplotlib</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/04/10/%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%9F%A5%E8%AF%A2/" >
+            
+                <span>配置数据管理查询</span>
+        </a>
+        <div class="abstract-content">
+            配置数据管理查询
+背景: 数据库以及服务器的配置信息比较多，临时使用频率也高,找起来不方便
+
+pylsy configparser
+
+catconfig.py12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576import sysfrom pylsy import pylsytableimport configparsercp &#x3D; configpa...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/04/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "工具">工具</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/26/kafak%E7%A4%BA%E4%BE%8B-%E8%BF%9C%E7%A8%8B%E7%9B%91%E6%8E%A7%E7%BB%88%E7%AB%AF%E8%BE%93%E5%85%A5/" >
+            
+                <span>kafak示例-远程监控终端输入</span>
+        </a>
+        <div class="abstract-content">
+            kafak示例-远程监控终端输入
+使用pyinotify监听.bash_history文件，使用kafka生产消费
+
+一、kafka安装配置
+安装java环境
+
+官网下载kafka安装包
+1wget http:&#x2F;&#x2F;archive.apache.org&#x2F;dist&#x2F;kafka&#x2F;1.0.0&#x2F;kafka_2.12-1.0.0.tgz
+
+解压压缩包
+
+配置/config/server.properties
+1advertised.listeners&#x3D;PLAINTEXT:&#x2F;&#x2F;&#123;&#123;IP&#12...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "kafka">kafka</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "pyinotify">pyinotify</a>
     
 </div>
             
@@ -1334,9 +1536,28 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 66
+        Total : 67
         </div>
         <!-- search  -->
         
@@ -1349,6 +1570,11 @@
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "/2020/07/29/%E9%A2%91%E6%95%B0%E5%88%86%E6%9E%90/" >频数分析</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1783,147 +2009,9 @@
     
         <span class="sidebar-tag-name" data-tags="数据结构"><span class="iconfont-archer">&#xe606;</span>数据结构</span>
     
-    </div>
-    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br/>
-    1、请确保node版本大于6.2<br/>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tags-list"></div>
-</div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
+        <span class="sidebar-tag-name" data-tags="频数"><span class="iconfont-archer">&#xe606;</span>频数</span>
     
-        <span class="sidebar-category-name" data-categories="Scala"><span class="iconfont-archer">&#xe60a;</span>Scala</span>
-    
-        <span class="sidebar-category-name" data-categories="工具"><span class="iconfont-archer">&#xe60a;</span>工具</span>
-    
-        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
-    
-        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
-    
-        <span class="sidebar-category-name" data-categories="Elasticsearch"><span class="iconfont-archer">&#xe60a;</span>Elasticsearch</span>
-    
-        <span class="sidebar-category-name" data-categories="nginx"><span class="iconfont-archer">&#xe60a;</span>nginx</span>
-    
-        <span class="sidebar-category-name" data-categories="nginx/uwsgi"><span class="iconfont-archer">&#xe60a;</span>nginx/uwsgi</span>
-    
-        <span class="sidebar-category-name" data-categories="mysql"><span class="iconfont-archer">&#xe60a;</span>mysql</span>
-    
-        <span class="sidebar-category-name" data-categories="scala"><span class="iconfont-archer">&#xe60a;</span>scala</span>
-    
-        <span class="sidebar-category-name" data-categories="hadoop"><span class="iconfont-archer">&#xe60a;</span>hadoop</span>
-    
-        <span class="sidebar-category-name" data-categories="Pandas"><span class="iconfont-archer">&#xe60a;</span>Pandas</span>
-    
-        <span class="sidebar-category-name" data-categories="Numpy"><span class="iconfont-archer">&#xe60a;</span>Numpy</span>
-    
-        <span class="sidebar-category-name" data-categories="Pandas/Python"><span class="iconfont-archer">&#xe60a;</span>Pandas/Python</span>
-    
-        <span class="sidebar-category-name" data-categories="Numpy/Python"><span class="iconfont-archer">&#xe60a;</span>Numpy/Python</span>
-    
-        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
-    
-        <span class="sidebar-category-name" data-categories="数据库"><span class="iconfont-archer">&#xe60a;</span>数据库</span>
-    
-        <span class="sidebar-category-name" data-categories="算法"><span class="iconfont-archer">&#xe60a;</span>算法</span>
-    
-        <span class="sidebar-category-name" data-categories="MySQL"><span class="iconfont-archer">&#xe60a;</span>MySQL</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "kowhoy"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-    <!-- busuanzi  -->
-    
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
-    </div>
-    <!-- async load share.js -->
-     
-    </body>
-</html>
-
-
-xe606;</span>Python</span>
-    
-        <span class="sidebar-tag-name" data-tags="Kafka"><span class="iconfont-archer">&#xe606;</span>Kafka</span>
-    
-        <span class="sidebar-tag-name" data-tags="HBASE"><span class="iconfont-archer">&#xe606;</span>HBASE</span>
-    
-        <span class="sidebar-tag-name" data-tags="HBase"><span class="iconfont-archer">&#xe606;</span>HBase</span>
-    
-        <span class="sidebar-tag-name" data-tags="Java"><span class="iconfont-archer">&#xe606;</span>Java</span>
-    
-        <span class="sidebar-tag-name" data-tags="日志"><span class="iconfont-archer">&#xe606;</span>日志</span>
-    
-        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
-    
-        <span class="sidebar-tag-name" data-tags="ETL"><span class="iconfont-archer">&#xe606;</span>ETL</span>
-    
-        <span class="sidebar-tag-name" data-tags="Yarn"><span class="iconfont-archer">&#xe606;</span>Yarn</span>
-    
-        <span class="sidebar-tag-name" data-tags="MySQL"><span class="iconfont-archer">&#xe606;</span>MySQL</span>
-    
-        <span class="sidebar-tag-name" data-tags="Alluxio"><span class="iconfont-archer">&#xe606;</span>Alluxio</span>
-    
-        <span class="sidebar-tag-name" data-tags="HFile"><span class="iconfont-archer">&#xe606;</span>HFile</span>
-    
-        <span class="sidebar-tag-name" data-tags="SparkStreaming"><span class="iconfont-archer">&#xe606;</span>SparkStreaming</span>
-    
-        <span class="sidebar-tag-name" data-tags="Redis"><span class="iconfont-archer">&#xe606;</span>Redis</span>
-    
-        <span class="sidebar-tag-name" data-tags="窗口函数"><span class="iconfont-archer">&#xe606;</span>窗口函数</span>
-    
-        <span class="sidebar-tag-name" data-tags="SparkSQL"><span class="iconfont-archer">&#xe606;</span>SparkSQL</span>
-    
-        <span class="sidebar-tag-name" data-tags="PageRank"><span class="iconfont-archer">&#xe606;</span>PageRank</span>
-    
-        <span class="sidebar-tag-name" data-tags="数据结构"><span class="iconfont-archer">&#xe606;</span>数据结构</span>
+        <span class="sidebar-tag-name" data-tags="统计分析"><span class="iconfont-archer">&#xe606;</span>统计分析</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1993,6 +2081,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="算法"><span class="iconfont-archer">&#xe60a;</span>算法</span>
     
         <span class="sidebar-category-name" data-categories="MySQL"><span class="iconfont-archer">&#xe60a;</span>MySQL</span>
+    
+        <span class="sidebar-category-name" data-categories="统计分析"><span class="iconfont-archer">&#xe60a;</span>统计分析</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
